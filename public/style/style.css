@@ -1,0 +1,126 @@
+/* . - klasa
+ # - id*/
+html,body {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+}
+body {
+	font-family: 'Trebuchet MS',Arial,Verdana,sans-serif;
+	background-color: #ddd;
+}
+#wrapper {
+	min-height: 100%;
+	position:relative;
+}
+#headline {
+	background-color: #39bef0;
+    padding: 0;
+	margin: 0;
+}
+#headline-top {
+	padding: 4px;
+	border-style: none none solid none;
+	border-color: black;
+	border-width: 1px;
+	overflow: hidden;
+}
+#title {
+	margin: 30px 16px 4px 4px;
+	font-size: 40px;
+	font-family: Georgia,Serif;
+	float: left;
+}
+#logo {
+	float: left;
+}
+#headline-menu {
+	background-image: linear-gradient(bottom, rgb(0,134,196) 0%, rgb(115,207,241) 100%);
+	background-image: -o-linear-gradient(bottom, rgb(0,134,196) 0%, rgb(115,207,241) 100%);
+	background-image: -moz-linear-gradient(bottom, rgb(0,134,196) 0%, rgb(115,207,241) 100%);
+	background-image: -webkit-linear-gradient(bottom, rgb(0,134,196) 0%, rgb(115,207,241) 100%);
+	background-image: -ms-linear-gradient(bottom, rgb(0,134,196) 0%, rgb(115,207,241) 100%);
+
+	background-image: -webkit-gradient(
+	   linear,
+	   left bottom,
+		left top,
+		color-stop(0, rgb(0,134,196)),
+		color-stop(1, rgb(115,207,241)) );
+	border-top-style: solid;
+	border-color: white;
+	border-width: 1px;
+	height: 33px;
+}
+#container2 {
+	padding: 0 0 18px 0;
+}
+#container {
+	margin: 0 auto 0;
+        padding: 0 0 32px;
+	width: 924px;
+	overflow: hidden;
+	background-color: white;
+	border-style: none solid solid solid;
+	/*border-left-style: solid;*/
+	border-width: 1px;
+	border-color: #8C8C8C;
+	/*border-right-style: solid;*/
+	box-shadow: 0 3px 20px #888;
+	border-radius: 0 0 8px 8px;
+}
+
+#menu {
+	width: 250px;
+	float: left;
+	overflow: hidden;
+	margin: 0;
+	padding: 0;
+}
+.menu-block {
+	background-color: white;
+	border-width: 1px;
+	border-color: #A5CAE4;
+	border-style: solid;
+	border-radius: 7px 7px 7px 7px;
+	box-shadow: 0 0 12px #A5CAE4;
+	margin: 8px;
+}
+.menu-block-top {
+	background-color: #D7EDFC;
+	border-bottom-color: #A5CAE4;
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+	border-top-left-radius: 7px;
+	border-top-right-radius: 7px;
+	padding: 4px 8px;
+	color: #2096E1;
+	font-family: Georgia;
+}
+.menu-block-contents {
+	padding: 8px;
+}
+#contents {
+	width: 650px;
+	float: left;
+	overflow: hidden;
+	margin: 4px;
+	padding: 2px;
+	background-color: #fff;
+}
+#footer {
+	
+	width: 100%;
+	background-color: #888;
+	margin: 0;
+	padding: 0;
+	height:24px;
+	position:absolute;
+	bottom:0;
+}
+#footer .in {
+	padding: 4px;
+	margin: 0;
+	font-size: 9px;
+}
+

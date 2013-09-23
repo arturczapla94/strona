@@ -1,0 +1,35 @@
+img {
+	border: 0px;
+	padding: 0px;
+}
+
+a:focus { 
+	outline:none; /*usuwanie niebieskiej obwódki w FF*/
+}
+
+
+.galeria {
+	margin: 10px;
+}
+
+.miniatury {
+margin: 10px 0px;
+}
+
+.miniatury ul {
+	list-style: none;
+	overflow: hidden;
+	padding: 0px;
+	margin: 0px;
+}
+
+.miniatury li {
+	display: inline; /*usuwa podwójne marginesy w IE*/
+	float: left;
+	margin: 0px 10px;
+	padding: 0px;
+}
+
+.miniatury li a img{
+	display: block;
+}

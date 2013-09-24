@@ -2,8 +2,9 @@
 
 class Config {
     
-    public static $menu = array(array("z01 Zmienne","zmienne",true),
-                                array("z02 Funkcje","funkcje",true));
+    public static $menu = array(array("PHP01 Zmienne","zmienne",true),
+                                array("PHP02 Funkcje","funkcje",true),
+                                array("JS 01 tabelka css","skrypty01",true));
     
 }
 

@@ -1,1 +1,1 @@
-<div id="headline">	<div id="headline-top">		<img src="public/images/logo.png" alt="" id="logo" style="float: left">		<div id="title">Nagłówek <br />Strony</div>	</div>	<div id="headline-menu">		</div></div>
+<div id="headline">    <div id="headline-top">        <img src="public/images/logo.png" alt="" id="logo" style="float: left">        <div id="title">Nagłówek <br />Strony</div>    </div>    <div id="headline-menu">            </div>    <div id="headline-bottom">            </div></div>

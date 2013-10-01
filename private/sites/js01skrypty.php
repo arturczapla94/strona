@@ -6,6 +6,7 @@
 	<meta name="Keywords" content="Przykładowa, testowa,strona,przykładowe,słowa, kluczowe" />
 	<title>Skrypty</title>
 	<link rel="stylesheet" href="public/style/style.css" type="text/css" />
+        <link rel="stylesheet" href="public/style/test.css" type="text/css" />
         <script type="text/javascript" src="public/js/jquery-2.0.3.js"> </script>
         <script type="text/javascript" src="public/js/script02.js"> </script>
 </head>
@@ -22,6 +23,7 @@
 			<div id=contents>
 				<h1>Witamy na naszej stronie!</h1>
                                 <table>
+                                    <caption>Kursy walut</caption>
                                     <tr><td></td><td>CHF</td><td>EUR</td><td>USD</td><td>GBP</td><td>JPY</td><td>RUB</td><td>CZK</td></tr>
                                     <tr><td>abcde</td><td>123</td><td>2435</td><td>2345</td><td>2345</td><td>2345</td><td>2345</td><td>2345</td></tr>
                                     <tr><td>abcde</td><td>123</td><td>2435</td><td>2345</td><td>2345</td><td>2345</td><td>2345</td><td>2345</td></tr>

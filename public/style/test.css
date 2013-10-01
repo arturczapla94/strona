@@ -1,0 +1,15 @@
+/* 
+    Document   : test
+    Created on : 2013-09-30, 13:24:48
+    Author     : Czapla < arturczapla94 at gmail.com>
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+.klasa01 { 
+    color: red;
+    background-color: lightcyan;
+}
+.klasa02 {
+    background-color: #FFFF89 !important;   
+}

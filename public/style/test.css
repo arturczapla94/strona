@@ -13,3 +13,20 @@
 .klasa02 {
     background-color: #FFFF89 !important;   
 }
+.pmenu {
+    background: #89FFFF;
+    border-radius: 6px;
+    border: solid 1px black;
+    padding: 6px;
+    width: 140px;
+}
+
+#pokaz {
+    float: left;
+}
+#cmenu {
+    border: 1px solid red;
+}
+.cmenu {
+    border: 1px solid black;
+}

@@ -1,4 +1,5 @@
 <?php
+date_default_timezone_set("Europe/Warsaw");
 require_once('private/config.php');
 require_once('private/inc.php');
 if(!isset($_GET['str']) )

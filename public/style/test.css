@@ -5,7 +5,9 @@
     Description:
         Purpose of the stylesheet follows.
 */
-
+h1,h2 {
+    font-family: Georgia;
+}
 .klasa01 { 
     color: red;
     background-color: lightcyan;
@@ -29,4 +31,53 @@
 }
 .cmenu {
     border: 1px solid black;
+}
+
+
+.js-menu, .js-menu li {
+	display: block;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.js-menu {
+	/*position: absolute;*/
+        height: 54px;
+        border: 1px solid #28e;
+        border-style: none none solid none;
+}
+
+.js-menu li {
+	float: left;
+	text-decoration: none;
+	display: block;
+	width: 80px;
+	text-align: center;
+	padding: 5px 0;
+	font-weight: bold;
+	background-color: #27c;
+	color: #def;
+	border-top: 10px solid #25b;
+        margin: 1px;
+}
+
+.js-menu li:hover {
+	background-color: #28e;
+	color: #fff;
+	border-top: 20px solid #26d;
+}
+
+#news-block {
+    width: 246px;
+    padding: 2px;
+    border: solid 1px #28e;
+}
+
+
+#news-block h2 {
+    color: #64b24f;
+}
+#news-block p {
+    color: darkgreen;
 }

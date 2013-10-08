@@ -48,6 +48,7 @@ echo "Do matury zostało ".($teraz->diff($matura)->s)." sekund, czyli ".((time()
 
 
 
+
 ////////KONIEC////////KONIEC////////KONIEC////////KONIEC////////KONIEC////////KONIEC////////KONIEC////////KONIEC////////
 ?>
 			</div>

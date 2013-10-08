@@ -47,6 +47,31 @@
                             
                         </div>
                         
+                        
+                        <div id="news-block2">
+                            <ul class="js-menu2" >
+                                <li id="pn11">News 1</li>
+                                <li id="pn12">News 2</li>
+                                <li id="pn13">News 3</li>
+                            </ul>
+
+                            <div class="js-news2">
+                                <div id="news11">
+                                    <h2>News 1</h2>
+                                    <p>News 1 News 1 News 1 News 1 News 1 News 1 News 1 News 1 News 1 News 1 </p>
+                                </div>
+                                <div id="news12">
+                                    <h2>News 2</h2>
+                                    <p>News 2 News 2 News 2 News 2 News 2 News 2 News 2 News 2 News 2 </p>
+                                </div>
+                                <div id="news13">
+                                    <h2>News 3</h2>
+                                    <p>News 3 News 3 News 3 News 3 News 3 News 3 News 3 News 3  </p>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        
                                 
                          <?php /*//////////////////////*/ ?>          
 			</div>

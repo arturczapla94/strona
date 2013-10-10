@@ -4,7 +4,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="Description" content="Strona testowa. Przykładowy opis strony" />
 	<meta name="Keywords" content="Przykładowa, testowa,strona,przykładowe,słowa, kluczowe" />
-	<title>PHP 03 Tablice</title>
+	<title>PHP 03 DATA i Czas</title>
 	<link rel="stylesheet" href="public/style/style.css" type="text/css" />
 </head>
 <body>
@@ -42,11 +42,18 @@ echo date("d.m.Y")."<br><br><br>";
 echo date("j").". ".miesiac(date("n")).date(" Y ")."r., godz.".date(" H:i")."<br>";
 echo "Dzisiaj jest ".  dzien_tygodnia(date("N")).", jest to ".date("z").". dzień roku<br>";
 echo "Do końca miesiąca mamy ".(date("t")-date("j")).", a do końca roku ".(date("L")?(366-date("z")):(365-date("z")) )." dni.<br>";
-$teraz = DateTime();
-$matura = new DateTime('2014-05-05');
-echo "Do matury zostało ".($teraz->diff($matura)->s)." sekund, czyli ".((time()-$matura)/60)." minut.<br>";
+$teraz = time();
+$matura = mktime(9,0,0,5,5,2014);
 
+if($matura-$teraz>=0) {
+    echo "Do matury zostało ".($matura-$teraz)." sekund, czyli ".floor(($matura-$teraz)/60)." minut.<br>";
+    echo "Daje nam to ".floor(($matura-$teraz)/3600)." godzin czyli ".floor(($matura-$teraz)/(3600*24))." dni czyli ".floor(($matura-$teraz)/(3600*24*7))." tygodni";
+} else
+{
+    echo "matura była ".($teraz-$matura)." sekund temu, czyli ".floor(($teraz-$matura)/60)." minut temu.<br>";
+    echo "Daje nam to ".floor(($teraz-$matura)/3600)." godzin czyli ".floor(($teraz-$matura)/(3600*24))." dni czyli ".floor(($teraz-$matura)/(3600*24*7))." tygodni";
 
+}
 
 
 ////////KONIEC////////KONIEC////////KONIEC////////KONIEC////////KONIEC////////KONIEC////////KONIEC////////KONIEC////////

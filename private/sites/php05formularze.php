@@ -6,6 +6,9 @@
 	<meta name="Keywords" content="Przykładowa, testowa,strona,przykładowe,słowa, kluczowe" />
 	<title>PHP 05 Formularze</title>
 	<link rel="stylesheet" href="public/style/style.css" type="text/css" />
+        <link rel="stylesheet" href="public/style/forms.css" type="text/css" />
+        <script type="text/javascript" src="public/js/jquery-2.0.3.js"> </script>
+        <script type="text/javascript" src="public/js/script06form.js"> </script>
 </head>
 <body>
 <div id="wrapper">
@@ -22,21 +25,21 @@
                 <form method="post" action="#">
                     <fieldset id="ankieta_osobowa1">
                         <legend>Dane osobowe</legend>
-                        <label for="nazwisko">Nazwisko</label>
-                        <input type="text" name="nazwisko" id="nazwisko"><br>
-                        <label for="imie">Pierwsze imię</label>
-                        <input type="text" name="imie" id="imie"><br>
-                        <label for="imie2">Drugie imię</label>
-                        <input type="text" name="imie2" id="imie2"><br>
-                        <label for="email">E-mail</label>
-                        <input type="email" name="email" id="email"><br>
+                        <div class="row"><label for="nazwisko">Nazwisko</label>
+                        <input type="text" name="nazwisko" id="nazwisko"></div>
+                        <div class="row"><label for="imie">Pierwsze imię</label>
+                        <input type="text" name="imie" id="imie"></div>
+                        <div class="row"><label for="imie2">Drugie imię</label>
+                        <input type="text" name="imie2" id="imie2"></div>
+                        <div class="row"><label for="email">E-mail</label>
+                        <input type="email" name="email" id="email"></div>
 
-                        <input type="radio" name="plec" value="mezczyzna" id="mezczyzna" /><label for="mezczyzna" >Mężczyzna</label>
-                        <input type="radio" name="plec" value="kobieta" id="kobieta" /><label for="kobieta" >Kobieta</label><br/>
-                        <label for="nazwa_szkoly">Nazwa Szkoły: </label>
-                        <input type="text" name="nazwa_szkoly" id="nazwa_szkoly"><br>
+                        <div class="row"><input type="radio" name="plec" value="mezczyzna" id="mezczyzna" /><label for="mezczyzna" >Mężczyzna</label>
+                        <input type="radio" name="plec" value="kobieta" id="kobieta" /><label for="kobieta" >Kobieta</label></div>
+                        <div class="row"> <label for="nazwa_szkoly">Nazwa Szkoły: </label>
+                        <input type="text" name="nazwa_szkoly" id="nazwa_szkoly"></div>
 
-                        <label for="wojewodztwo">Województwo: </label>
+                        <div class="row"><label for="wojewodztwo">Województwo: </label>
                         <select name="wojewodztwo" id="wojewodztwo">
                             <option>dolnośląskie</option>
                             <option>kujawsko-pomorskie</option>
@@ -55,6 +58,7 @@
                             <option>wielkopolskie </option>
                             <option>zachodniopomorskie </option>
                         </select>
+                        </div>
 
                         
 
@@ -62,27 +66,28 @@
                     <fieldset id="ankieta_osobowa2">
                         <legend>Pytania zasadnicze</legend>
                         <p>Ile miesięcznie wysyłasz SMS-ów?</p>
-                        <input type="radio" name="ilesms" value="p1" id="ilesms01" /><label for="ilesms01" >poniżej 10</label>
-                        <input type="radio" name="ilesms" value="p5" id="ilesms02" /><label for="ilesms02" >10-50</label>
-                        <input type="radio" name="ilesms" value="p10" id="ilesms03" /><label for="ilesms03" >51-100</label>
-                        <input type="radio" name="ilesms" value="p15" id="ilesms04" /><label for="ilesms04" >101-150</label>
-                        <input type="radio" name="ilesms" value="p20" id="ilesms05" /><label for="ilesms05" >151-200</label>
-                        <input type="radio" name="ilesms" value="p30" id="ilesms06" /><label for="ilesms06" >201-300</label>
-                        <input type="radio" name="ilesms" value="p50" id="ilesms07" /><label for="ilesms07" >301-500</label>
-                        <input type="radio" name="ilesms" value="w50" id="ilesms08" /><label for="ilesms08" >powyżej 500</label>
-                        <input type="radio" name="ilesms" value="zlz" id="ilesms09" /><label for="ilesms09" >zależy, ile mam kasy</label>
+                        <input type="radio" name="ilesms" value="p1" id="ilesms01" /><label for="ilesms01" >poniżej 10</label> <br>
+                        <input type="radio" name="ilesms" value="p5" id="ilesms02" /><label for="ilesms02" >10-50</label><br>
+                        <input type="radio" name="ilesms" value="p10" id="ilesms03" /><label for="ilesms03" >51-100</label><br>
+                        <input type="radio" name="ilesms" value="p15" id="ilesms04" /><label for="ilesms04" >101-150</label><br>
+                        <input type="radio" name="ilesms" value="p20" id="ilesms05" /><label for="ilesms05" >151-200</label><br>
+                        <input type="radio" name="ilesms" value="p30" id="ilesms06" /><label for="ilesms06" >201-300</label><br>
+                        <input type="radio" name="ilesms" value="p50" id="ilesms07" /><label for="ilesms07" >301-500</label><br>
+                        <input type="radio" name="ilesms" value="w50" id="ilesms08" /><label for="ilesms08" >powyżej 500</label><br>
+                        <input type="radio" name="ilesms" value="zlz" id="ilesms09" /><label for="ilesms09" >zależy, ile mam kasy</label><br>
                         
                         <p>Jaką lubisz muzykę(możesz zaznaczyć więcej możliwości)?</p>
-                        <input type="checkbox" name="jakamuzyka" value="rock" id="jakamuzyka01" /><label for="jakamuzyka01">Rock </label>
-                        <input type="checkbox" name="jakamuzyka" value="heavy metal" id="jakamuzyka02" /><label for="jakamuzyka02">Hevy Metal </label>
-                        <input type="checkbox" name="jakamuzyka" value="pop" id="jakamuzyka03" /><label for="jakamuzyka03">Pop </label>
-                        <input type="checkbox" name="jakamuzyka" value="techno" id="jakamuzyka04" /><label for="jakamuzyka04">Techno </label>
-                        <input type="checkbox" name="jakamuzyka" value="muzyka powazna" id="jakamuzyka05" /><label for="jakamuzyka05">Muzyka poważna </label>
+                        <input type="checkbox" name="jakamuzyka" value="rock" id="jakamuzyka01" /><label for="jakamuzyka01">Rock </label> <br>
+                        <input type="checkbox" name="jakamuzyka" value="heavy metal" id="jakamuzyka02" /><label for="jakamuzyka02">Hevy Metal </label> <br>
+                        <input type="checkbox" name="jakamuzyka" value="pop" id="jakamuzyka03" /><label for="jakamuzyka03">Pop </label> <br>
+                        <input type="checkbox" name="jakamuzyka" value="techno" id="jakamuzyka04" /><label for="jakamuzyka04">Techno </label> <br>
+                        <input type="checkbox" name="jakamuzyka" value="muzyka powazna" id="jakamuzyka05" /><label for="jakamuzyka05">Muzyka poważna </label> <br>
                         <input type="checkbox" name="jakamuzyka" value="inna" id="jakamuzyka06" /><label for="jakamuzyka06">Inna(podaj jaką): </label>
-                        <input type="text" name="innamuzyka" value="" id="innamuzyka" />
+                        <input type="text" name="innamuzyka" value="" id="innamuzyka" /> <br>
                         
                         <p>
                     </fieldset>
+                    
                     <br>
                     <input type="submit" value="Wyślij">
 

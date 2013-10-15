@@ -1,0 +1,28 @@
+
+
+#ankieta_osobowa1 label {
+    float: left;
+    display: block;
+    width: 200px;
+    margin: 0px;
+    padding: 0px;
+    height: 22px;
+    
+}
+#ankieta_osobowa1 input {
+    float: left;
+}
+#ankieta_osobowa1 input[type="text"],#ankieta_osobowa1 input[type="email"] {
+    width: 200px;
+    height: 22px;
+    padding: 2px;
+    border: 1px solid #abadb3;
+    display: block;
+    box-sizing: border-box;
+}
+#ankieta_osobowa1 .row {
+    
+    height: 22px;
+    margin: 1px;
+}
+

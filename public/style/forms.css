@@ -3,7 +3,7 @@
 #ankieta_osobowa1 label {
     float: left;
     display: block;
-    width: 200px;
+    width: 160px;
     margin: 0px;
     padding: 0px;
     height: 22px;
@@ -21,8 +21,43 @@
     box-sizing: border-box;
 }
 #ankieta_osobowa1 .row {
-    
     height: 22px;
     margin: 1px;
 }
+#ankieta_osobowa2 #div-komentarz {
+    margin: 8px 0 0 0;
+}
+#ankieta_osobowa2 #div-komentarz #komentarz {
+    height: 106px;
+    width: 380px;
+}
+#lbl-komentarz{
+    margin: 43px 0 0 0;
+}
 
+
+#ankieta_osobowa2 #div-przegladarki {
+    margin: 8px 0 0 0;
+    overflow: hidden;
+}
+#ankieta_osobowa2 #div-przegladarki #przegladarki {
+    height: 106px;
+}
+#lbl-przegladarki{
+    margin: 43px 0 0 0;
+}
+#ankieta_osobowa2 .row {
+    overflow: hidden;
+    margin: 0;
+}
+#ankieta_osobowa2 label {
+    display: block;
+    width: 200px;
+    float: left;
+}
+#ankieta_osobowa2 input[type="checkbox"] + label {
+    width: 180px;
+}
+#ankieta_osobowa2 input {
+    float: left;
+}

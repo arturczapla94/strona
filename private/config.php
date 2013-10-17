@@ -2,7 +2,8 @@
 
 class Config {
     
-    public static $menu = array(array("PHP01 Zmienne","php01zmienne",true),
+    public static $menu = array(array("Co to jest PHP?","podstrona",true),
+                                array("PHP01 Zmienne","php01zmienne",true),
                                 array("PHP02 Funkcje","php02funkcje",true),
                                 array("PHP03 Tablice","php03tablice",true),
                                 array("PHP04 Data i Czas","php04czas",true),

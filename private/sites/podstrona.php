@@ -6,7 +6,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="Description" content="Strona testowa. Przykładowy opis strony" />
 	<meta name="Keywords" content="Przykładowa, testowa,strona,przykładowe,słowa, kluczowe" />
-	<title>PODSTRONA</title>
+	<title>PHP</title>
 	<link rel="stylesheet" href="public/style/style.css" type="text/css" />
 </head>
 <body>
@@ -20,12 +20,17 @@
 			    include('private/html/menu.php');
 			?>
 			<div id=contents>
-				<h1>Podstrona!</h1>
+				<h1>PHP!</h1>
 				
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborumLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
-				<br/><br/>
+                                <p>PHP, co jest skrótem od "PHP: Hypertext Preprocessor",
+                                    jest powszechnie używanym językiem skryptowym ogólnego przeznaczenia,
+                                    który jest szczególnie przystosowany
+                                    do tworzenia aplikacji internetowych,
+                                    także poprzez zagnieżdżenie wewnątrz języka HTML.
+                                    Składnia, wywodząca się z języków C, Java i Perl,
+                                    jest łatwa do nauczenia się.
+                                    Głównym celem języka jest umożliwienie programistom szybkiego 
+                                    tworzenia stron internetowych, ale PHP umożliwia znacznie więcej.</p><br/><br/>
 			</div>
 		</div>
 	</div>

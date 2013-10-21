@@ -1,9 +1,8 @@
-<!DOCTYPE html lang="pl">
-<html>
+<!DOCTYPE html>
+<html lang="pl">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="Description" content="Strona testowa. Przykładowy opis strony" />
-	<meta name="Keywords" content="Przykładowa, testowa,strona,przykładowe,słowa, kluczowe" />
 	<title>PHP 05 Formularze</title>
 	<link rel="stylesheet" href="public/style/style.css" type="text/css" />
         <link rel="stylesheet" href="public/style/forms.css" type="text/css" />
@@ -68,21 +67,21 @@
                     <fieldset id="ankieta_osobowa2">
                         <legend>Pytania zasadnicze</legend>
                         <p>Ile miesięcznie wysyłasz SMS-ów?</p>
-                        <div class="row"><input type="radio" name="ilesms" value="p1" id="ilesms01" /><label for="ilesms01" >poniżej 10</label> </div>
-                        <div class="row"><input type="radio" name="ilesms" value="p5" id="ilesms02" /><label for="ilesms02" >10-50</label></div>
-                        <div class="row"><input type="radio" name="ilesms" value="p10" id="ilesms03" /><label for="ilesms03" >51-100</label> </div>
-                        <div class="row"><input type="radio" name="ilesms" value="p15" id="ilesms04" /><label for="ilesms04" >101-150</label></div>
-                        <div class="row"><input type="radio" name="ilesms" value="p20" id="ilesms05" /><label for="ilesms05" >151-200</label></div>
-                        <div class="row"><input type="radio" name="ilesms" value="p30" id="ilesms06" /><label for="ilesms06" >201-300</label></div>
-                        <div class="row"><input type="radio" name="ilesms" value="p50" id="ilesms07" /><label for="ilesms07" >301-500</label></div>
-                        <div class="row"><input type="radio" name="ilesms" value="w50" id="ilesms08" /><label for="ilesms08" >powyżej 500</label></div>
-                        <div class="row"><input type="radio" name="ilesms" value="zlz" id="ilesms09" /><label for="ilesms09" >zależy, ile mam kasy</label></div>
+                        <div class="row"><input type="radio" name="ilesms" value="p1" id="ilesms01" /><label for="ilesms01" >poniżej 10</label> 
+                            <input type="radio" name="ilesms" value="p5" id="ilesms02" /><label for="ilesms02" >10-50</label>
+                            <input type="radio" name="ilesms" value="p10" id="ilesms03" /><label for="ilesms03" >51-100</label> </div>
+                        <div class="row"><input type="radio" name="ilesms" value="p15" id="ilesms04" /><label for="ilesms04" >101-150</label>
+                            <input type="radio" name="ilesms" value="p20" id="ilesms05" /><label for="ilesms05" >151-200</label>
+                            <input type="radio" name="ilesms" value="p30" id="ilesms06" /><label for="ilesms06" >201-300</label></div>
+                        <div class="row"><input type="radio" name="ilesms" value="p50" id="ilesms07" /><label for="ilesms07" >301-500</label>
+                            <input type="radio" name="ilesms" value="w50" id="ilesms08" /><label for="ilesms08" >powyżej 500</label>
+                            <input type="radio" name="ilesms" value="zlz" id="ilesms09" /><label for="ilesms09" >zależy, ile mam kasy</label></div>
                         
                         <p>Jaką lubisz muzykę(możesz zaznaczyć więcej możliwości)?</p>
-                        <div class="row"><input type="checkbox" name="jakamuzyka[]" value="rock" id="jakamuzyka01" /><label for="jakamuzyka01">Rock </label> </div>
-                        <div class="row"><input type="checkbox" name="jakamuzyka[]" value="heavy metal" id="jakamuzyka02" /><label for="jakamuzyka02">Hevy Metal </label> </div>
-                        <div class="row"><input type="checkbox" name="jakamuzyka[]" value="pop" id="jakamuzyka03" /><label for="jakamuzyka03">Pop </label> </div>
-                        <div class="row"><input type="checkbox" name="jakamuzyka[]" value="techno" id="jakamuzyka04" /><label for="jakamuzyka04">Techno </label> </div>
+                        <div class="row"><input type="checkbox" name="jakamuzyka[]" value="rock" id="jakamuzyka01" /><label for="jakamuzyka01">Rock </label>
+                            <input type="checkbox" name="jakamuzyka[]" value="heavy metal" id="jakamuzyka02" /><label for="jakamuzyka02">Hevy Metal </label> </div>
+                        <div class="row"><input type="checkbox" name="jakamuzyka[]" value="pop" id="jakamuzyka03" /><label for="jakamuzyka03">Pop </label> 
+                            <input type="checkbox" name="jakamuzyka[]" value="techno" id="jakamuzyka04" /><label for="jakamuzyka04">Techno </label> </div>
                         <div class="row"><input type="checkbox" name="jakamuzyka[]" value="muzyka powazna" id="jakamuzyka05" /><label for="jakamuzyka05">Muzyka poważna </label> </div>
                         <div class="row"><input type="checkbox" name="jakamuzyka[]" value="inna" id="jakamuzyka06" /><label for="jakamuzyka06">Inna(podaj jaką): </label>
                             <input type="text" name="innamuzyka" value="" id="innamuzyka" />

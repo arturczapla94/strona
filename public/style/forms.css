@@ -1,5 +1,17 @@
 
+#ankieta_osobowa1 {
+    margin: 0 0 16px 0;
+}
 
+fieldset legend {
+    font-weight: bold;
+    color: rgb(46, 134, 29);
+    font-size: 14pt;
+    
+}
+fieldset {
+    background: rgb(224, 244, 255);
+}
 #ankieta_osobowa1 label {
     float: left;
     display: block;
@@ -34,6 +46,9 @@
 #lbl-komentarz{
     margin: 43px 0 0 0;
 }
+fieldset input, fieldset textarea, fieldset select {
+    background: rgb(228, 255, 232);
+}
 
 
 #ankieta_osobowa2 #div-przegladarki {
@@ -52,7 +67,7 @@
 }
 #ankieta_osobowa2 label {
     display: block;
-    width: 200px;
+    width: 160px;
     float: left;
 }
 #ankieta_osobowa2 input[type="checkbox"] + label {

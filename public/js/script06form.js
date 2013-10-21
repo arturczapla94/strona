@@ -1,9 +1,11 @@
 jQuery(document).ready(function() {
-   $('#ankieta_osobowa1 input:first').bind('focus',function(){
-       $(this).css('border','1px solid red');
+   $('fieldset input[type="text"], fieldset input[type="email"], fieldset textarea').bind('focus',function(){
+       $(this).css({'border':'1px solid red','background':'white'});
    });
-   $('#ankieta_osobowa1 input:first').bind('focus',function(){
-       $(this).css('border','1px solid red');
+   
+   $('fieldset input[type="text"], fieldset input[type="email"], fieldset textarea').bind('blur',function(){
+       $(this).css({'border':'1px solid darkred','background':'lightgray'});
    });
+  
    
 });

@@ -88,15 +88,16 @@
                         </div>
                         
                         <div class="row" id="div-komentarz">
-                            <label for="komentarz" id="lbl-komentarz">Komentarz</label>
+                            <label for="komentarz" id="lbl-komentarz">Komentarz (max 200 znaków)</label>
                             <textarea name="komentarz" id="komentarz"></textarea>
+                            <div id="komentarz-pozostalo">Pozostało <span id="komentarz-pliczba">200</span> znaków</div>
                         </div>
                        
                         <div class="row" id="div-przegladarki">
                             <label for="przegladarki" id="lbl-przegladarki">Jakie masz przeglądarki?</label>
                             <select name="przegladarki[]" id="przegladarki"  multiple="multiple">
-                                <option>Opera <= 12</option>
-                                <option>Opera >= 16</option>
+                                <option>Opera &lt;= 12</option>
+                                <option>Opera &gt;= 16</option>
                                 <option>Firefox</option>
                                 <option>Google Chrome</option>
                                 <option>Safari</option>

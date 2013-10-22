@@ -58,12 +58,8 @@ body {
     background-image: -webkit-linear-gradient(bottom, rgb(0,134,196) 0%, rgb(115,207,241) 100%);
     background-image: -ms-linear-gradient(bottom, rgb(0,134,196) 0%, rgb(115,207,241) 100%);
 
-    background-image: -webkit-gradient(
-       linear,
-       left bottom,
-            left top,
-            color-stop(0, rgb(0,134,196)),
-            color-stop(1, rgb(115,207,241)) );
+    background-image: -webkit-gradient(linear,left bottom, left top,color-stop(0, rgb(0,134,196)),color-stop(1, rgb(115,207,241)) );
+    
     border-top-style: solid;
     border-color: white;
     border-width: 1px;

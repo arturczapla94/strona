@@ -9,4 +9,13 @@
 table th { 
     text-align: right;
 }
+p.err {
+    margin: 0;
+    background: pink;
+    font-weight: bold;
+}
+
+div.err-block {
+    margin-bottom: 16px;
+}
 

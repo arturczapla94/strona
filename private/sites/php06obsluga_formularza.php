@@ -89,11 +89,11 @@ if(!empty($imie2))
     $dane.="<tr><th>Drugie imię:</th><td>".$imie2."</td></tr>\n";
     $wysw++;
 }
-/**else
+else
 {
     $cbledy++;
     $bledy[]="Nie podano drugiego imienia!";
-}*/
+}
 if(!empty($nazwisko))
 {
     $dane.="<tr><th>Nazwisko:</th><td>".$nazwisko."</td></tr>\n";
@@ -155,11 +155,13 @@ if($wysw>0)
     echo "<h1>Dane osobowe</h1>\n";
     if($cbledy>0)
     {
-        echo '<h2 class="err">Znaleziono '.$cbledy.' błąd/błędy</h2>'."\n";
+        echo '<div class="err-block">'."\n";
+        echo '<h2 class="err">Znaleziono '.$cbledy.' błąd/błędy/błędów</h2>'."\n";
         foreach($bledy as $blad)
         {
-            echo '<h3 class="err">'.$blad.'</h3>'."\n";
+            echo '<p class="err">'.$blad.'</p>'."\n";
         }
+        echo '</div>';
     }
     echo "<table>\n";
     echo $dane;
@@ -171,10 +173,10 @@ else
     echo '<h2 class="err">Nie podano danych osobowych!</h2>'."\n";
 }
 echo "<br><br><br><br>\n\n";
-echo "cbłedy"; var_dump($cbledy); echo "<br>";
-echo "wysw"; var_dump($wysyw); echo "<br>";
-echo "błedy"; var_dump($bledy); echo "<br>";
-echo "dane"; var_dump($dane); echo "<br>";
+echo "cbłedy "; var_dump($cbledy); echo "<br>";
+echo "wysw "; var_dump($wysw); echo "<br>";
+echo "błedy "; var_dump($bledy); echo "<br>";
+echo "dane "; var_dump($dane); echo "<br>";
 echo "<br><br><br><br>\n\n";
 
 echo "<br>\n\n";

@@ -24,15 +24,15 @@
                
 <?php
 ////////START////////START////////START////////START////////START////////START////////START////////START////////START///
-$imie = $_POST['imie'];
-$imie2 = $_POST['imie2'];
-$nazwisko = $_POST['nazwisko'];
-$email = $_POST['email'];
-$plec = $_POST['plec'];
-$szkola = $_POST['nazwa_szkoly'];
-$wojewodztwo = $_POST['wojewodztwo'];
-$sms = $_POST['ilesms'];
-$ilesms;
+$imie = strip_tags($_POST['imie']);
+$imie2 = strip_tags($_POST['imie2']);
+$nazwisko = strip_tags($_POST['nazwisko']);
+$email = strip_tags($_POST['email']);
+$plec = strip_tags($_POST['plec']);
+$szkola = strip_tags($_POST['nazwa_szkoly']);
+$wojewodztwo = strip_tags($_POST['wojewodztwo']);
+$sms = strip_tags($_POST['ilesms']);
+$ilesms="";
 switch ($sms)
 {
     case 'p1': 
@@ -63,17 +63,18 @@ switch ($sms)
         $ilesms = " zależy, ile mam kasy";
         break;
 }
-$jakamuzyka = $_POST['jakamuzyka'];
-$innamuzyka = $_POST['innamuzyka'];
-$komentarz = $_POST['komentarz'];
-$przegladarki = $_POST['przegladarki'];
+$jakamuzyka = strip_tags($_POST['jakamuzyka']);
+$innamuzyka = strip_tags($_POST['innamuzyka']);
+$komentarz = nl2br(htmlspecialchars($_POST['komentarz']));
+$przegladarki = strip_tags($_POST['przegladarki']);
 
 echo "<h1>Dane osobowe</h1>\n";
 echo "<table>\n";
 echo "<tr><th>Imię:</th><td>".$imie."</td></tr>\n";
 echo "<tr><th>Drugie imię:</th><td>".$imie2."</td></tr>\n";
 echo "<tr><th>Nazwisko:</th><td>".$nazwisko."</td></tr>\n";
-echo "<tr><th>Płeć:</th><td>".$plec."<</td></tr>\n";
+echo "<tr><th>E-mail:</th><td>".$email."</td></tr>\n";
+echo "<tr><th>Płeć:</th><td>".$plec."</td></tr>\n";
 echo "<tr><th>Szkoła:</th><td>".$szkola."</td></tr>\n";
 echo "<tr><th>Województwo:</th><td>".$wojewodztwo."</td></tr>\n";
 echo "</table>";
@@ -117,8 +118,15 @@ foreach ($przegladarki as $value){
     }
 }
 
-echo "<br>\n";
+echo "<br>\n";echo "<br>\n";echo "<br>\n";echo "<br>\n";
+ob_start();
+print_r($_POST);
 
+$output = ob_get_clean();
+ob_end_flush();
+$output = nl2br(htmlspecialchars($output));
+$output = str_replace("  ","&nbsp;&nbsp;", $output);
+echo $output;
 
 ////////KONIEC////////KONIEC////////KONIEC////////KONIEC////////KONIEC////////KONIEC////////KONIEC////////KONIEC////////
 ?>

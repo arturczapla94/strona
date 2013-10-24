@@ -4,7 +4,7 @@ require_once('private/config.php');
 require_once('private/inc.php');
 if(!isset($_GET['str']) )
 {
-    $_GET['str']='home';
+    $_GET['str']=Config::$startPage;
     include('private/sites/'.$_GET['str'].'.php');
 }
 else {

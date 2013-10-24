@@ -32,9 +32,11 @@ fieldset {
     display: block;
     box-sizing: border-box;
 }
+form .row {
+    margin: 6px 0;
+}
 #ankieta_osobowa1 .row {
     height: 22px;
-    margin: 1px;
 }
 #ankieta_osobowa2 #div-komentarz {
     margin: 8px 0 0 0;
@@ -63,7 +65,6 @@ fieldset input, fieldset textarea, fieldset select {
 }
 #ankieta_osobowa2 .row {
     overflow: hidden;
-    margin: 0;
 }
 #ankieta_osobowa2 label {
     display: block;

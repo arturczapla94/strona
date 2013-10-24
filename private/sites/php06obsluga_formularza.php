@@ -5,7 +5,7 @@
 	<meta name="Description" content="Prezentacja formularza" />
 	<title>PHP 06 Formularze</title>
 	<link rel="stylesheet" href="public/style/style.css" type="text/css" />
-        <link rel="stylesheet" href="public/style/forms.css" type="text/css" />
+        <link rel="stylesheet" href="public/style/php06obsluga_formularza.css" type="text/css" />
         <script type="text/javascript" src="public/js/jquery-2.0.3.js"> </script>
         <script type="text/javascript" src="public/js/script06form.js"> </script>
 </head>
@@ -68,17 +68,117 @@ $innamuzyka = strip_tags($_POST['innamuzyka']);
 $komentarz = nl2br(htmlspecialchars($_POST['komentarz']));
 $przegladarki = strip_tags($_POST['przegladarki']);
 
-echo "<h1>Dane osobowe</h1>\n";
-echo "<table>\n";
-echo "<tr><th>Imię:</th><td>".$imie."</td></tr>\n";
-echo "<tr><th>Drugie imię:</th><td>".$imie2."</td></tr>\n";
-echo "<tr><th>Nazwisko:</th><td>".$nazwisko."</td></tr>\n";
-echo "<tr><th>E-mail:</th><td>".$email."</td></tr>\n";
-echo "<tr><th>Płeć:</th><td>".$plec."</td></tr>\n";
-echo "<tr><th>Szkoła:</th><td>".$szkola."</td></tr>\n";
-echo "<tr><th>Województwo:</th><td>".$wojewodztwo."</td></tr>\n";
-echo "</table>";
-echo "<br>";
+$cbledy=0;
+$wysw=0;
+$dane="";
+$bledy = array();
+
+if(!empty($imie))
+{
+    $dane.="<tr><th>Imię:</th><td>".$imie."</td></tr>\n";
+    $wysw++;
+}
+else
+{
+    $cbledy++;
+    $bledy[]="Nie podano imienia!";
+}
+
+if(!empty($imie2))
+{
+    $dane.="<tr><th>Drugie imię:</th><td>".$imie2."</td></tr>\n";
+    $wysw++;
+}
+/**else
+{
+    $cbledy++;
+    $bledy[]="Nie podano drugiego imienia!";
+}*/
+if(!empty($nazwisko))
+{
+    $dane.="<tr><th>Nazwisko:</th><td>".$nazwisko."</td></tr>\n";
+    $wysw++;
+}
+else
+{
+    $cbledy++;
+    $bledy[]="Nie podano nazwiska!";
+}
+
+
+if(!empty($email))
+{
+    $dane.="<tr><th>E-mail:</th><td>".$email."</td></tr>\n";
+    $wysw++;
+}
+else
+{
+    $cbledy++;
+    $bledy[]="Nie podano e-emaila!";
+}
+
+if(!empty($plec))
+{
+    $dane.="<tr><th>Płeć:</th><td>".$plec."</td></tr>\n";
+    $wysw++;
+}
+else
+{
+    $cbledy++;
+    $bledy[]="Nie podano płci!";
+}
+
+if(!empty($szkola))
+{
+    $dane.="<tr><th>Szkoła:</th><td>".$szkola."</td></tr>\n";
+    $wysw++;
+}
+else
+{
+    $cbledy++;
+    $bledy[]="Nie podano szkoły!";
+}
+
+if(!empty($wojewodztwo))
+{
+    $dane.="<tr><th>Województwo:</th><td>".$wojewodztwo."</td></tr>\n";
+    $wysw++;
+}
+else
+{
+    $cbledy++;
+    $bledy[]="Nie podano województwa!";
+}
+
+if($wysw>0)
+{
+    echo "<h1>Dane osobowe</h1>\n";
+    if($cbledy>0)
+    {
+        echo '<h2 class="err">Znaleziono '.$cbledy.' błąd/błędy</h2>'."\n";
+        foreach($bledy as $blad)
+        {
+            echo '<h3 class="err">'.$blad.'</h3>'."\n";
+        }
+    }
+    echo "<table>\n";
+    echo $dane;
+    echo "</table>\n";
+    
+}
+else
+{
+    echo '<h2 class="err">Nie podano danych osobowych!</h2>'."\n";
+}
+echo "<br><br><br><br>\n\n";
+echo "cbłedy"; var_dump($cbledy); echo "<br>";
+echo "wysw"; var_dump($wysyw); echo "<br>";
+echo "błedy"; var_dump($bledy); echo "<br>";
+echo "dane"; var_dump($dane); echo "<br>";
+echo "<br><br><br><br>\n\n";
+
+echo "<br>\n\n";
+
 echo "Miesięcznie wysyła <b>".$ilesms."</b> SMS-ów<br>\n";
 
 if(count($jakamuzyka)<=0)

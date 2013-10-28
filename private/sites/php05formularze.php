@@ -78,12 +78,13 @@
                             <input type="radio" name="ilesms" value="zlz" id="ilesms09" /><label for="ilesms09" >zależy, ile mam kasy</label></div>
                         
                         <p>Jaką lubisz muzykę(możesz zaznaczyć więcej możliwości)?</p>
-                        <div class="row"><input type="checkbox" name="jakamuzyka[]" value="rock" id="jakamuzyka01" /><label for="jakamuzyka01">Rock </label>
-                            <input type="checkbox" name="jakamuzyka[]" value="heavy metal" id="jakamuzyka02" /><label for="jakamuzyka02">Hevy Metal </label> </div>
-                        <div class="row"><input type="checkbox" name="jakamuzyka[]" value="pop" id="jakamuzyka03" /><label for="jakamuzyka03">Pop </label> 
-                            <input type="checkbox" name="jakamuzyka[]" value="techno" id="jakamuzyka04" /><label for="jakamuzyka04">Techno </label> </div>
-                        <div class="row"><input type="checkbox" name="jakamuzyka[]" value="muzyka powazna" id="jakamuzyka05" /><label for="jakamuzyka05">Muzyka poważna </label> </div>
-                        <div class="row"><input type="checkbox" name="jakamuzyka[]" value="inna" id="jakamuzyka06" /><label for="jakamuzyka06">Inna(podaj jaką): </label>
+                        <div class="row"><input type="checkbox" name="calamuzyka" value="calamuzyka" id="calamuzyka" /> <label for="calamuzyka">(Zaznacz wszystko) </label></div>
+                        <div class="row"><input class="cb-jakamuzyka"  type="checkbox" name="jakamuzyka[]" value="rock" id="jakamuzyka01" /><label for="jakamuzyka01">Rock </label>
+                            <input type="checkbox" class="cb-jakamuzyka"  name="jakamuzyka[]" value="heavy metal" id="jakamuzyka02" /><label for="jakamuzyka02">Hevy Metal </label> </div>
+                        <div class="row"><input class="cb-jakamuzyka"  type="checkbox" name="jakamuzyka[]" value="pop" id="jakamuzyka03" /><label for="jakamuzyka03">Pop </label> 
+                            <input class="cb-jakamuzyka"  type="checkbox" name="jakamuzyka[]" value="techno" id="jakamuzyka04" /><label for="jakamuzyka04">Techno </label> </div>
+                        <div class="row"><input class="cb-jakamuzyka"  type="checkbox" name="jakamuzyka[]" value="muzyka powazna" id="jakamuzyka05" /><label for="jakamuzyka05">Muzyka poważna </label> </div>
+                        <div class="row"><input class="cb-jakamuzyka" type="checkbox" name="jakamuzyka[]" value="inna" id="jakamuzyka06" /><label for="jakamuzyka06">Inna(podaj jaką): </label>
                             <input type="text" name="innamuzyka" value="" id="innamuzyka" />
                         </div>
                         

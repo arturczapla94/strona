@@ -24,4 +24,19 @@ jQuery(document).ready(function() {
   $('#komentarz').bind('input propertychange',znaki);
 
    
+  $('#calamuzyka').bind('on change',function(){
+       if(this.checked)
+           alert("zaznaczone");
+       else
+           alert("nie zaznaczone");
+   });
+   
+  /* $('.cb-jakamuzyka').onchange = function(){
+       alert('zmieniono');
+      if($('jakamuzyka01').checked && $('jakamuzyka02').checked && $('jakamuzyka03').checked && $('jakamuzyka04').checked && $('jakamuzyka05').checked && $('jakamuzyka06').checked) 
+        {
+            alert('wszystko zaznaczone');
+            $('#calamuzyka').checked = true;
+        }
+   };*/
 });

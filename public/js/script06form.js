@@ -23,20 +23,78 @@ jQuery(document).ready(function() {
     };
   $('#komentarz').bind('input propertychange',znaki);
 
-   
+    //=====================================================
+    //MUZYKA 
+    //------------------------------------------------------
   $('#calamuzyka').bind('on change',function(){
        if(this.checked)
-           alert("zaznaczone");
+        {
+            $('#jakamuzyka01').prop('checked',true);
+            $('#jakamuzyka02').prop('checked',true);
+            $('#jakamuzyka03').prop('checked',true);
+            $('#jakamuzyka04').prop('checked',true);
+            $('#jakamuzyka05').prop('checked',true);
+            $('#jakamuzyka06').prop('checked',true);
+            $('#jakamuzyka06').trigger('onchange');
+        }
        else
-           alert("nie zaznaczone");
+        {
+            $('#jakamuzyka01').prop('checked',false);
+            $('#jakamuzyka02').prop('checked',false);
+            $('#jakamuzyka03').prop('checked',false);
+            $('#jakamuzyka04').prop('checked',false);
+            $('#jakamuzyka05').prop('checked',false);
+            $('#jakamuzyka06').prop('checked',false);
+            $('#jakamuzyka06').trigger('onchange');
+        }
    });
    
-  /* $('.cb-jakamuzyka').onchange = function(){
-       alert('zmieniono');
-      if($('jakamuzyka01').checked && $('jakamuzyka02').checked && $('jakamuzyka03').checked && $('jakamuzyka04').checked && $('jakamuzyka05').checked && $('jakamuzyka06').checked) 
+   $('.cb-jakamuzyka').bind('on change',  function(){
+        if($('#jakamuzyka01')[0].checked && $('#jakamuzyka02')[0].checked && $('#jakamuzyka03')[0].checked && $('#jakamuzyka04')[0].checked && $('#jakamuzyka05')[0].checked && $('#jakamuzyka06')[0].checked) 
         {
-            alert('wszystko zaznaczone');
-            $('#calamuzyka').checked = true;
+            $('#calamuzyka')[0].checked = true;
         }
-   };*/
+        else if(!$('#jakamuzyka01')[0].checked || !$('#jakamuzyka02')[0].checked || !$('#jakamuzyka03')[0].checked || !$('#jakamuzyka04')[0].checked || !$('#jakamuzyka05')[0].checked || !$('#jakamuzyka06')[0].checked)
+        {
+            $('#calamuzyka')[0].checked = false;
+        }
+   });
+   var innamuzyka="";
+   $('#jakamuzyka06').bind('on change',  function(){
+        if(this.checked){
+            $('#innamuzyka').prop('disabled',false);
+            if(innamuzyka.length>0)
+                $('#innamuzyka').val(innamuzyka);
+        } else {
+            $('#innamuzyka').prop('disabled',true);
+                innamuzyka=$('#innamuzyka').val();
+            $('#innamuzyka').val("");
+        }
+   });
+   
+  
+    //=====================================================
+    //kopiowanie adresu
+    //------------------------------------------------------
+    $('#adres_zamieszkania').bind('on change',function(){
+        if($('#adres_kopiuj')[0].checked)
+        {
+            $('#adres_zameldowania').val($('#adres_zamieszkania').val());
+        }
+    });
+    
+    $('#adres_kopiuj').bind('on change',function(){
+        if(this.checked)
+        {
+            //kopiowanie = true;
+            $('#adres_zameldowania').val($('#adres_zamieszkania').val());
+            $('#adres_zameldowania').prop('disabled',true);
+        }
+        else
+        {
+            //kopiowanie = false;
+            $('#adres_zameldowania').prop('disabled',false);
+        }
+    });
+  
 });

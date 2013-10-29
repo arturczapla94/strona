@@ -38,8 +38,20 @@
                             <input type="radio" name="plec" value="mezczyzna" id="mezczyzna" /><label for="mezczyzna" >Mężczyzna</label>
                             <input type="radio" name="plec" value="kobieta" id="kobieta" /><label for="kobieta" >Kobieta</label></div>
                         <div class="row"> <label for="nazwa_szkoly">Nazwa Szkoły: </label>
-                        <input type="text" name="nazwa_szkoly" id="nazwa_szkoly"></div>
-
+                            <input type="text" name="nazwa_szkoly" id="nazwa_szkoly">
+                        </div>
+                        
+                        <div class="row"> <label for="adres_zamieszkania">Adres zamieszkania: </label>
+                            <input type="text" name="adres_zamieszkania" id="adres_zamieszkania">
+                        </div>
+                        <div class="row">
+                            <label for="adres_zameldowania">Adres zameldowania: </label>
+                            <input type="text" name="adres_zameldowania" id="adres_zameldowania">
+                            <input type="checkbox" name="adres_kopiuj" value="kopiuj" id="adres_kopiuj" />
+                            <label for="adres_kopiuj">kopiuj</label>
+                        </div>
+                        
+                        
                         <div class="row"><label for="wojewodztwo">Województwo: </label>
                         <select name="wojewodztwo" id="wojewodztwo">
                             <option>dolnośląskie</option>

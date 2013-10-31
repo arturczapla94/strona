@@ -23,15 +23,18 @@
                 
                
 <?php
+
 ////////START////////START////////START////////START////////START////////START////////START////////START////////START///
-$imie = strip_tags($_POST['imie']);
-$imie2 = strip_tags($_POST['imie2']);
-$nazwisko = strip_tags($_POST['nazwisko']);
-$email = strip_tags($_POST['email']);
-$plec = strip_tags($_POST['plec']);
-$szkola = strip_tags($_POST['nazwa_szkoly']);
-$wojewodztwo = strip_tags($_POST['wojewodztwo']);
-$sms = strip_tags($_POST['ilesms']);
+
+$imie =      isset($_POST['imie']) ? trim(strip_tags($_POST['imie']))    : null;
+$imie2 =     isset($_POST['imie']) ? rtrim(strip_tags($_POST['imie2']))  : null;
+$nazwisko =  isset($_POST['imie']) ? trim(strip_tags($_POST['nazwisko'])): null;
+$nrdowodu =  isset($_POST['nrdowodu']) ? trim(strip_tags($_POST['nrdowodu'])): null;
+$email =     isset($_POST['imie']) ? strip_tags($_POST['email'])         : null;
+$plec =      isset($_POST['imie']) ? strip_tags($_POST['plec'])          : null;
+$szkola =    isset($_POST['imie']) ? strip_tags($_POST['nazwa_szkoly'])  : null;
+$wojewodztwo=isset($_POST['imie']) ? strip_tags($_POST['wojewodztwo'])   : null;
+$sms =       isset($_POST['imie']) ? strip_tags($_POST['ilesms'])        : null;
 $ilesms="";
 switch ($sms)
 {
@@ -75,7 +78,7 @@ $bledy = array();
 
 if(!empty($imie))
 {
-    $dane.="<tr><th>Imię:</th><td>".$imie."</td></tr>\n";
+    $dane.="<tr><th>Imię:</th><td>".ucwords($imie)."<span class=\"liczba_znakow\">długość: ".strlen($imie)." ".odmiana(strlen($imie),"znak","znaki","znaków")."</span></td></tr>\n";
     $wysw++;
 }
 else
@@ -84,9 +87,9 @@ else
     $bledy[]="Nie podano imienia!";
 }
 
-if(!empty($imie2))
+if(isset($imie2) && strlen(trim($imie2))>0)
 {
-    $dane.="<tr><th>Drugie imię:</th><td>".$imie2."</td></tr>\n";
+    $dane.="<tr><th>Drugie imię:</th><td>".ucwords($imie2)."<span class=\"liczba_znakow\">długość: ".strlen($imie2)." ".odmiana(strlen($imie2),"znak","znaki","znaków")."</span></td></tr>\n";
     $wysw++;
 }
 else
@@ -96,7 +99,7 @@ else
 }
 if(!empty($nazwisko))
 {
-    $dane.="<tr><th>Nazwisko:</th><td>".$nazwisko."</td></tr>\n";
+    $dane.="<tr><th>Nazwisko:</th><td>".ucwords($nazwisko)." <span class=\"liczba_znakow\">długość: ".strlen(trim($nazwisko))." ".odmiana(strlen($nazwisko),"znak","znaki","znaków")."</span></td></tr>\n";
     $wysw++;
 }
 else
@@ -105,10 +108,23 @@ else
     $bledy[]="Nie podano nazwiska!";
 }
 
+if(!empty($nrdowodu))
+{
+    $dane.="<tr><th>Nr dowodu:</th><td>".ucwords($nrdowodu)."</td></tr>\n";
+    $wysw++;
+}
+else
+{
+    $cbledy++;
+    $bledy[]="Nie podano nr dowodu!";
+}
 
 if(!empty($email))
 {
     $dane.="<tr><th>E-mail:</th><td>".$email."</td></tr>\n";
+    $r=  explode("@", $email);
+    $dane.="<tr><th>E-mail użytkownik:</th><td>".$r[0]."</td></tr>\n";
+    $dane.="<tr><th>E-mail domena:</th><td>".$r[1]."</td></tr>\n";
     $wysw++;
 }
 else
@@ -130,7 +146,12 @@ else
 
 if(!empty($szkola))
 {
-    $dane.="<tr><th>Szkoła:</th><td>".$szkola."</td></tr>\n";
+  
+    $tmp = ucwords($szkola);
+    $szukaj = array(' W ',' Im ',' Im. ');
+    $zamien = array(' w ',' im. ',' im. ');
+    $tmp = str_replace($szukaj,$zamien,$tmp);
+    $dane.="<tr><th>Szkoła:</th><td>".$tmp."</td></tr>\n";
     $wysw++;
 }
 else
@@ -156,7 +177,7 @@ if($wysw>0)
     if($cbledy>0)
     {
         echo '<div class="err-block">'."\n";
-        echo '<h2 class="err">Znaleziono '.$cbledy.' błąd/błędy/błędów</h2>'."\n";
+        echo '<h2 class="err">Znaleziono '.$cbledy.' '.odmiana($cbledy, "bląd", "błędy", "błędów").'</h2>'."\n";
         foreach($bledy as $blad)
         {
             echo '<p class="err">'.$blad.'</p>'."\n";
@@ -172,12 +193,17 @@ else
 {
     echo '<h2 class="err">Nie podano danych osobowych!</h2>'."\n";
 }
-echo "<br><br><br><br>\n\n";
-echo "cbłedy "; var_dump($cbledy); echo "<br>";
-echo "wysw "; var_dump($wysw); echo "<br>";
-echo "błedy "; var_dump($bledy); echo "<br>";
-echo "dane "; var_dump($dane); echo "<br>";
-echo "<br><br><br><br>\n\n";
+if($debug)
+{
+    echo '<aside class="debug">';
+    echo "\n\n";
+    echo "cbłedy "; var_dump($cbledy); echo "<br>";
+    echo "wysw "; var_dump($wysw); echo "<br>";
+    echo "błedy "; var_dump($bledy); echo "<br>";
+    echo "dane "; var_dump($dane); echo "<br>";
+    echo "\n\n";
+    echo "</aside>";
+}
 
 echo "<br>\n\n";
 

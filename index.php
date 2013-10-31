@@ -1,5 +1,17 @@
 <?php
 date_default_timezone_set("Europe/Warsaw");
+$debug=false;
+if(isset($_GET['debug']) && $_GET['debug']==1)
+{
+    $debug=true;
+    \ini_set('display_errors',1);
+    error_reporting(E_ALL);
+}
+else
+{
+    \ini_set('display_errors',0);
+    error_reporting(0);
+}
 require_once('private/config.php');
 require_once('private/inc.php');
 if(!isset($_GET['str']) )

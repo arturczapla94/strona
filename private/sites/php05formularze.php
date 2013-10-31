@@ -21,7 +21,9 @@
             ?>
             <div id=contents>
                 <h1>Ankieta Osobowa</h1>
-                <form method="post" action="?str=php06obsluga_formularza">
+            <?php
+                echo '<form method="post" action="'.gen_link_var("str","php06obsluga_formularza").'">'
+            ?>
                     <fieldset id="ankieta_osobowa1">
                         <legend>Dane osobowe</legend>
                         <div class="row"><label for="nazwisko">Nazwisko</label>
@@ -30,6 +32,8 @@
                         <input type="text" name="imie" id="imie"></div>
                         <div class="row"><label for="imie2">Drugie imię</label>
                         <input type="text" name="imie2" id="imie2"></div>
+                        <div class="row"><label for="nrdowodu">Nr dowodu</label>
+                        <input type="text" name="nrdowodu" id="nrdowodu"></div>
                         <div class="row"><label for="email">E-mail</label>
                         <input type="email" name="email" id="email"></div>
 

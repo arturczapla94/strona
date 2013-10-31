@@ -94,6 +94,102 @@ function miesiac($nr)
     
 }
 
+function odmiana($liczba, $pojedyncza, $dwa, $piec)
+{
+    if($liczba==1 || $liczba==-1)
+        return $pojedyncza;
+    elseif(($liczba>1 && $liczba<5) || ($liczba<-1 && $liczba>-5) )
+        return $dwa;
+    else
+        return $piec;
+}
 
-
+function gen_link_var($var,$val)
+{
+    echo "\n<!-- var: ".$var."\nval: ".$val." -->\n";
+    if(empty($_GET))
+    {
+        echo "\n<!-- GET = empty -->\n";
+        if(!empty($var) && !empty($val))
+        {
+            $link = $_SERVER['REQUEST_URI'].'?'.$var.'='.$val;
+            echo "\n<!-- link: ".$link." -->\n";
+            return $link;
+        }
+        else
+        {
+            echo "\n<!-- cos puste! \n var: ".$var."\nval: ".$val." -->\n";
+            return $_SERVER['REQUEST_URI'];
+        }
+    }
+    elseif (empty($var))
+    {
+        echo "\n<!-- var puste -->\n";
+        return $_SERVER['SCRIPT_NAME'];
+    }
+    else
+    {
+        echo "\n<!-- var nie puste  i GET nie puste, przeliczanie... -->\n";
+        $query="";
+        $znaleziono =false;
+        foreach($_GET as $key => $value)
+        {
+            echo "\n<!-- klucz= ".$key."\nwartosc= ".$value." -->\n";
+            if($key==$var)
+            {
+                $znaleziono = true;
+                if(!empty($val))
+                {
+                    if(strlen($query)>0)
+                    {
+                        echo "\n<!-- query+=: &".$key."=".$val." -->\n";
+                        $query.="&".$key."=".$val;
+                    }
+                    else
+                    {
+                        echo "\n<!-- query+=: ".$key."=".$val." -->\n";
+                        $query=$key."=".$val;
+                    }
+                        
+                }
+                else
+                {
+                    echo "\n<!-- val puste -->\n";
+                }
+            }
+            else
+            {
+                if(strlen($query)>0)
+                {
+                    echo "\n<!-- query=: &".$key."=".$value." -->\n";
+                    $query.="&".$key."=".$value;
+                }
+                else
+                {
+                    $query=$key."=".$value;
+                }
+            }
+            
+        }
+        if(!$znaleziono)
+        {
+            if(strlen($query)>0)
+            {
+                $query.="&".$var."=".$val;
+            }
+            else
+            {
+                $query=$var."=".$val;
+            }
+        }
+        if(strlen($query)>0)
+        {
+            return "?".$query;
+        }
+        else
+        {
+            return "";
+        }
+    }
+}
 ?>

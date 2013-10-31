@@ -19,3 +19,10 @@ div.err-block {
     margin-bottom: 16px;
 }
 
+
+.liczba_znakow {
+    font-style: italic;
+    font-size: small;
+    margin-left: 24px;
+}
+

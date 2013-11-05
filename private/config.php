@@ -3,6 +3,7 @@
 class Config {
     
     public static $startPage = "cotophp";
+    const DEFAULT_ACTION = "index";
     public static $menu = array(
                                 /*array("Co to jest PHP?","podstrona",true),*/
                                 array("Serwisy:","",2),

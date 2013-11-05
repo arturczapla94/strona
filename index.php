@@ -16,9 +16,13 @@ else
 require_once('private/config.php');
 require_once('private/inc.php');
 
-define('BASEDIR',__DIR__);
-define('DS',DIRECTORY_SEPARATOR);
-define('PRIV_DIR',BASEDIR.DS.'private');
+define('BASEDIR',__DIR__); //public_html/
+define('DS',DIRECTORY_SEPARATOR);// /
+define('PRIV_DIR',BASEDIR.DS.'private');// public_html/private/
+define('APPS_DIR',PRIV_DIR.DS.'apps');// public_html/private/
+//const BASEDIR = __DIR__;
+//const DS = __DIR__;
+//const PRIV_DIR = BASEDIR.DS.'private';
 
 if(empty($_GET['str']) )
 {
@@ -31,32 +35,75 @@ else {
     {//JEŻELI specjalna strona lub kontroler
         if(strpos($matches[1],"c")===0)
         { //JEŻELI zaczyna się od "c" - KONTROLER
-            $files = scandir(PRIV_DIR.DS.'apps');
-            foreach($files as $file)
+            $action="";
+        
+            if((!isset($_GET['action']) && $action = \Config::DEFAULT_ACTION) || ( preg_match('/^[0-9a-zA-Z_-]+$/D', $_GET['action']) && $action = $_GET['action']))
+            {//Jeżeli nie istnieje action, albo jeżeli istnieje i pasuje do wzoru
+                $files = scandir(APPS_DIR);
+                $znaleziono =false;
+                foreach($files as $file)
+                {
+                    if($file=='.' || $file=='..')
+                    {
+                        continue;
+                    }
+                    
+                    $id = $matches[1];
+                    $controllerName = $file.'Controller';
+                    if(is_dir(APPS_DIR.DS.$file) && strpos($file,$matches[1])===0)
+                    {
+                        define('CUR_APP_DIR', APPS_DIR.DS.$file);
+                        define('CUR_APP_NAME', $file);
+                        if(is_file(CUR_APP_DIR.DS.$controllerName.'.php'))
+                        {
+                            $znaleziono = true;
+                            include CUR_APP_DIR.DS.$controllerName.'.php';
+                            if(class_exists($controllerName))
+                            {
+                                $kontroler = new $controllerName();
+                                if(method_exists($kontroler, $action.'Action'))
+                                {
+                                    $method = $action.'Action';
+                                    $kontroler->$method();
+                                }
+                                else
+                                {
+                                    \inc\System::error(108);
+                                }
+                                //TODO:
+                                // wywowływanie akcji
+                            }
+                            else
+                            {
+                                 \inc\System::error(105);
+                            }
+
+                            break;
+                        }
+                        else
+                        {
+                            \inc\System::error(104);
+                            break;
+                        }
+                    }
+                    
+                }
+                if(!$znaleziono)
+                {
+                    \inc\System::error(107);
+                }
+                
+                
+            }
+            else
             {
-                if($file=='.' || $file=='..')
-                {
-                    continue;
-                }
-                $currentAppDir =PRIV_DIR.DS.'apps'.DS.$file;
-                $id = $matches[1];
-                $controllerName = $file.'Controller';
-                if(is_dir($currentAppDir) && strpos($file,$matches[1])===0 && is_file($currentAppDir.DS.$controllerName.'.php'))
-                {
-                    include $currentAppDir.DS.$file.'Controller.php';
-                    //TODO:
-                    // tworzenie klasy!
-                    break;
-                }
-                else
-                {
-                    echo "<strong>STRONA NIE ISTNIEJE!</strong> błąd nr 104 ";
-                }
+                \inc\System::error(106);
+                
             }
         }
         else
         { //NIE ROZPOZNANO IDENTYFIKATORA
-            echo "<strong>STRONA NIE ISTNIEJE!</strong> błąd nr 103 ";
+            \inc\System::error(103);
         }
     }           
     else if(preg_match('/^[0-9a-zA-Z_-]+$/D', $_GET['str']) )
@@ -69,13 +116,15 @@ else {
         }
         else
         {
-            echo "<strong>Strona nie istnieje!!!!!</strong> (101)";
+            \inc\System::error(101);
         }
     }
     else
     {
-        echo "<strong>Strona nie istnieje!!!!!</strong> (102)";
+        \inc\System::error(102);
     }
 }	
+
+
 
 ?>

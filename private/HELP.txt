@@ -1,0 +1,9 @@
+stałe:
+
+BASEDIR                     = /.../public_html/
+DS - DIRECTORY_SEPARATOR)   = /
+PRIV_DIR        = /.../public_html/private/
+APPS_DIR        = /.../public_html/private/apps/
+CUR_APP_DIR     = /.../public_html/private/apps/cXXX_XXX/
+CUR_APP_NAME    = "c1_finanse"
+

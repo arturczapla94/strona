@@ -1,0 +1,8 @@
+101;strona nie istnieje;Nazwa strony pasuje do wzoru ale nie znaleziono takiego pliku ze stroną zwykłą.
+102;strona nie istnieje;Nazwa strony nie odpowiada do wzoru strony zwykłej.
+103;strona nie istnieje;Nazwa strony pasuje do wzoru strony specjalnej ale nie rozpoznano typu po prefixie identyfikatora.
+104;strona nie istnieje;Nie znaleziono pliku z definicją klasy Kontrolera dla żądanej strony.
+105;strona nie istnieje;Nie znaleziono definicji klasy Kontrolera dla żadanej strony.
+106;strona nie istnieje;Parametr action nie odpowiada wzorowi.
+107;strona nie istnieje;Nie znaleziono katalogu Kontrolera dla żądanej strony.
+108;strona nie istnieje;Nie znaleziono takiej akcji.

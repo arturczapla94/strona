@@ -1,4 +1,3 @@
-
 #ankieta_osobowa1 {
     margin: 0 0 16px 0;
 }
@@ -10,7 +9,7 @@ fieldset legend {
     
 }
 fieldset {
-    background: rgb(224, 244, 255);
+    /*background: rgb(224, 244, 255);*/
 }
 #ankieta_osobowa1 label {
     float: left;
@@ -76,4 +75,9 @@ fieldset input, fieldset textarea, fieldset select {
 }
 #ankieta_osobowa2 input {
     float: left;
+}
+
+form label.error {
+    width: 220px!important;
+    margin-left: 16px!important;
 }

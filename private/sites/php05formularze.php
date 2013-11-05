@@ -7,6 +7,7 @@
 	<link rel="stylesheet" href="public/style/style.css" type="text/css" />
         <link rel="stylesheet" href="public/style/forms.css" type="text/css" />
         <script type="text/javascript" src="public/js/jquery-2.0.3.js"> </script>
+        <script type="text/javascript" src="public/js/jquery.validate.min.js"> </script>
         <script type="text/javascript" src="public/js/script06form.js"> </script>
 </head>
 <body>
@@ -22,20 +23,20 @@
             <div id=contents>
                 <h1>Ankieta Osobowa</h1>
             <?php
-                echo '<form method="post" action="'.gen_link_var("str","php06obsluga_formularza").'">'
+                echo '<form id="form1" method="post" action="'.gen_link_var("str","php06obsluga_formularza").'">'
             ?>
                     <fieldset id="ankieta_osobowa1">
                         <legend>Dane osobowe</legend>
                         <div class="row"><label for="nazwisko">Nazwisko</label>
-                        <input type="text" name="nazwisko" id="nazwisko"></div>
+                            <input type="text" name="nazwisko" id="nazwisko"></div>
                         <div class="row"><label for="imie">Pierwsze imię</label>
-                        <input type="text" name="imie" id="imie"></div>
+                            <input type="text" name="imie" id="imie"></div>
                         <div class="row"><label for="imie2">Drugie imię</label>
-                        <input type="text" name="imie2" id="imie2"></div>
+                            <input type="text" name="imie2" id="imie2"></div>
                         <div class="row"><label for="nrdowodu">Nr dowodu</label>
-                        <input type="text" name="nrdowodu" id="nrdowodu"></div>
+                            <input type="text" name="nrdowodu" id="nrdowodu"></div>
                         <div class="row"><label for="email">E-mail</label>
-                        <input type="email" name="email" id="email"></div>
+                            <input type="text" name="email" id="email"></div>
 
                         <div class="row">
                             <label>Płeć:</label>

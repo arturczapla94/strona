@@ -22,7 +22,7 @@ define('PRIV_DIR',BASEDIR.DS.'private');
 
 if(empty($_GET['str']) )
 {
-    $_GET['str']=Config::$startPage;
+    $_GET['str']=\Config::$startPage;
     include('private/sites/'.$_GET['str'].'.php');
 }
 else {

@@ -172,3 +172,8 @@ body {
 .wyr {
     color: red;
 }
+
+label.error {
+    color: red;
+    
+}

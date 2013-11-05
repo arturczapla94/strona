@@ -96,5 +96,31 @@ jQuery(document).ready(function() {
             $('#adres_zameldowania').prop('disabled',false);
         }
     });
-  
+    
+
+    //=====================================================
+    //Walidacja
+    //------------------------------------------------------
+    $("#form1").validate({
+        
+        rules:{
+            email:{
+                required: true,
+                email: true
+            },
+            imie:"required",
+            nazwisko:"required",
+            plec:"required"
+        },
+        messages:{
+            default:{
+                required: "To pole jest wymagane!"
+            } ,
+            email:{
+                required: "Podaj email!",
+                email: "Podaj poprawny email!"
+            }
+
+        }
+    });
 });

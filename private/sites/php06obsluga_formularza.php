@@ -109,7 +109,7 @@ switch ($sms)
         $ilesms = " zależy, ile mam kasy";
         break;
 }
-$jakamuzyka = strip_tags($_POST['jakamuzyka']);
+$jakamuzyka = is_array($_POST['jakamuzyka']) ? $_POST['jakamuzyka'] : null ;
 $innamuzyka = strip_tags($_POST['innamuzyka']);
 $uwagi = nl2br(htmlspecialchars($_POST['uwagi']));
     $szukaj = array(' sasza',' szosą',' pchła');
@@ -290,7 +290,7 @@ echo "<br>\n\n";
 
 echo "Miesięcznie wysyła <b>".$ilesms."</b> SMS-ów<br>\n";
 
-if(count($jakamuzyka)<=0)
+if(empty($jakamuzyka))
 {
     echo "<b>Nie</b> lubi muzyki!<br>";
 } else

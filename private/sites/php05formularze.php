@@ -6,9 +6,9 @@
 	<title>PHP 05 Formularze</title>
 	<link rel="stylesheet" href="public/style/style.css" type="text/css" />
         <link rel="stylesheet" href="public/style/forms.css" type="text/css" />
-        <script type="text/javascript" src="public/js/jquery-2.0.3.js"> </script>
-        <script type="text/javascript" src="public/js/jquery.validate.min.js"> </script>
-        <script type="text/javascript" src="public/js/script06form.js"> </script>
+        <script type="text/javascript" src="public/js/jquery-2.0.3.js"></script>
+        <script type="text/javascript" src="public/js/jquery.validate.min.js"></script>
+        <script type="text/javascript" src="public/js/script06form.js"></script>
 </head>
 <body>
 <div id="wrapper">
@@ -35,6 +35,10 @@
                             <input type="text" name="imie2" id="imie2"></div>
                         <div class="row"><label for="nrdowodu">Nr dowodu</label>
                             <input type="text" name="nrdowodu" id="nrdowodu"></div>
+                       <div class="row"><label for="nrpesel">Nr PESEL</label>
+                            <input type="text" name="nrpesel" id="nrpesel"></div>
+                       <div class="row"><label for="nrregon">REGON</label>
+                            <input type="text" name="nrregon" id="nrregon"></div>
                         <div class="row"><label for="email">E-mail</label>
                             <input type="text" name="email" id="email"></div>
 
@@ -109,6 +113,10 @@
                             <label for="komentarz" id="lbl-komentarz">Komentarz (max 200 znaków)</label>
                             <textarea name="komentarz" id="komentarz"></textarea>
                             <div id="komentarz-pozostalo">Pozostało <span id="komentarz-pliczba">200</span> znaków</div>
+                        </div>
+                        <div class="row" id="div-uwagi">
+                            <label for="uwagi" id="lbl-uwagi">Uwagi:</label>
+                            <textarea name="uwagi" id="uwagi"></textarea>
                         </div>
                        
                         <div class="row" id="div-przegladarki">

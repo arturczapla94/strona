@@ -40,7 +40,10 @@ form .row {
 #ankieta_osobowa2 #div-komentarz {
     margin: 8px 0 0 0;
 }
-#ankieta_osobowa2 #div-komentarz #komentarz {
+#ankieta_osobowa2 #div-uwagi {
+    margin: 40px 0 0 0;
+}
+#ankieta_osobowa2 #div-komentarz #komentarz,#ankieta_osobowa2 #div-uwagi #uwagi {
     height: 106px;
     width: 380px;
 }

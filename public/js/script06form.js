@@ -1,11 +1,20 @@
 jQuery(document).ready(function() {
     $('fieldset input, fieldset textarea, fieldset select').bind('focus',function(){
+        $(this).addClass("active");
+        $(this).removeClass("notactive");
+    });
+
+    $('fieldset input, fieldset textarea, fieldset select').bind('blur',function(){
+        $(this).addClass("notactive");
+        $(this).removeClass("active");
+    });
+    /*$('fieldset input, fieldset textarea, fieldset select').bind('focus',function(){
         $(this).css({'border':'1px solid red','background':'white'});
     });
 
     $('fieldset input, fieldset textarea, fieldset select').bind('blur',function(){
-        $(this).css({'border':'1px solid darkred','background':'lightgray'});
-    });
+        $(this).css({'border':'1px solid darkred','background':'#F8F8F8'});
+    });*/
   
   
     var znaki = function(){
@@ -101,8 +110,14 @@ jQuery(document).ready(function() {
     //=====================================================
     //Walidacja
     //------------------------------------------------------
+    jQuery.validator.addMethod("accept", function(value, element, param) {
+        return value.match(new RegExp("." + param + "$"));
+    });
+    
     $("#form1").validate({
-        
+        onfocusout: function(e) {
+            this.element(e);
+        },
         rules:{
             email:{
                 required: true,
@@ -113,13 +128,14 @@ jQuery(document).ready(function() {
             plec:"required"
         },
         messages:{
-            default:{
-                required: "To pole jest wymagane!"
-            } ,
+            
             email:{
                 required: "Podaj email!",
                 email: "Podaj poprawny email!"
-            }
+            },
+            imie: "Podaj imie!",
+            nazwisko:"Podaj nazwisko!",
+            plec:"Zaznacz płeć!"
 
         }
     });

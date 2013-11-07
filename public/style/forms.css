@@ -84,3 +84,23 @@ form label.error {
     width: 220px!important;
     margin-left: 16px!important;
 }
+.active {
+    border:1px solid red!important;
+    background: white!important;
+}
+
+.notactive {
+    border: 1px solid #008B06 !important;
+    background:#F8F8F8 !important;
+}
+.notactive.error{
+    border: 1px solid darkred !important;
+    background:pink !important;
+}
+/*$('fieldset input, fieldset textarea, fieldset select').bind('focus',function(){
+        $(this).css({'border':'1px solid red','background':'white'});
+    });
+
+    $('fieldset input, fieldset textarea, fieldset select').bind('blur',function(){
+        $(this).css({'border':'1px solid darkred','background':'#F8F8F8'});
+    });*/

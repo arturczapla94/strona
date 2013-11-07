@@ -41,6 +41,10 @@
                             <input type="text" name="nrregon" id="nrregon"></div>
                         <div class="row"><label for="email">E-mail</label>
                             <input type="text" name="email" id="email"></div>
+                        <div class="row"><label for="telkom">Nr tel. kom.</label>
+                            <input type="text" name="telkom" id="telkom"></div>
+                        <div class="row"><label for="telstac">Nr tel. stacjonarnego</label>
+                            <input type="text" name="telstac" id="telstac"></div>
 
                         <div class="row">
                             <label>Płeć:</label>

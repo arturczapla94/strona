@@ -18,8 +18,9 @@ require_once('private/inc.php');
 
 define('BASEDIR',__DIR__); //public_html/
 define('DS',DIRECTORY_SEPARATOR);// /
-define('PRIV_DIR',BASEDIR.DS.'private');// public_html/private/
-define('APPS_DIR',PRIV_DIR.DS.'apps');// public_html/private/
+define('PRIV_DIR',BASEDIR.DS.'private');// public_html/private
+define('PRIV_THEMES_DIR',PRIV_DIR.DS.'themes');// public_html/private/themes
+define('APPS_DIR',PRIV_DIR.DS.'apps');// public_html/private
 //const BASEDIR = __DIR__;
 //const DS = __DIR__;
 //const PRIV_DIR = BASEDIR.DS.'private';

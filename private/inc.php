@@ -220,5 +220,15 @@ class System
     }
     
 }
+
+class ViewBasic {
+    public $description = "";
+    public $title = "";
+    
+    public function write()
+    {
+        
+    }
+}
 }//namespace end
 ?>

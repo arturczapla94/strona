@@ -67,17 +67,19 @@ function checkPesel($pesel)
 
 ////////START////////START////////START////////START////////START////////START////////START////////START////////START///
 
-$imie =      isset($_POST['imie']) ? trim(strip_tags($_POST['imie']))     : null;
-$imie2 =     isset($_POST['imie']) ? rtrim(strip_tags($_POST['imie2']))   : null;
-$nazwisko =  isset($_POST['imie']) ? trim(strip_tags($_POST['nazwisko'])) : null;
-$nrdowodu =  isset($_POST['nrdowodu']) ? trim(strip_tags($_POST['nrdowodu'])): null;
-$nrpesel =  isset($_POST['nrpesel']) ? trim(strip_tags($_POST['nrpesel'])): null;
-$nrregon =  isset($_POST['nrregon']) ? trim(strip_tags($_POST['nrregon'])): null;
-$email =     isset($_POST['imie']) ? strip_tags($_POST['email'])          : null;
-$plec =      isset($_POST['imie']) ? strip_tags($_POST['plec'])           : null;
-$szkola =    isset($_POST['imie']) ? strip_tags($_POST['nazwa_szkoly'])   : null;
-$wojewodztwo=isset($_POST['imie']) ? strip_tags($_POST['wojewodztwo'])    : null;
-$sms =       isset($_POST['imie']) ? strip_tags($_POST['ilesms'])         : null;
+$imie =      isset($_POST['imie'])     ? trim(strip_tags($_POST['imie']))       : null;
+$imie2 =     isset($_POST['imie2'])    ? rtrim(strip_tags($_POST['imie2']))     : null;
+$nazwisko =  isset($_POST['nazwisko']) ? trim(strip_tags($_POST['nazwisko']))   : null;
+$nrdowodu =  isset($_POST['nrdowodu']) ? trim(strip_tags($_POST['nrdowodu']))   : null;
+$nrpesel =   isset($_POST['nrpesel'])  ? trim(strip_tags($_POST['nrpesel']))    : null;
+$nrregon =   isset($_POST['nrregon'])  ? trim(strip_tags($_POST['nrregon']))    : null;
+$telkom =    isset($_POST['telkom'])   ? trim(strip_tags($_POST['telkom']))     : null;
+$telstac =   isset($_POST['telstac'])  ? trim(strip_tags($_POST['telstac']))    : null;
+$email =     isset($_POST['email'])    ? strip_tags($_POST['email'])            : null;
+$plec =      isset($_POST['plec'])     ? strip_tags($_POST['plec'])             : null;
+$szkola =    isset($_POST['nazwa_szkoly'])? strip_tags($_POST['nazwa_szkoly'])  : null;
+$wojewodztwo=isset($_POST['wojewodztwo']) ? strip_tags($_POST['wojewodztwo'])   : null;
+$sms =       isset($_POST['ilesms'])      ? strip_tags($_POST['ilesms'])        : null;
 $ilesms="";
 switch ($sms)
 {
@@ -117,7 +119,7 @@ $uwagi = nl2br(htmlspecialchars($_POST['uwagi']));
     $uwagicenzura = str_replace($szukaj,$zamien,$uwagi);
     $szukaj = array(' drepka',' drepki',' drepce',' drepkę',' drepką',' drepko',' cepka',' cepki',' cepce',' cepkę',' cepką',' cepko');
     $zamien = "????";
-    $uwagicenzura = str_replace($szukaj,$zamien,$uwagicenzura);
+$uwagicenzura = str_replace($szukaj,$zamien,$uwagicenzura);
 
 $komentarz = nl2br(htmlspecialchars($_POST['komentarz']));
 $przegladarki = strip_tags($_POST['przegladarki']);
@@ -191,6 +193,29 @@ if(!empty($nrregon))
     {
         $cbledy++;
         $bledy[]="Podano nie prawidłowy nr REGON!";
+    }
+}
+if(!empty($telkom))
+{
+    $dane.="<tr><th>Nr tel. komórkowego:</th><td>".  $telkom."</td></tr>\n";
+    $wysw++;
+    
+    if(preg_match('^([+]?[0-9]{1,3}[-\s]?)?([0-9]{3}([-\s]?[0-9]{3}){2}|(\(?[0-9]{2}\)?[-\s]?[0-9]{3}([-\s]?[0-9]{2}){2}))$', trim($telkom)))
+    {
+        $cbledy++;
+        $bledy[]="Podano nie prawidłowy nr telefonu komórkowego!";
+    }
+}
+
+if(!empty($telstac))
+{
+    $dane.="<tr><th>Nr tel. stacjonarnego:</th><td>".  $telstac."</td></tr>\n";
+    $wysw++;
+    
+    if(preg_match('^([+]?[0-9]{1,3}[-\s]?)?([0-9]{3}([-\s]?[0-9]{3}){2}|(\(?[0-9]{2}\)?[-\s]?[0-9]{3}([-\s]?[0-9]{2}){2}))$', trim($telstac)))
+    {
+        $cbledy++;
+        $bledy[]="Podano nie prawidłowy nr telefonu stacjonarnego!";
     }
 }
 
@@ -316,7 +341,7 @@ if(empty($jakamuzyka))
     }
     echo "</span>";
 }
-
+   
 echo "<br>\n";
 echo "Komentarz: ".$komentarz."<br><br><br><br><br>\n";
 echo "Uwagi: <p>".substr($uwagicenzura, 0,700)."</p><br><br><br>\n";

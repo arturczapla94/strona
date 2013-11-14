@@ -222,9 +222,10 @@ class System
 }
 
 class ViewBasic {
+    protected $dane;
     public $description = "";
     public $title = "";
-    
+
     public function write()
     {
         

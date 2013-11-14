@@ -3,6 +3,8 @@ stałe:
 BASEDIR                     = /.../public_html/
 DS - DIRECTORY_SEPARATOR)   = /
 PRIV_DIR        = /.../public_html/private/
+PUB_DIR         = /.../public_html/public/
+PUB_RES_DIR     = /.../public_html/public/res
 PRIV_THEMES_DIR      = /.../public_html/private/themes
 APPS_DIR        = /.../public_html/private/apps/
 CUR_APP_DIR     = /.../public_html/private/apps/cXXX_XXX/

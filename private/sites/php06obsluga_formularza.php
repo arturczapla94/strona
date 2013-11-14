@@ -342,7 +342,22 @@ if(empty($jakamuzyka))
     echo "</span>";
 }
    
-echo "<br>\n";
+echo "<br>\n";echo "<br>\n";
+$filename = isset($_POST['plik']) ? $_POST['plik'] : null;
+echo "Użytkownik " . (is_readable($filename) ? "może" : "nie może" ). " czytać pliku <br />\n";
+echo "Użytkownik " . (is_writable($filename) ? "może" : "nie może" ). " zapisywać do pliku <br />\n";
+echo "Użytkownik " . (is_executable($filename) ? "może" : "nie może" ). " wykonywać pliku <br />\n";
+echo "Plik waży: " . filesize($filename) . odmiana(filesize($filename), "bajt", "bajty", "bajtów") .  "<br />\n";
+echo "Data ostatniego dostępu: " . date("d.m.Y",fileatime($filename)) . "<br />\n";
+echo "Data ostatniej modyfikacji pliku: " . date("d.m.Y",filemtime($filename)) . "<br />\n";
+echo "Data ostatniej modyfikacji dokumentu: " . date("d.m.Y",filectime($filename)) . "<br />\n";
+echo "Identyfikator grupy: " . filegroup($filename) . "<br />\n";
+echo "Identyfikator właściciela pliku: " . fileowner($filename) . "<br />\n";
+echo "zawartość: ";
+echo nl2br (readfile($filename));
+echo "<br />\n";
+
+echo "<br>\n";echo "<br>\n";
 echo "Komentarz: ".$komentarz."<br><br><br><br><br>\n";
 echo "Uwagi: <p>".substr($uwagicenzura, 0,700)."</p><br><br><br>\n";
 echo "Przeglądarki: ";

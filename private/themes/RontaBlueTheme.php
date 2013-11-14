@@ -9,16 +9,16 @@ class RontaBlueTheme {
  * @param inc\ViewBasic $view obiekt typu \inc\ViewBasic, częśc wewnętrzna widoku.
  */
     public function __construct($view) {
-        this.$inview = $view;
-        writeHTMLHeaders();
-        writeTop();
-        writeWrapper();
+        $inview = $view;
+        $this->writeHTMLHeaders();
+        $this->writeTop();
+        $this->writeWrapper();
         $view->write();
-        writeBottom();
+        $this->writeBottom();
     }
     
     
-    function writeHTMLHeaders()
+    protected function writeHTMLHeaders()
     {
         ?>
         <!DOCTYPE html>
@@ -31,5 +31,11 @@ class RontaBlueTheme {
 <?php
 //inne nagłówki
     }
+    
+    function writeTop() {}
+    function writeWrapper() {}
+    function writeBottom() {}
+    
+    
 }
 

@@ -111,7 +111,10 @@
                         <div class="row"><input class="cb-jakamuzyka"  type="checkbox" name="jakamuzyka[]" value="muzyka powazna" id="jakamuzyka05" /><label for="jakamuzyka05">Muzyka poważna </label> </div>
                         <div class="row"><input class="cb-jakamuzyka" type="checkbox" name="jakamuzyka[]" value="inna" id="jakamuzyka06" /><label for="jakamuzyka06">Inna(podaj jaką): </label>
                             <input type="text" name="innamuzyka" value="" id="innamuzyka" />
-                        </div>
+                        </div><br />
+                        
+                        <label for="plik">Nazwa pliku:</label>
+                        <input type="text" name="plik" id="plik"> <br />
                         
                         <div class="row" id="div-komentarz">
                             <label for="komentarz" id="lbl-komentarz">Komentarz (max 200 znaków)</label>

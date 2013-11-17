@@ -2,6 +2,8 @@
 function licznik()
 {
     $filename = 'licznik.txt';
+    if(!is_dir(PRIV_RES_DIR))
+        mkdir (PRIV_RES_DIR);
     $fileadress = PRIV_RES_DIR.DS.$filename;
     if(is_file($fileadress))
     {

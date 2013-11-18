@@ -225,7 +225,7 @@ class ViewBasic {
     protected $dane;
     public $description = "";
     public $title = "";
-
+    public $customHeaders ="";
     public function write()
     {
         

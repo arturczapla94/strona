@@ -28,7 +28,8 @@ class RontaBlueTheme {
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="Description" content="<?php echo $this->inview->description ?>" />
 	<title><?php echo $this->inview->title ?></title>
-	<link rel="stylesheet" href="<?php echo self::PUBLIC_THEME_DIR.'/style.css' ?>" type="text/css" />    
+	<link rel="stylesheet" href="<?php echo self::PUBLIC_THEME_DIR.'/style.css' ?>" type="text/css" />
+        <script type="text/javascript" src="public/js/jquery-2.0.3.js"> </script>
 <?php if(isset($this->inview->customHeaders))
     echo $this->inview->customHeaders;
 echo "\n</head><body>";
@@ -45,12 +46,13 @@ echo "\n</head><body>";
         <?php
     }
     function writeWrapper() {
-        echo ''
-        . '<div id="contents" class="site-width">';
+        echo '<div id="wrapper" class="site-width" >'
+        . '<div id="menu">menu</div>'
+        . '<div id="contents">';
     }
     function writeWrapperClosure() {
         echo '</div>'
-        . '';
+        . '</div>';
     }
     function writeBottom() {
         echo '<footer id="footer" class="site-width">'

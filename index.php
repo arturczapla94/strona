@@ -28,6 +28,10 @@ define('APPS_DIR',PRIV_DIR.DS.'apps');// public_html/private
 //const DS = __DIR__;
 //const PRIV_DIR = BASEDIR.DS.'private';
 
+include(PRIV_THEMES_DIR.DS.'RontaBlueTheme.php');
+
+define('CUR_THEME','RontaBlueTheme');
+
 if(empty($_GET['str']) )
 {
     $_GET['str']=\Config::$startPage;

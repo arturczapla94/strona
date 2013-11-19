@@ -10,7 +10,8 @@ body {
     background: #e5e5e5;
 }
 .site-width {
-    width: 1004px;
+    max-width: 1004px;
+    width: 100%;
     margin: 0 auto;
 }
 #header {
@@ -34,6 +35,7 @@ body {
 #footer {
     font-size:0.8em;
     color: white;
+    overflow: hidden;
 }
 #contents {
     width: 690px;

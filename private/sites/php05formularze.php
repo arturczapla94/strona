@@ -57,12 +57,7 @@
                         <div class="row"> <label for="adres_zamieszkania">Adres zamieszkania: </label>
                             <input type="text" name="adres_zamieszkania" id="adres_zamieszkania">
                         </div>
-                        <div class="row">
-                            <label for="adres_zameldowania">Adres zameldowania: </label>
-                            <input type="text" name="adres_zameldowania" id="adres_zameldowania">
-                            <input type="checkbox" name="adres_kopiuj" value="kopiuj" id="adres_kopiuj" />
-                            <label for="adres_kopiuj">kopiuj</label>
-                        </div>
+                        
                         
                         
                         <div class="row"><label for="wojewodztwo">Województwo: </label>

@@ -13,6 +13,8 @@ class Config {
                                 array("PHP04 Data i Czas","php04czas",1),
                                 array("PHP05 Formularze","php05formularze",1),
                                 array("PHP07 Pliki","php07pliki",1),
+                                array("PHP08 Forum na plikach","php08forum",1),
+        
         
                                 array("Projektowanie:","",2),
                                 array("JS 01 tabelka css","js01skrypty",1),

@@ -36,34 +36,99 @@ function licznik()
 $parametry = array();
 $parametry['licznik'] = licznik();
 
+$parametry['txt_wszystkie'] = array(
+    '01len' => array(
+        'file' => '01.txt',
+        'title'=> 'Leń',
+        'autor'=> 'Jan Brzechwa'
+    ),
+    '02kruklis' => array(
+        'file' => '02.txt',
+        'title'=> 'Kruk i lis',
+        'autor'=> 'Jean de La Fontaine'
+    ),
+    '03romantycznosc' => array(
+        'file' => '03.txt',
+        'title'=> 'ROMANTYCZNOŚĆ',
+        'autor'=> 'Mickiewicz'
+    ),
+    '04wstepdobajek' => array(
+        'file' => '04.txt',
+        'title'=> 'Wstęp do bajek',
+        'autor'=> 'Ignacy Krasicki'
+    ),
+    '05' => array(
+        'file' => '05.txt',
+        'title'=> 'O wiośnie',
+        'autor'=> 'Ewa Zawadzka'
+    ),
+    '06' => array(
+        'file' => '06.txt',
+        'title'=> 'Pierwszy kwiat wiosny',
+        'autor'=> 'Stefania Kossuth'
+    ),
+    '07' => array(
+        'file' => '07.txt',
+        'title'=> 'Wiosna',
+        'autor'=> 'Joanna Kulmowa'
+    ),
+    '08' => array(
+        'file' => '08.txt',
+        'title'=> 'Skąpiec',
+        'autor'=> 'Fontaine La de Jean'
+    ),
+    '09' => array(
+        'file' => '09.txt',
+        'title'=> 'Bajka',
+        'autor'=> 'Baczyński Krzysztof Kamil'
+    ),
+    '10' => array(
+        'file' => '10.txt',
+        'title'=> 'Idź',
+        'autor'=> 'Wiedźma Marta'
+    ),
+   
+);
 
 if(isset($_POST['wyslano'])) {
     $parametry['wyslano']=true;
     if(isset($_POST['wiersz'])) {
-        $wybor=$_POST['wiersz'];
-        $jest = false;
-        switch($wybor){
-            case '01len' :
-                $jest = true;
-                $plik='01.txt';
-                $parametry['title'] = "Leń";
-                $parametry['autor'] = "Jan Brzechwa";
-                break;
-            case '02kruklis' :
-                $jest = true;
-                $plik='02.txt';
-                $parametry['title'] = "Kruk i lis";
-                $parametry['autor'] = "Jean de La Fontaine";
-                break;
-            default :
-                $parametry['error'] = "Nie wybrano wiersza!";
+        $wybor;
+        if(isset($parametry['txt_wszystkie'][$_POST['wiersz']]))
+        {
+            $jest=true;
+            $wybor = $parametry['txt_wszystkie'][$_POST['wiersz']];
+            $parametry['txt_wybrany']=$wybor;
         }
+        else
+        {
+            $jest = false;
+        }
+        
+//        $jest = false;
+//        switch($wybor){
+//            case '01len' :
+//                $jest = true;
+//                $plik='01.txt';
+//                $parametry['title'] = "Leń";
+//                $parametry['autor'] = "Jan Brzechwa";
+//                break;
+//            case '02kruklis' :
+//                $jest = true;
+//                $plik='02.txt';
+//                $parametry['title'] = "Kruk i lis";
+//                $parametry['autor'] = "Jean de La Fontaine";
+//                break;
+//            default :
+//                $parametry['error'] = "Nie wybrano wiersza!";
+//        }
+        
         
         if($jest)
         {
-            if(is_file(PUB_RES_DIR.DS.'zphp07'.DS.$plik))
+            if(is_file(PUB_RES_DIR.DS.'zphp07'.DS.$wybor['file']))
             {
-                $file = fopen(PUB_RES_DIR.DS.'zphp07'.DS.$plik,"r");
+                $file = fopen(PUB_RES_DIR.DS.'zphp07'.DS.$wybor['file'],"r");
                 $parametry['wiersz'] = "";
                 while(!feof($file))
                 {
@@ -97,7 +162,6 @@ else {
 ////        W  I  D  O  K
 ////
 //////////////////////////////////////
-include(PRIV_THEMES_DIR.DS.'RontaBlueTheme.php');
 
 class Php07plikiView extends inc\ViewBasic {
     function __construct($data) {
@@ -109,21 +173,27 @@ class Php07plikiView extends inc\ViewBasic {
     
     public function write()
     {
-        echo '<form action="'.gen_link_var("str","php07pliki").'" method="post" >'
-                . '<input type="radio" name="wiersz" value="01len" id="01len"> '
-                . '<label for"01len"> <span>"Leń"</span> <i>Jan Brzechwa</i></label><br />'
-                . '<input type="radio" name="wiersz" value="02kruklis" id="02kruklis"> '
-                . '<label for"02kruklis"> <span>"Kruk i Lis"</span> <i>Jean de La Fontaine</i></label><br />'
-                . ' <input type="submit" name="wyslano" value="Wyślij" />'
+        echo '<form action="'.gen_link_var("str","php07pliki").'" method="post" >';
+        foreach($this->dane['txt_wszystkie'] as $key => $value)
+        {
+                echo '<input type="radio" name="wiersz" value="'.$key.'" id="'.$key.'"> '
+        . '<label for"'.$key.'"> <span>"'.$value['title'].'"</span> <i>'.$value['autor'].'</i></label><br />';
+        }
+                echo ' <input type="submit" name="wyslano" value="Wyślij" />'
                 . '</form>';
         
-        
+                if($debug)
+                {
+                    echo '<br><br>Debug:';
+                    var_dump($_POST);
+                    echo '<br>';
+                }
         
         if($this->dane['wyslano'])
         {
-            if( isset($this->dane['title']))
+            if( isset($this->dane['txt_wybrany']['title']))
             {
-                echo '<h2>'.$this->dane['title'].' <i> '.$this->dane['autor'].'</i></h2>';
+                echo '<h2>'.$this->dane['txt_wybrany']['title'].' <i> '.$this->dane['txt_wybrany']['autor'].'</i></h2>';
                 
             }
             if( isset($this->dane['wiersz']))
@@ -148,5 +218,6 @@ class Php07plikiView extends inc\ViewBasic {
 }//koniec widoku
 
 $widok = new Php07plikiView($parametry);
-$szablon = new RontaBlueTheme($widok);
+$klasa = CUR_THEME;
+$szablon = new $klasa($widok);
 

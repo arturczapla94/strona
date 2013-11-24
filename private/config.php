@@ -1,9 +1,12 @@
 <?php
-
+namespace Config;
 class Config {
     
     public static $startPage = "cotophp";
     const DEFAULT_ACTION = "index";
+    
+    const SITE_TITLE = "PHP Czapla";
+    
     public static $menu = array(
                                 /*array("Co to jest PHP?","podstrona",true),*/
                                 array("Serwisy:","",2),

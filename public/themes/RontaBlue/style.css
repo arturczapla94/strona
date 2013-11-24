@@ -1,18 +1,37 @@
-/* 
+/* RontaBlueTheme
     Created on : 2013-11-17, 22:10:03
     Author     : Artek
 */
 html,body {
     margin: 0;
     padding: 0;
+    min-height: 100%;
 }
 body {
-    background: #e5e5e5;
+    background: #b3b3b3; /* Old browsers */
+    
+    font-family: 'FrutigerLtProRoman',Arial,Helvetica,Verdana,sans-serif;
+}
+#big-wrapper {
+    
+    min-width:100%;
+    
+    background: #9a9a9a; /* Old browsers */
+    background: -moz-linear-gradient(top,  #ededed 0%, #b3b3b3 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ededed), color-stop(100%,#b3b3b3)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #ededed 0%,#b3b3b3 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #ededed 0%,#b3b3b3 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #ededed 0%,#b3b3b3 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  #ededed 0%,#b3b3b3 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ededed', endColorstr='#b3b3b3',GradientType=0 ); /* IE6-9 */
+    
 }
 .site-width {
     max-width: 1004px;
     width: 100%;
     margin: 0 auto;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 #header {
     border-bottom: #2553e6 3px solid;
@@ -23,26 +42,70 @@ body {
 #header .in{
     height: 128px;
     overflow: hidden;
+    position: relative;
     
 }
 #header .logo {
     float: left;
 }
 #header .in h1 {
-    margin-top:0;
+    font-family: verdana;
+    text-transform: uppercase;
+    color: #6B6B6B;
+    margin: 34.5px auto 34.5px auto;
+    font-size: 48px;
+    height: 59px;
+    text-align: center;
     
 }
+#wrapper {
+    overflow: visible;
+    padding-top: 34px;
+    padding-bottom: 10px;
+}
 #footer {
+    margin-top: 34px;
+    margin-bottom: 0;
     font-size:0.8em;
     color: white;
     overflow: hidden;
 }
 #contents {
+    
     width: 690px;
     float: left;
+    
 }
 #menu {
-    width: 294px;
-    margin: 0 20px 0 0;
+    width: 280px;
+    margin: 0 34px 0 0;
     float: left;
+    z-index: 10;
+    
+}
+.menu-block {
+    
+}
+.block-block .block-top {
+    height: 20px;
+    border-bottom: 1px #ebebeb solid;
+    background: white;
+    border-radius: 12px 12px  0 0;
+    padding: 10px 8px 8px 10px;
+    color: #0439c5;
+    font-weight: bold;
+    
+}
+.block-block .block-contents {
+    border-top: white 1px solid;
+    background: #ebebeb; /* Old browsers */
+    background: -moz-linear-gradient(top,  #ebebeb 0%, #ffffff 180px); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ebebeb), color-stop(180px,#ffffff)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #ebebeb 0%,#ffffff 180px); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #ebebeb 0%,#ffffff 180px); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #ebebeb 0%,#ffffff 180px); /* IE10+ */
+    background: linear-gradient(to bottom,  #ebebeb 0%,#ffffff 180px); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ebebeb', endColorstr='#ffffff',GradientType=0 ); /* IE6-9 */
+    
+    padding: 6px 6px 8px;
 }

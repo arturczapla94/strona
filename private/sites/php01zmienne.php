@@ -45,14 +45,14 @@
     
     $zm1="sdf";
     $zm2 = array("11", "22");
-    $zm3 = new Config();
+
     
     echo gettype($liczba1)."<br>";
     echo gettype($liczba2)."<br>";
     echo gettype($liczba3)."<br>";
     echo gettype($zm1)."<br>";
     echo gettype($zm2)."<br>";
-    echo gettype($zm3)."<br>";
+
     echo "<br>";
     
     

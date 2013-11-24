@@ -9,7 +9,7 @@
 			echo '<a href="index.php'.gen_link_var("str","login").'">Zaloguj</a><br/>';
 			echo '<a href="index.php'.gen_link_var("str","galeria").'">galeria</a><br/>';
                         
-                            foreach (config::$menu as $value)
+                            foreach (Config\Config::$menu as $value)
                             {
                                 switch ($value[2])
                                 {

@@ -15,7 +15,10 @@ $plik = PRIV_RES_DIR.DS.'forum.txt';
     if(!is_file($plik))
         touch ($plik);
     
-if(empty(array_search($_SERVER['REMOTE_ADDR'],$parametry['baned'])) && !empty(trim($_POST['uwagi'])) && !empty(trim($_POST['uzytkownik'])) )
+if(empty(array_search($_SERVER['REMOTE_ADDR'],$parametry['baned']))
+        && isset($_POST['uwagi']) 
+        && !empty(trim($_POST['uwagi'])) 
+        && !empty(trim($_POST['uzytkownik'])) )
 {
     $user = substr(trim(strip_tags($_POST['uzytkownik'])),0,40);
     $uwagi = nl2br(substr(trim(strip_tags($_POST['uwagi'])),0,1000));
@@ -57,6 +60,9 @@ class homeView extends inc\ViewBasic {
     
     public function write()
     {
+        ?>
+<section class="block-block"><header class="block-top"> </header> <div class="block-contents">
+    <?php
        if(empty(array_search($_SERVER['REMOTE_ADDR'],$this->dane['baned'])))
        {
 echo '<form action="'.gen_link_var("str","php08forum").'" enctype="multipart/form-data" method="post">'
@@ -68,7 +74,7 @@ echo '<form action="'.gen_link_var("str","php08forum").'" enctype="multipart/for
     <br />
     
     <input type="submit" name="submit" value="Zapisz" />
-    
+  
 </form>
     <?php
        }
@@ -83,7 +89,13 @@ echo '<form action="'.gen_link_var("str","php08forum").'" enctype="multipart/for
             echo '<strong>'.$podzial[0].'</strong><span>&nbsp;&nbsp;&nbsp;'.(isset($podzial[2]) ? $podzial[2] : '').' & '.(isset($podzial[1]) ? $podzial[1] : '').'<br>';
             echo '<p>'.trim($podzial[3]).'</p>';
         }
+        ?>
+</div>
+</section>
+<?php
     }
+    
+
 }
 
 $widok = new homeView($parametry);

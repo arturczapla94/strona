@@ -34,7 +34,7 @@ define('CUR_THEME','RontaBlueTheme');
 
 if(empty($_GET['str']) )
 {
-    $_GET['str']=\Config::$startPage;
+    $_GET['str']=\Config\Config::$startPage;
     include('private/sites/'.$_GET['str'].'.php');
 }
 else {
@@ -45,7 +45,7 @@ else {
         { //JEŻELI zaczyna się od "c" - KONTROLER
             $action="";
         
-            if((!isset($_GET['action']) && $action = \Config::DEFAULT_ACTION) || ( preg_match('/^[0-9a-zA-Z_-]+$/D', $_GET['action']) && $action = $_GET['action']))
+            if((!isset($_GET['action']) && $action = \Config\Config::DEFAULT_ACTION) || ( preg_match('/^[0-9a-zA-Z_-]+$/D', $_GET['action']) && $action = $_GET['action']))
             {//Jeżeli nie istnieje action, albo jeżeli istnieje i pasuje do wzoru
                 $files = scandir(APPS_DIR);
                 $znaleziono =false;

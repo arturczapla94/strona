@@ -1,0 +1,13 @@
+form label {
+    display: inline-block;
+    width: 90px;
+}
+form textarea {
+    width: 574px;
+    height: 48px;
+}
+form label:first-child{
+    margin-top:14px;
+    margin-bottom:14px;
+}
+

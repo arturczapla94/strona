@@ -1,0 +1,21 @@
+.news-block .figure {
+    width: 150px;
+    height: 100px;
+    float: left;
+    display: block;
+    margin-right: 6px;
+    margin-bottom: 6px;
+}
+
+.news-block .block-top h3 {
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+.news-block .news-content {
+    text-align: justify;
+}
+
+.news-block .news-content .pokaz-wiecej {   
+    clear: both;
+    text-align: right;
+}

@@ -226,6 +226,7 @@ class ViewBasic {
     public $description = "";
     public $title = "";
     public $customHeaders ="";
+    public $header = "";
     public function write()
     {
         

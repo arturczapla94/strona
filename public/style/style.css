@@ -15,6 +15,7 @@ a:visited {
     color: #0847A5;
 
 }
+
 a:hover {
  
     color: #0847A5;
@@ -28,10 +29,14 @@ body {
     min-height: 100%;
     position:relative;
 }
-#headline {
+header.header {
     background-color: #39bef0;
     padding: 0;
     margin: 0;
+}
+#headline .in{
+    margin: 0 auto;
+    width:924px;
 }
 #headline-top {
     padding: 4px;

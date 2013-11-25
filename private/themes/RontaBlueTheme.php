@@ -39,7 +39,7 @@ echo "\n</head><body><div id=\"pbody\"></div>";
     function writeTop() {
         ?>
 <header id="header">
-    <div class="site-width in"><img class="logo" src="public/images/czaplaphp03.png" /><h1><?php echo Config\Config::SITE_TITLE ?></h1>
+    <div class="site-width in"><img class="logo" src="public/images/czaplaphp03.png" alt="logo" /><h1><?php echo Config\Config::SITE_TITLE ?></h1>
     </div>
 </header>
         
@@ -84,7 +84,7 @@ echo "\n</head><body><div id=\"pbody\"></div>";
                     echo '<a href="index.php'.gen_link_var("str",$value[1]).'">'.$value[0].'</a><br />';
                     break;
                 case 2 :
-                    echo '<p '.(isset($value[3]) ? $value[3] : '').'>'.$value[0].'</p>';
+                    echo '<h3 '.(isset($value[3]) ? $value[3] : '').'>'.$value[0].'</h3>';
             };
 
         }

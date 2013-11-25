@@ -47,21 +47,22 @@ $parametry['tekst']=$tekst;
 //////////////////////////////////////
 
 
-class homeView extends inc\ViewBasic {
+class php08forumView extends \inc\ViewBasic {
     function __construct($widok) {
         $this->dane = $widok;
-       // $this->customHeaders = '<link rel="stylesheet" href="style.css" type="text/css" />'
+        $this->customHeaders = '<link rel="stylesheet" href="public/res/zphp08/php08forum.css" type="text/css" />';
         //    . '<script type="text/javascript" src=""> </script>';
         
-        $this->description = "";
-        $this->title = "Strona Główna";
+        $this->description = "Forum";
+        $this->title = "Forum";
+        $this->header = "Forum";
     }
     
     
     public function write()
     {
         ?>
-<section class="block-block"><header class="block-top"> </header> <div class="block-contents">
+<section class="block-block"><header class="block-top"><?php echo $this->header; ?></header> <div class="block-contents">
     <?php
        if(empty(array_search($_SERVER['REMOTE_ADDR'],$this->dane['baned'])))
        {
@@ -87,7 +88,8 @@ echo '<form action="'.gen_link_var("str","php08forum").'" enctype="multipart/for
             $podzial = explode('§', $post, 4);
             echo '<hr />';
             echo '<strong>'.$podzial[0].'</strong><span>&nbsp;&nbsp;&nbsp;'.(isset($podzial[2]) ? $podzial[2] : '').' & '.(isset($podzial[1]) ? $podzial[1] : '').'<br>';
-            echo '<p>'.trim($podzial[3]).'</p>';
+            echo '<span>'.trim($podzial[3]).'</span>';
+            echo '</span>';
         }
         ?>
 </div>
@@ -98,7 +100,7 @@ echo '<form action="'.gen_link_var("str","php08forum").'" enctype="multipart/for
 
 }
 
-$widok = new homeView($parametry);
+$widok = new php08forumView($parametry);
 $klasa = CUR_THEME;
 $szablon = new $klasa($widok);
 

@@ -105,23 +105,6 @@ if(isset($_POST['wyslano'])) {
             $jest = false;
         }
         
-//        $jest = false;
-//        switch($wybor){
-//            case '01len' :
-//                $jest = true;
-//                $plik='01.txt';
-//                $parametry['title'] = "Leń";
-//                $parametry['autor'] = "Jan Brzechwa";
-//                break;
-//            case '02kruklis' :
-//                $jest = true;
-//                $plik='02.txt';
-//                $parametry['title'] = "Kruk i lis";
-//                $parametry['autor'] = "Jean de La Fontaine";
-//                break;
-//            default :
-//                $parametry['error'] = "Nie wybrano wiersza!";
-//        }
         
         
         if($jest)
@@ -186,7 +169,7 @@ class Php07plikiView extends inc\ViewBasic {
                 {
                     echo '<br><br>Debug:';
                     var_dump($_POST);
-                    echo '<br>';
+                    echo '<br>'; 
                 }
         
         if($this->dane['wyslano'])
@@ -208,10 +191,6 @@ class Php07plikiView extends inc\ViewBasic {
         }
         echo "<hr />";
         echo 'odwiedzin: '.$this->dane['licznik'];
-        if ($this->dane['licznik'] % 10 == 0 )
-        {
-            echo " wow, strona taka popularna!";
-        }
         
     }//Koniec funkcji write
     

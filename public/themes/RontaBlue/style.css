@@ -14,7 +14,7 @@ a, a:visited {
     color: #0439c5;
 }
 a:hover {
-    color: #5406A8;
+    color: #1CE0D9;
 }
 body {
     background: #b3b3b3; /* Old browsers */
@@ -119,4 +119,19 @@ body {
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ebebeb', endColorstr='#ffffff',GradientType=0 ); /* IE6-9 */
     
     padding: 10px 12px 12px 12px;
+}
+
+
+button.tekstowy {
+    border: none;
+    background: none;
+    display: inline;
+    padding: 0;
+    margin: 0;
+    font: inherit;
+    color: #0439c5;
+    text-decoration: underline;
+}
+button.tekstowy:hover {
+    color: #1CE0D9;
 }

@@ -3,8 +3,13 @@
     height: 100px;
     float: left;
     display: block;
-    margin-right: 6px;
-    margin-bottom: 6px;
+    margin: 6px;
+}
+
+.news-block .figure img{
+    width: 150px;
+    height: 100px;
+    
 }
 
 .news-block .block-top h3 {

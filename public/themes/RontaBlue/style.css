@@ -11,7 +11,7 @@ html,body {
     text-decoration: none;
 }
 a, a:visited {
-    color: #0439c5;
+    color: #003d7b;
 }
 a:hover {
     color: #1CE0D9;
@@ -43,7 +43,7 @@ body {
     padding-right: 10px;
 }
 #header {
-    border-bottom: #2553e6 3px solid;
+    border-bottom: #003d7b 3px solid;
     background: white;
     height: 128px;
     
@@ -61,6 +61,7 @@ body {
     font-family: verdana;
     text-transform: uppercase;
     color: #6B6B6B;
+    /*color: #003d7b;*/
     margin: 34.5px auto 34.5px auto;
     font-size: 48px;
     height: 59px;
@@ -103,7 +104,7 @@ body {
     background: white;
     border-radius: 12px 12px  0 0;
     padding: 10px 8px 8px 10px;
-    color: #0439c5;
+    color: #003d7b;
     font-weight: bold;
     
 }

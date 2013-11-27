@@ -10,21 +10,13 @@ class RontaBlueTheme {
  */
     public function __construct($view) {
         $this->inview = $view;
-        $this->writeHTMLHeaders();
-        $this->writeTop();
-        $this->writeWrapper();
-        $view->write();
-        $this->writeWrapperClosure();
-        $this->writeBottom();
+        $this->show();
     }
     
     
     protected function writeHTMLHeaders()
     {
         ?>
-        <!DOCTYPE html>
-<html>
-<head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="Description" content="<?php echo $this->inview->description ?>" />
 	<title><?php echo $this->inview->title ?></title>
@@ -32,8 +24,13 @@ class RontaBlueTheme {
         <script type="text/javascript" src="public/js/jquery-2.0.3.js"> </script>
 <?php if(isset($this->inview->customHeaders))
     echo $this->inview->customHeaders;
-echo "\n</head><body><div id=\"pbody\"></div>";
-//inne nagłówki
+
+    }
+    
+    function writeBodyInit() {
+?>
+    <div id="pbody"></div>
+<?php
     }
     
     function writeTop() {
@@ -67,7 +64,7 @@ echo "\n</head><body><div id=\"pbody\"></div>";
         echo '<footer id="footer" class="site-width">'
         . '<hr><p class="poweredby"> Powered by czaplOS</p>'
         . '</footer></div>'
-                . '</body></html>';
+                . '';
     }
     
     
@@ -89,6 +86,30 @@ echo "\n</head><body><div id=\"pbody\"></div>";
 
         }
                        
+    }
+    
+    function show()
+    {
+        
+?><!DOCTYPE html>
+<html>
+<head>
+    <?php $this->writeHTMLHeaders(); ?>
+</head>
+<body>
+    <?php
+        $this->writeBodyInit();
+        $this->writeTop();
+        $this->writeWrapper();
+        
+        $this->inview->write();
+        
+        $this->writeWrapperClosure();
+        $this->writeBottom();
+    ?>
+</body>
+</html>
+    <?php
     }
     
 }

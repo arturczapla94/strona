@@ -231,6 +231,6 @@ class ViewBasic {
     {
         
     }
-}
+    }
 }//namespace end
 ?>

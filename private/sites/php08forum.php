@@ -12,24 +12,28 @@ $plik = PRIV_RES_DIR.DS.'forum.txt';
     if(!is_dir(PRIV_RES_DIR))
         mkdir (PRIV_RES_DIR);
    
-    if(!is_file($plik))
-        touch ($plik);
-    
-if(empty(array_search($_SERVER['REMOTE_ADDR'],$parametry['baned']))
+    if(is_writable(dirname($plik)) && !is_file($plik))
+    {
+        
+        touch($plik);
+    }
+
+if(array_search($_SERVER['REMOTE_ADDR'], $parametry['baned'] )==false
         && isset($_POST['uwagi']) 
-        && !empty(trim($_POST['uwagi'])) 
-        && !empty(trim($_POST['uzytkownik'])) )
+        && trim($_POST['uwagi'])!=false 
+        && trim($_POST['uzytkownik'])!=false )
 {
     $user = substr(trim(strip_tags($_POST['uzytkownik'])),0,40);
     $uwagi = nl2br(substr(trim(strip_tags($_POST['uwagi'])),0,1000));
     $dane = $user."§".$_SERVER['REMOTE_ADDR']."§".date("c")."§".$uwagi."\n";
     $file = fopen($plik, "a");
-    flock($file, 2 );
+    flock($file, 2);
     fwrite($file,$dane);
     flock($file,3);
     fclose($file);
 
 }
+
 $tekst=file($plik);
 $tekst=array_reverse($tekst);
 
@@ -64,7 +68,7 @@ class php08forumView extends \inc\ViewBasic {
         ?>
 <section class="block-block"><header class="block-top"><?php echo $this->header; ?></header> <div class="block-contents">
     <?php
-       if(empty(array_search($_SERVER['REMOTE_ADDR'],$this->dane['baned'])))
+       if(array_search($_SERVER['REMOTE_ADDR'],$this->dane['baned'])==false)
        {
 echo '<form action="'.gen_link_var("str","php08forum").'" enctype="multipart/form-data" method="post">'
          ?>

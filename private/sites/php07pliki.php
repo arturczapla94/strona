@@ -90,14 +90,15 @@ $parametry['txt_wszystkie'] = array(
    
 );
 
-if(isset($_POST['wyslano'])) {
+if(isset($_POST['wyslano']) || (isset($_GET['wiersz']) && strlen(trim($_GET['wiersz']))>0) ) {
     $parametry['wyslano']=true;
-    if(isset($_POST['wiersz'])) {
+    $wiersz = isset($_POST['wyslano']) ? (isset($_POST['wiersz']) ? $_POST['wiersz'] : null ) : trim($_GET['wiersz']);
+    if($wiersz!=null) {
         $wybor;
-        if(isset($parametry['txt_wszystkie'][$_POST['wiersz']]))
+        if(isset($parametry['txt_wszystkie'][$wiersz]))
         {
             $jest=true;
-            $wybor = $parametry['txt_wszystkie'][$_POST['wiersz']];
+            $wybor = $parametry['txt_wszystkie'][$wiersz];
             $parametry['txt_wybrany']=$wybor;
         }
         else
@@ -156,6 +157,11 @@ class Php07plikiView extends inc\ViewBasic {
     
     public function write()
     {
+        ?>
+<section class="block-block"><header class="block-top"><?php ?>
+    </header>
+    <div class="block-contents">
+        <?php
         echo '<form action="'.gen_link_var("str","php07pliki").'" method="post" >';
         foreach($this->dane['txt_wszystkie'] as $key => $value)
         {
@@ -176,12 +182,12 @@ class Php07plikiView extends inc\ViewBasic {
         {
             if( isset($this->dane['txt_wybrany']['title']))
             {
-                echo '<h2>'.$this->dane['txt_wybrany']['title'].' <i> '.$this->dane['txt_wybrany']['autor'].'</i></h2>';
+                echo '<h2 id="wiersz-title">'.$this->dane['txt_wybrany']['title'].' <i id="wiersz-autor"> '.$this->dane['txt_wybrany']['autor'].'</i></h2>';
                 
             }
             if( isset($this->dane['wiersz']))
             {
-                echo '<p>'.nl2br(preg_replace("/\\n\\n/","\n",$this->dane['wiersz'])).'</p>';
+                echo '<p id="wiersz-wiersz">'.nl2br(preg_replace("/\\n\\n/","\n",$this->dane['wiersz'])).'</p>';
                 
             }
             if (isset($this->dane['error']))
@@ -191,12 +197,18 @@ class Php07plikiView extends inc\ViewBasic {
         }
         echo "<hr />";
         echo 'odwiedzin: '.$this->dane['licznik'];
-        
+        echo "</div></div>";
     }//Koniec funkcji write
     
 }//koniec widoku
-
-$widok = new Php07plikiView($parametry);
-$klasa = CUR_THEME;
-$szablon = new $klasa($widok);
-
+if(isset($_GET['typ']) && $_GET['typ']=='json')
+{
+    header('Content-type: application/json');
+    echo json_encode($parametry);
+}
+else
+{
+    $widok = new Php07plikiView($parametry);
+    $klasa = CUR_THEME;
+    $szablon = new $klasa($widok);
+}

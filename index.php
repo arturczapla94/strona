@@ -10,6 +10,7 @@ if(isset($_GET['debug']) && $_GET['debug']==1)
 }
 else
 { //debugowanie wyłączone
+    $debug=false;
     ini_set('display_errors',0);
     error_reporting(0);
 }

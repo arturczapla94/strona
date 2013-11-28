@@ -36,7 +36,8 @@ class RontaBlueTheme {
     function writeTop() {
         ?>
 <header id="header">
-    <div class="site-width in"><img class="logo" src="public/images/czaplaphp03.png" alt="logo" /><h1><?php echo Config\Config::SITE_TITLE ?></h1>
+    <div class="site-width in"><a title="Strona główna" href="index.php<?php echo gen_link_var("str", \Config\Config::$startPage) ?>">
+            <img class="logo" src="public/images/czaplaphp03.png" alt="logo" /><h1><?php echo Config\Config::SITE_TITLE ?></h1></a>
     </div>
 </header>
         

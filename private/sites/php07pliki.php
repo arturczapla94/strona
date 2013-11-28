@@ -150,6 +150,10 @@ else {
 class Php07plikiView extends inc\ViewBasic {
     function __construct($data) {
         $this->dane = $data;
+        $this->customHeaders = /*'<link rel="stylesheet" href="public/res/.css" type="text/css" />';*/
+        '<script type="text/javascript" src="public/res/zphp07/php07pliki.js"> </script>'
+                . '<script>var ajaxUrl = "'.gen_link_var("str","php07pliki").'&typ=json&wiersz={{id}}";</script>';
+       
     }
     
     public $description = "Obługa plików w php";
@@ -162,15 +166,16 @@ class Php07plikiView extends inc\ViewBasic {
     </header>
     <div class="block-contents">
         <?php
-        echo '<form action="'.gen_link_var("str","php07pliki").'" method="post" >';
+        echo '<form id="fwybor-wiersza" action="'.gen_link_var("str","php07pliki").'" method="get" >';
+        echo \inc\gen_inputs_from_get();
         foreach($this->dane['txt_wszystkie'] as $key => $value)
         {
                 echo '<input type="radio" name="wiersz" value="'.$key.'" id="'.$key.'"> '
-        . '<label for"'.$key.'"> <span>"'.$value['title'].'"</span> <i>'.$value['autor'].'</i></label><br />';
+        . '<label for="'.$key.'"> <span>"'.$value['title'].'"</span> <i>'.$value['autor'].'</i></label><br />';
         }
-                echo ' <input type="submit" name="wyslano" value="Wyślij" />'
+                echo ' <input type="submit" value="Wyślij" />'
                 . '</form>';
-        
+                global $debug;
                 if($debug)
                 {
                     echo '<br><br>Debug:';
@@ -182,7 +187,7 @@ class Php07plikiView extends inc\ViewBasic {
         {
             if( isset($this->dane['txt_wybrany']['title']))
             {
-                echo '<h2 id="wiersz-title">'.$this->dane['txt_wybrany']['title'].' <i id="wiersz-autor"> '.$this->dane['txt_wybrany']['autor'].'</i></h2>';
+                echo '<h2 id="wiersz-header"><span id="wiersz-title">'.$this->dane['txt_wybrany']['title'].'</span> <i class="small" id="wiersz-autor"> '.$this->dane['txt_wybrany']['autor'].'</i></h2>';
                 
             }
             if( isset($this->dane['wiersz']))

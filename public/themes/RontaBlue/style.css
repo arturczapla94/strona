@@ -2,6 +2,9 @@
     Created on : 2013-11-17, 22:10:03
     Author     : Artur Czapla
 */
+html {
+    overflow-y: scroll;
+}
 html,body {
     margin: 0;
     padding: 0;
@@ -15,6 +18,11 @@ a, a:visited {
 }
 a:hover {
     color: #1CE0D9;
+}
+
+h2 span + i.small {
+    font-weight: normal;
+    font-size: large;
 }
 body {
     background: #b3b3b3; /* Old browsers */
@@ -57,10 +65,14 @@ body {
 #header .logo {
     float: left;
 }
+#header a {
+    text-decoration: none;
+}
 #header .in h1 {
     font-family: verdana;
     text-transform: uppercase;
     color: #6B6B6B;
+    text-decoration: none;
     /*color: #003d7b;*/
     margin: 34.5px auto 34.5px auto;
     font-size: 48px;

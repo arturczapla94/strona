@@ -1,6 +1,7 @@
 <?php
 namespace index;
 date_default_timezone_set("Europe/Warsaw");
+$system = new \inc\System();
 $debug=false;
 if(isset($_GET['debug']) && $_GET['debug']==1)
 { //Włącz debugowanie
@@ -10,10 +11,10 @@ if(isset($_GET['debug']) && $_GET['debug']==1)
 }
 else
 { //debugowanie wyłączone
-    $debug=false;
     ini_set('display_errors',0);
     error_reporting(0);
 }
+
 require_once('private/config.php');
 require_once('private/inc.php');
 

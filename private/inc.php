@@ -106,35 +106,28 @@ function odmiana($liczba, $pojedyncza, $dwa, $piec)
 
 function gen_link_var($var,$val)
 {
-    echo "\n<!-- var: ".$var."\nval: ".$val." -->\n";
     if(empty($_GET))
     {
-        echo "\n<!-- GET = empty -->\n";
         if(!empty($var) && !empty($val))
         {
             $link = $_SERVER['REQUEST_URI'].'?'.$var.'='.$val;
-            echo "\n<!-- link: ".$link." -->\n";
             return $link;
         }
         else
         {
-            echo "\n<!-- cos puste! \n var: ".$var."\nval: ".$val." -->\n";
             return $_SERVER['REQUEST_URI'];
         }
     }
     elseif (empty($var))
     {
-        echo "\n<!-- var puste -->\n";
         return $_SERVER['SCRIPT_NAME'];
     }
     else
     {
-        echo "\n<!-- var nie puste  i GET nie puste, przeliczanie... -->\n";
         $query="";
         $znaleziono =false;
         foreach($_GET as $key => $value)
         {
-            echo "\n<!-- klucz= ".$key."\nwartosc= ".$value." -->\n";
             if($key==$var)
             {
                 $znaleziono = true;
@@ -142,26 +135,19 @@ function gen_link_var($var,$val)
                 {
                     if(strlen($query)>0)
                     {
-                        echo "\n<!-- query+=: &".$key."=".$val." -->\n";
                         $query.="&".$key."=".$val;
                     }
                     else
                     {
-                        echo "\n<!-- query+=: ".$key."=".$val." -->\n";
                         $query=$key."=".$val;
                     }
                         
-                }
-                else
-                {
-                    echo "\n<!-- val puste -->\n";
                 }
             }
             else
             {
                 if(strlen($query)>0)
                 {
-                    echo "\n<!-- query=: &".$key."=".$value." -->\n";
                     $query.="&".$key."=".$value;
                 }
                 else
@@ -194,8 +180,27 @@ function gen_link_var($var,$val)
 }
 }//namespace end
 namespace inc {
+function gen_inputs_from_get()
+{
+    if(!empty($_GET))
+    {
+        $html="";
+        foreach($_GET as $key => $value)
+        {
+            $html.='<input type="hidden" name="'.urlencode($key).'" value="'.  urlencode($value).'" />';
+        }
+        return $html;
+    }
+}
+
+
 class System
 {
+    
+    public function __construct() {
+        System::$system=$this;
+    }
+    static $system;
     
     public static function error($nr)
     {

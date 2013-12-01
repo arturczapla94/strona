@@ -106,6 +106,7 @@ function odmiana($liczba, $pojedyncza, $dwa, $piec)
 
 function gen_link_var($var,$val)
 {
+    trigger_error("\inc\gen_link_var() is Deprecated! use \strona\sys\basic\Site::gen_link()", E_USER_DEPRECATED);
     if(empty($_GET))
     {
         if(!empty($var) && !empty($val))
@@ -223,6 +224,8 @@ class System
                 . '</body></html>';
         
     }
+    
+    public static $globalParameters = array('str','debug','action');
     
 }
 

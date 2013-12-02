@@ -14,7 +14,7 @@ $parametry = array();
 ////       W   I   D   O   K      //// 
 ////                              //// 
 //////////////////////////////////////
-include(PRIV_THEMES_DIR.DS.'RontaBlueTheme.php');
+//include(PRIV_THEMES_DIR.DS.'RontaBlueTheme.php');
 
 class Php07plikiView extends inc\ViewBasic {
     function __construct($data) {

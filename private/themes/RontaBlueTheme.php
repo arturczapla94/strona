@@ -21,7 +21,9 @@ class RontaBlueTheme {
 	<meta name="Description" content="<?php echo $this->inview->description ?>" />
 	<title><?php echo $this->inview->title ?></title>
 	<link rel="stylesheet" href="<?php echo self::PUBLIC_THEME_DIR.'/style.css' ?>" type="text/css" />
-        <script type="text/javascript" src="public/js/jquery-2.0.3.js"> </script>
+        <script src="public/js/jquery-2.0.3.js"> </script>
+        <script src="public/js/jquery-ui-1.10.3.custom.min.js"> </script>
+        <script src="public/js/jquery.easing.1.3.js"></script>
 <?php if(isset($this->inview->customHeaders))
     echo $this->inview->customHeaders;
 

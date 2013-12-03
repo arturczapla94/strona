@@ -25,8 +25,9 @@ class Config {
             array("JS 02 zdarzenia","js02zdarzenia",1),
             array("JS 03 elementy DOM","js03elementy_dom",1),
             array("JS 04 menu","js04menu",1),
-            array("JS 04 Animacje 1","js05animacje1",1),
-            array("JS 04 Animacje 2","js06animacje2",1)
+            array("JS 05 Animacje 1","js05animacje1",1),
+            array("JS 06 Animacje 2","js06animacje2",1),
+            array("JS 07 jQuery UserIface","js07ui",1)
         );
 }
 

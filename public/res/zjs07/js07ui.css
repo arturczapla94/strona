@@ -1,0 +1,44 @@
+
+#dr-container {
+
+}
+
+#resizable-block {
+    border-radius: 8px 8px 0 8px;
+    margin: 8px;
+}
+
+.widget-block {
+    margin: 30px 0;
+    border: solid black 1px;
+    height: 400px;
+    overflow: scroll;
+}
+.widget-block-in
+{
+    border: solid blue 1px;
+    width: 132px;
+    height: 40px;
+    border-radius: 8px 8px 8px 8px;
+    background: #39bef0;
+    padding: 6px;
+    box-shadow: 0 0 12px #6B6B6B;
+}
+.ui-lista {
+    list-style: none;
+}
+.ui-lista  li {
+    border: 1px solid black;
+    padding: 4px;
+    margin: 4px;
+    background: white;
+    
+}
+
+#selectable .ui-selecting { 
+    background: #FECA40;
+}
+#selectable .ui-selected {
+    background: #F39814;
+    color: white;
+}

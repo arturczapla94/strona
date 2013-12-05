@@ -18,6 +18,8 @@ class Config {
             array("PHP05 Formularze","php05formularze",1),
             array("PHP07 Pliki","php07pliki",1),
             array("PHP08 Forum na plikach","php08forum",1),
+            array("PHP09 Serwer, autoryzacja","php09serwer",1),
+            array("PHP10 Cookies","php10serwer2",1),
 
 
             array("Projektowanie:","",2),
@@ -29,6 +31,7 @@ class Config {
             array("JS 06 Animacje 2","js06animacje2",1),
             array("JS 07 jQuery UserIface","js07ui",1)
         );
+    public static $salt = 'BV1WSYUB[-pF-a,#|';
 }
 
 

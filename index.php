@@ -1,5 +1,7 @@
 <?php
 namespace index;
+session_start();
+
 date_default_timezone_set("Europe/Warsaw");
 $debug=false;
 if(isset($_GET['debug']) && $_GET['debug']==1)

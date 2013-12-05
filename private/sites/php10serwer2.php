@@ -56,6 +56,8 @@ class CView extends inc\ViewBasic {
                <?php
                echo "<h3>".$this->dane['wizyta']."</h3>";
                
+               echo '<h4>Id sesji:'.  session_id().'</h4>';
+               
                echo 'twój nr ip: '.$_SERVER['REMOTE_ADDR'].'<br>';
                echo 'nazwa serwera: '.$_SERVER['SERVER_NAME'].'<br>';
                echo 'skrypt: '.$_SERVER['PHP_SELF'].'<br>';

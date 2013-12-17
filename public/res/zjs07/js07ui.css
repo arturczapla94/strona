@@ -2,16 +2,24 @@
 #dr-container {
    
 }
+#dr-block {
+   display: inline-block;
+}
 #resizable-container{
     padding: 8px;
     /*margin: 8px;*/
+    height: 600px;
 }
 
 #resizable-block {
     border-radius: 8px 8px 0 8px;
+    overflow: hidden;
     /*margin: 8px;*/
 }
-
+#sortable-container {
+    height: auto;
+    padding: 8px;
+}
 .widget-block {
     margin: 30px 0;
     border: solid black 1px;
@@ -21,8 +29,8 @@
 .widget-block-in
 {
     border: solid blue 1px;
-    width: 132px;
-    height: 40px;
+    min-width: 132px;
+    min-height: 40px;
     border-radius: 8px 8px 8px 8px;
     background: #39bef0;
     padding: 6px;
@@ -45,4 +53,10 @@
 #selectable .ui-selected {
     background: #F39814;
     color: white;
+}
+
+#sl-komunikat {
+    display: none;
+    color: green;
+    font-weight: bold;
 }

@@ -52,35 +52,45 @@ class js06animacje2View extends inc\ViewBasic {
                 
                 <div id="dr-container" class="widget-block">
                     
-                    <div id="dr-block" class="widget-block-in">kliknij i przeciąg!</div>
+                    <div id="dr-block" class="widget-block-in"><h3>Przeciągalny blok:</h3>
+<pre>$(document).ready(function(){
+    $('#dr-block').draggable({containment: "parent"});
+});</pre>
+                    </div>
                     
                     
                 </div>
                 
                 <div id="resizable-container" class="widget-block">
-                    <div id="resizable-block" class="widget-block-in">Zmień rozmiar!</div>
+                    <div id="resizable-block" class="widget-block-in"><h3>Sesje w PHP</h3><p>Protokół HTTP jest protokołem bezstanowym. Oznacza to, że serwer WWW rozpatruje każde żądanie niezależnie od innych, nie szukając żadnych powiązań w stylu wysyłania ich przez tego samego internautę. Utrudnia to teoretycznie tworzenie wszelkich systemów autoryzacji, które wymagają śledzenia poczynań użytkownika na naszej stronie i przenoszenia jego danych autoryzacyjnych między kolejnymi żądaniami, czyli krótko mówiąc - wymagają obecności systemu sesji. Używając PHP lub innego dynamicznego języka server-side można je jednak zasymulować. "Nasz" język jest o tyle prosty, iż posiada już zaimplementowane stosowne funkcje. My tylko musimy zacząć ich używać.
+                            Działanie sesji w PHP jest bardzo proste. W momencie pierwszego trafienia na stronę interpreter tworzy specjalny, losowy oraz unikalny identyfikator przesyłany między żądaniami za pomocą ciastek lub parametru PHPSESSID doklejanego automatycznie do adresów URL. Na jego podstawie odczytywany jest później odpowiedni plik z danymi sesji zapisany gdzieś na serwerze. Pod koniec przetwarzania żądania wszystkie wprowadzone przez skrypt zmiany są z powrotem zapisywane do wspomnianego pliku tak, aby były widoczne przy wejściu na kolejną podstronę. I tak to się toczy.</p></div>
                 </div>
                 
                 
                 <div id="selectable-container" class="widget-block">
-                    <h3>Zaznaczanie (jednego elementu lub wielu)</h3>
+                    <h3>Zaznacz gdzie byłeś:</h3>
                     <ul id="selectable" class="ui-lista">
-                        <li>Item 1</li>
-                        <li>Item 2</li>
-                        <li>Item 3</li>
-                        <li>Item 4</li>
-                        <li>Item 5</li>
+                        <li>Kraków</li>
+                        <li>Warszawa</li>
+                        <li>Gdańsk</li>
+                        <li>Lódź</li>
+                        <li>Zakopane</li>
                     </ul>
                 </div>
                 
                 <div id="sortable-container" class="widget-block">
-                    <h3>sortowanie</h3>
+                    <h3>ułóż od najmniejszej do największej</h3>
+                    <h4>Postęp: <span id="sl-postep"></span>%</h4>
+                    <div id="sl-progressbar"></div>
+                    <h3 id="sl-komunikat"></h3>
                     <ul id="sortable" class="ui-lista">
-                        <li>Item 1</li>
-                        <li>Item 2</li>
-                        <li>Item 3</li>
-                        <li>Item 4</li>
-                        <li>Item 5</li>
+                        <li id="sl-1">564</li>
+                        <li id="sl-2">946</li>
+                        <li id="sl-3">894</li>
+                        <li id="sl-4">235</li>
+                        <li id="sl-5">621</li>
+                        <li id="sl-6">451</li>
+                        <li id="sl-7">594</li>
                     </ul>
                 </div>
                 

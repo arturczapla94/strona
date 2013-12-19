@@ -9,7 +9,7 @@ namespace strona\sys\basic;
  */
 class Site {
 
-    
+    // key => value;
     public $currentParameters=array();
     
     public function gen_link($variables)
@@ -32,65 +32,21 @@ class Site {
             }
         }
         elseif (!is_array($variables) || count($variables)<=0)
-        {
-            $link="";
-            /*foreach
-            return $_SERVER['SCRIPT_NAME'];*/
+        { // Jeżeli nie przekazaono parametrów
+            $link = $_SERVER['SCRIPT_NAME']."?";
+            foreach($currentParameters as $key => $value)
+            {
+                if (in_array($key , \inc\System::$globalParameters ) )
+                { //Jeżeli to globalny parametr
+                    $link .=urlencode($key).'='.urlencode($value).'&';
+                }
+            }
+            return substr($link,0,strlen($link)-1);
         }
         else
         {
             $query="";
-            $znaleziono =false;
-            foreach($_GET as $key => $value)
-            {
-                if($key==$var)
-                {
-                    $znaleziono = true;
-                    if(!empty($val))
-                    {
-                        if(strlen($query)>0)
-                        {
-                            $query.="&".$key."=".$val;
-                        }
-                        else
-                        {
-                            $query=$key."=".$val;
-                        }
-
-                    }
-                }
-                else
-                {
-                    if(strlen($query)>0)
-                    {
-                        $query.="&".$key."=".$value;
-                    }
-                    else
-                    {
-                        $query=$key."=".$value;
-                    }
-                }
-
-            }
-            if(!$znaleziono)
-            {
-                if(strlen($query)>0)
-                {
-                    $query.="&".$var."=".$val;
-                }
-                else
-                {
-                    $query=$var."=".$val;
-                }
-            }
-            if(strlen($query)>0)
-            {
-                return "?".$query;
-            }
-            else
-            {
-                return "";
-            }
+            
         }
     }
     

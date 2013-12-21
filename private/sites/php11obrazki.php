@@ -6,17 +6,18 @@
 //////////////////////////////////////
 $parametry = array();
 
-function rysujos($image, $width, $height , $margin, $color)
+function rysujos($image, $width, $height , $dane, $color)
 {
     $xpion = floor($width/2);
     $ypoziom = floor($height/2);
     
-    $grotdl = 20;
-    $grotszer = 10;
+    $margin = $dane['margin'];
+    $grotdl = $dane['grotdl'];
+    $grotszer = $dane['grotszer'];
     
-    $ykreski = 10;
-    $xkreski = 10;
-    $szerkreski = 10;
+    $ykreski = $dane['ykreski'];
+    $xkreski = $dane['xkreski'];
+    $szerkreski = $dane['szerkreski'];
     //pionowa
     imageline($image, $xpion, $margin, $xpion, $height-$margin, $color);
     //grot
@@ -51,6 +52,17 @@ if(isset($_GET['typ']) && $_GET['typ']=='image')
 {
     $width = 600;
     $height = 520;
+    
+    $dane = array();
+    $dane['grotdl'] = 20;
+    $dane['grotszer'] = 10;
+    
+    $dane['ykreski'] = 10;
+    $dane['xkreski'] = 10;
+    $dane['szerkreski'] = 10;
+    $dane['wartoscKreski'] = 1; //jaka liczba przypada na jedną kreskę skali
+    $dane['margin'] = 10;
+    
     $image = imagecreatetruecolor($width, $height);
     $bialy = imagecolorallocate($image,255,255,255);
     $braz  = imagecolorallocate($image,150, 75,  0);
@@ -58,9 +70,8 @@ if(isset($_GET['typ']) && $_GET['typ']=='image')
     
     imagefilledrectangle($image, 0, 0,$width-1 , $height-1, $bialy);
     
-    $margin = 10;
     
-    rysujos($image, $width, $height, $margin , $braz);
+    rysujos($image, $width, $height, $dane , $braz);
     $xpion = floor($width/2);
     $ypoziom = floor($height/2);
     
@@ -69,16 +80,31 @@ if(isset($_GET['typ']) && $_GET['typ']=='image')
     if(isset($_GET['obrazek']) && $_GET['obrazek']=='1')
     {
         
-        for($x=-$xpion+$margin;$x<$xpion-$margin;$x++)
+        for($xObr=$dane['margin'];$xObr<$width-$dane['margin'];$xObr++)
         {
-            $y = $x*$x;
+            $xW = ($xObr - $xpion )*$dane['wartoscKreski'] / $dane['szerkreski'];
+            
+            $yW = $xW*$xW;
+            
+            $yObr = -$yW*$dane['szerkreski'] / $dane['wartoscKreski'] + $ypoziom;
             if(isset($oldY))
             {
-                //TO DO: przerobić x na obrazkowe
-                imageline($image,$x-1 + $xpion ,-$oldY+$ypoziom ,$x+ $xpion , -$y+$ypoziom , $czarny);
+                
+                imageline($image,$xObr-1 ,$oldY ,$xObr , $yObr , $czarny);
             }
-            $oldY=$y;
+            
+            $oldY=$yObr;
         }
+//        for($x=-$xpion+$dane['margin'];$x<$xpion-$dane['margin'];$x++)
+//        {
+//            $y = $x*$x;
+//            if(isset($oldY))
+//            {
+//                //TO DO: przerobić x na obrazkowe
+//                imageline($image,$x-1 + $xpion ,-$oldY+$ypoziom ,$x+ $xpion , -$y+$ypoziom , $czarny);
+//            }
+//            $oldY=$y;
+//        }
     }
         
         

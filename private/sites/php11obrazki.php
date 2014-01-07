@@ -83,9 +83,11 @@ if(isset($_GET['typ']) && $_GET['typ']=='image')
         for($xObr=$dane['margin'];$xObr<$width-$dane['margin'];$xObr++)
         {
             $xW = ($xObr - $xpion )*$dane['wartoscKreski'] / $dane['szerkreski'];
+            /////////
             
             $yW = $xW*$xW;
             
+            /////////
             $yObr = -$yW*$dane['szerkreski'] / $dane['wartoscKreski'] + $ypoziom;
             if(isset($oldY))
             {
@@ -95,16 +97,91 @@ if(isset($_GET['typ']) && $_GET['typ']=='image')
             
             $oldY=$yObr;
         }
-//        for($x=-$xpion+$dane['margin'];$x<$xpion-$dane['margin'];$x++)
-//        {
-//            $y = $x*$x;
-//            if(isset($oldY))
-//            {
-//                //TO DO: przerobić x na obrazkowe
-//                imageline($image,$x-1 + $xpion ,-$oldY+$ypoziom ,$x+ $xpion , -$y+$ypoziom , $czarny);
-//            }
-//            $oldY=$y;
-//        }
+
+    }else if(isset($_GET['obrazek']) && $_GET['obrazek']=='2')
+    {
+        
+        for($xObr=$dane['margin'];$xObr<$width-$dane['margin'];$xObr++)
+        {
+            $xW = ($xObr - $xpion )*$dane['wartoscKreski'] / $dane['szerkreski'];
+            /////////
+            
+            $yW = sin(M_PI*$xW) / (-log(2)*$xW) * 13 ;
+            
+            /////////
+            $yObr = -$yW*$dane['szerkreski'] / $dane['wartoscKreski'] + $ypoziom;
+            if(isset($oldY))
+            {
+                
+                imageline($image,$xObr-1 ,$oldY ,$xObr , $yObr , $czarny);
+            }
+            
+            $oldY=$yObr;
+        }
+
+    }else if(isset($_GET['obrazek']) && $_GET['obrazek']=='3')
+    {
+        
+        for($xObr=$dane['margin'];$xObr<$width-$dane['margin'];$xObr++)
+        {
+            $xW = ($xObr - $xpion )*$dane['wartoscKreski'] / $dane['szerkreski'];
+            /////////3
+            
+            $yW = sin($xW)-sin(3*$xW)/3+sin(5*$xW)/5-sin(7*$xW)/7+sin(9*$xW)/9;
+            
+            /////////
+            $yObr = -$yW*$dane['szerkreski'] / $dane['wartoscKreski'] + $ypoziom;
+            if(isset($oldY))
+            {
+                
+                imageline($image,$xObr-1 ,$oldY ,$xObr , $yObr , $czarny);
+            }
+            
+            $oldY=$yObr;
+        }
+
+    }else if(isset($_GET['obrazek']) && $_GET['obrazek']=='4')
+    {
+        
+        for($xObr=$dane['margin'];$xObr<$width-$dane['margin'];$xObr++)
+        {
+            $xW = ($xObr - $xpion )*$dane['wartoscKreski'] / $dane['szerkreski'];
+            /////////
+            //sqrt{16*[1-sec(x)^2/4]} 
+            $yW = sin(M_PI*$xW) / (-log(2)*$xW) * 13 ;
+            
+            /////////
+            $yObr = -$yW*$dane['szerkreski'] / $dane['wartoscKreski'] + $ypoziom;
+            if(isset($oldY))
+            {
+                
+                imageline($image,$xObr-1 ,$oldY ,$xObr , $yObr , $czarny);
+            }
+            
+            $oldY=$yObr;
+        }
+
+    }else if(isset($_GET['obrazek']) && $_GET['obrazek']=='5')
+    {
+        
+        for($xObr=$dane['margin'];$xObr<$width-$dane['margin'];$xObr++)
+        {
+            $xW = ($xObr - $xpion )*$dane['wartoscKreski'] / $dane['szerkreski'];
+            /////////
+            
+            $yW = sin(M_PI*$xW) / (-log(2)*$xW) * 13 ;
+            
+            /////////
+            $yObr = -$yW*$dane['szerkreski'] / $dane['wartoscKreski'] + $ypoziom;
+            if(isset($oldY))
+            {
+                
+                imageline($image,$xObr-1 ,$oldY ,$xObr , $yObr , $czarny);
+            }
+            
+            $oldY=$yObr;
+        }
+
     }
         
         
@@ -148,6 +225,14 @@ class CView extends inc\ViewBasic {
             <section class="news-content">
                
                 <img src="<?php echo $_SERVER['SCRIPT_NAME'].gen_link_var("typ","image")."&obrazek=1"; ?>" alt="wykres"/>
+                <br>
+                <img src="<?php echo $_SERVER['SCRIPT_NAME'].gen_link_var("typ","image")."&obrazek=2"; ?>" alt="wykres"/>
+                <br>
+                <img src="<?php echo $_SERVER['SCRIPT_NAME'].gen_link_var("typ","image")."&obrazek=3"; ?>" alt="wykres"/>
+                <br>
+                <img src="<?php echo $_SERVER['SCRIPT_NAME'].gen_link_var("typ","image")."&obrazek=4"; ?>" alt="wykres"/>
+                <br>
+                <img src="<?php echo $_SERVER['SCRIPT_NAME'].gen_link_var("typ","image")."&obrazek=5"; ?>" alt="wykres"/>
                 
             </section>
         </div>

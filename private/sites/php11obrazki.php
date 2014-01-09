@@ -127,7 +127,7 @@ if(isset($_GET['typ']) && $_GET['typ']=='image')
             $xW = ($xObr - $xpion )*$dane['wartoscKreski'] / $dane['szerkreski'];
             /////////3
             
-            $yW = sin($xW)-sin(3*$xW)/3+sin(5*$xW)/5-sin(7*$xW)/7+sin(9*$xW)/9;
+            $yW = (sin($xW)-sin(4*$xW)/3+sin(7*$xW)/5-sin(9*$xW)/7+sin(11*$xW)/9) *4;
             
             /////////
             $yObr = -$yW*$dane['szerkreski'] / $dane['wartoscKreski'] + $ypoziom;
@@ -148,7 +148,7 @@ if(isset($_GET['typ']) && $_GET['typ']=='image')
             $xW = ($xObr - $xpion )*$dane['wartoscKreski'] / $dane['szerkreski'];
             /////////
             //sqrt{16*[1-sec(x)^2/4]} 
-            $yW = sin(M_PI*$xW) / (-log(2)*$xW) * 13 ;
+            $yW = sqrt(256*(1.4-(1/cos($xW))*(1/cos($xW))/5))-10  ;
             
             /////////
             $yObr = -$yW*$dane['szerkreski'] / $dane['wartoscKreski'] + $ypoziom;
@@ -169,7 +169,7 @@ if(isset($_GET['typ']) && $_GET['typ']=='image')
             $xW = ($xObr - $xpion )*$dane['wartoscKreski'] / $dane['szerkreski'];
             /////////
             
-            $yW = sin(M_PI*$xW) / (-log(2)*$xW) * 13 ;
+            $yW = 1/$xW * 10 ;
             
             /////////
             $yObr = -$yW*$dane['szerkreski'] / $dane['wartoscKreski'] + $ypoziom;

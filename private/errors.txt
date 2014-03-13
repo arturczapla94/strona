@@ -6,3 +6,9 @@
 106;strona nie istnieje;Parametr action nie odpowiada wzorowi.
 107;strona nie istnieje;Nie znaleziono katalogu Kontrolera dla żądanej strony.
 108;strona nie istnieje;Nie znaleziono takiej akcji.
+
+201;nie udało się zalogować;mysql nie zwróciło takiego użytkownika.(nie istnieje w bazie)
+202;nie udało się zalogować;użytkownik ma puste hasło.
+203;nie udało się zalogować;podane hasło nie pasuje do tekstu wpisanego w bazie.
+204;nie udało się zalogować;nie obsługiwany zapis hasla w bazie.
+205;nie udało się zalogować;hash obliczony nie jest zgodny z tym w bazie.

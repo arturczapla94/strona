@@ -17,7 +17,7 @@
 					Zaloguj!
 				</div>
 				<div id="block-contents">
-					<form action="index.html" method="post">
+					<form action="index.php<?php echo gen_link_var("str","login_ctrl") ?>" method="post">
 						<fieldset>
 							<table>
 								<tr>

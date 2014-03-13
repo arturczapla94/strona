@@ -33,6 +33,15 @@ class Config {
             array("JS 07 jQuery UserIface","js07ui",1)
         );
     public static $salt = 'BV1WSYUB[-pF-a,#|';
+    
+    public static $logsalt = 'bKD)G-}E&LUsc+[';
+    
+    public static $dbhost = 'localhost';
+    public static $dbname = 'czapar';
+    public static $dbuser = 'czapar';
+    public static $dbpass = '123';
+    public static $dbprefix = 'str_';
+    
 }
 
 

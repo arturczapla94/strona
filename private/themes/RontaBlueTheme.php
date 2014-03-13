@@ -38,8 +38,17 @@ class RontaBlueTheme {
     function writeTop() {
         ?>
 <header id="header">
-    <div class="site-width in"><a title="Strona główna" href="index.php<?php echo gen_link_var("str", \Config\Config::$startPage) ?>">
-            <img class="logo" src="public/images/czaplaphp03.png" alt="logo" /><h1><?php echo Config\Config::SITE_TITLE ?></h1></a>
+    <div class="site-width in">
+        <a title="Strona główna" href="index.php<?php echo gen_link_var("str", \Config\Config::$startPage) ?>">
+           <img class="logo" src="public/images/czaplaphp03.png" alt="logo" /><h1><?php echo Config\Config::SITE_TITLE ?></h1></a>
+        <div id="header-menu2" style="position:absolute;right:0;bottom:0;margin:6px 16px;">
+            <?php
+                if(!empty($_SESSION['user']))
+                {
+                    echo 'Witaj <b>'.$_SESSION['user']['name'].'</b>! <a href="index.php?str=login_ctrl&logout=1" style="font-size:x-small">(wyloguj)</a>';
+                }
+            ?>
+        </div>    
     </div>
 </header>
         
@@ -73,7 +82,8 @@ class RontaBlueTheme {
     
     function wypiszMenu() {
         echo '<a href="index.php'.gen_link_var("str","").'">Strona główna</a><br/>';
-        echo '<a href="index.php'.gen_link_var("str","login").'">Zaloguj</a><br/>';
+        if(empty($_SESSION['user']))
+           echo '<a href="index.php'.gen_link_var("str","login").'">Zaloguj</a><br/>';
         echo '<a href="index.php'.gen_link_var("str","galeria").'">galeria</a><br/>';
 
         foreach (Config\Config::$menu as $value)

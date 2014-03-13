@@ -2,7 +2,7 @@
 
 function uwierzytelnianie($mysqli, $login, $password)
 {
-    $wynik = array('result' => false, 'errno' => '', 'error' => '' );
+    $wynik = array('errno' => '', 'error' => '' );
     $res = $mysqli->query("SELECT * from `"
                 .$mysqli->escape_string(\Config\Config::$dbprefix)
                 ."users` WHERE `name` = '"
@@ -24,8 +24,7 @@ function uwierzytelnianie($mysqli, $login, $password)
                 {
                     $_SESSION['user']=$row;
                     echo 'zalogowano '. $row['name'];
-                    $wynik['result'] = true;
-                    return $wynik;
+                    return true;
                     //TO DO: hashowanie hasła
                 }
                 else
@@ -49,8 +48,7 @@ function uwierzytelnianie($mysqli, $login, $password)
                 {
                     $_SESSION['user']=$row;
                     echo 'zalogowano '. $row['name'];
-                    $wynik['result'] = true;
-                    return $wynik;
+                    return true;
                 }
                 else
                 {
@@ -94,6 +92,16 @@ if( isset($_POST['login']) && strlen($_POST['login'])>0)
         $wynik = uwierzytelnianie($mysqli, $login, $pass);
         echo "<br><br>\n\n";
         var_dump($wynik);
+        
+        /*
+        if(!empty($_SESSION['user']))
+        {
+            //$_SESSION['user']['last_ip']
+            //$_SESSION['user']['another_ip']
+            $query = "UPDATE `"
+            $mysqli->query($query);
+        }*/
+        
     }
 }
 elseif (isset($_GET['logout']) && $_GET['logout'] == '1')

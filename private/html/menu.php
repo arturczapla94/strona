@@ -6,7 +6,8 @@
 		<div class="menu-block-contents">
                     <?php
 			echo '<a href="index.php'.gen_link_var("str","").'">Strona główna</a><br/>';
-			echo '<a href="index.php'.gen_link_var("str","login").'">Zaloguj</a><br/>';
+			if(empty($_SESSION['user']))
+                            echo '<a href="index.php'.gen_link_var("str","login").'">Zaloguj</a><br/>';
 			echo '<a href="index.php'.gen_link_var("str","galeria").'">galeria</a><br/>';
                         
                             foreach (Config\Config::$menu as $value)

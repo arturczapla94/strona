@@ -1,6 +1,6 @@
 <?php
 class RontaBlueTheme {
-    protected $inview;
+    protected $inview = null;
     const PUBLIC_THEME_DIR = 'public/themes/RontaBlue';
     
 /**
@@ -8,11 +8,18 @@ class RontaBlueTheme {
  * 
  * @param inc\ViewBasic $view obiekt typu \inc\ViewBasic, częśc wewnętrzna widoku.
  */
-    public function __construct($view) {
-        $this->inview = $view;
-        $this->show();
+    public function __construct($view = null) {
+        if(!empty($view)) {
+            $this->inview = $view;
+            $this->show();
+        }
     }
     
+    public function display($view)
+    {
+        $this->inview = $view;
+            $this->show();
+    }
     
     protected function writeHTMLHeaders()
     {
@@ -123,6 +130,52 @@ class RontaBlueTheme {
 </body>
 </html>
     <?php
+    }
+    
+    
+    function messageSiteOpen($title,$headers="") {
+        
+        ?>
+<!DOCTYPE html
+    PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'
+    'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="pl" lang="pl">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="Description" content="Strona testowa. Przykładowy opis strony" />
+    <meta name="Keywords" content="Przykładowa, testowa,strona,przykładowe,słowa, kluczowe" />
+    <title>Zaloguj</title>
+    <link rel="stylesheet" href="public/style/login.css" type="text/css" />
+    <?php echo $headers; ?>
+</head>
+<body>
+    <div id="wrapper">
+        <div id="container">
+            <div id="block">
+                <div id="block-title">
+                      <?php echo $title; ?>
+                </div>
+                <div id="block-contents">
+<?php 
+
+    }
+    function messageSiteClose()
+    {
+        ?>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+        <?php
+    }
+    
+    function showMessageSite($title, $contents,$headers="")
+    {
+        $this->messageSiteOpen($title,$headers);
+        echo $contents;
+        $this->messageSiteClose();
     }
     
 }

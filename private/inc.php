@@ -106,7 +106,7 @@ function odmiana($liczba, $pojedyncza, $dwa, $piec)
 
 function gen_link_var($var,$val)
 {
-    trigger_error("\inc\gen_link_var() is Deprecated! use \strona\sys\basic\Site::gen_link()", E_USER_DEPRECATED);
+    //trigger_error("\inc\gen_link_var() is Deprecated! use \strona\sys\basic\Site::gen_link()", E_USER_DEPRECATED);
     if(empty($_GET))
     {
         if(!empty($var) && !empty($val))
@@ -197,11 +197,25 @@ function gen_inputs_from_get()
 
 class System
 {
+    static $system;
+    protected $szablon = null;
     
     public function __construct() {
         System::$system=$this;
     }
-    static $system;
+    
+    
+    public function getWidok()
+    {
+        if($this->szablon==null)
+        {
+            $klasa = CUR_THEME;
+            $this->szablon = new $klasa(null);
+            return $this->szablon;
+        }
+        else
+            return $this->szablon;
+    }
     
     public static function error($nr)
     {

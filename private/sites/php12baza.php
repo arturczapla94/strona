@@ -6,8 +6,10 @@
 //////////////////////////////////////
 $parametry = array();
 
-
-$mysqli = new mysqli(\Config\Config::$dbhost, \Config\Config::$dbuser, \Config\Config::$dbpass, \Config\Config::$dbname);
+$dozwolone = array(1, 2, 3, 4, 5);
+if(!empty($_SESSION['user']) && in_array($_SESSION['user']['group'], $dozwolone) )
+{
+    $mysqli = new mysqli(\Config\Config::$dbhost, \Config\Config::$dbuser, \Config\Config::$dbpass, \Config\Config::$dbname);
     if ($mysqli->connect_errno)
     {
         $parametry['res'] = "error";
@@ -34,7 +36,7 @@ $mysqli = new mysqli(\Config\Config::$dbhost, \Config\Config::$dbuser, \Config\C
         {
             $row = mysqli_fetch_row($res );
             $parametry['num_rows']= $row[0];
-            $stron = floor($row[0]/$ile);
+            $parametry['stron'] = ceil($row[0]/$ile);
         }
         
         $query = "SELECT * FROM $t1 LIMIT $od,$ile;";
@@ -56,6 +58,12 @@ $mysqli = new mysqli(\Config\Config::$dbhost, \Config\Config::$dbuser, \Config\C
             }
         }
     }
+} 
+ else
+{
+    $parametry['res'] = "error";
+    $parametry['msg']= "Brak autoryzacji!";
+}
 
 
 //////////////////////////////////////
@@ -90,25 +98,34 @@ class CView extends inc\ViewBasic {
         <?php
         /*print_r($this->dane['fields']);
         print_r($this->dane['rows']);*/
-
-        echo "<table>";
-        echo "<tr>";
-        foreach ($this->dane['fields'] as $field)
+        if(strcasecmp($this->dane['res'],'ok')===0)
         {
-            echo "<th>$field</th>";
-        }
-        echo "</tr>";
-        foreach ($this->dane['rows'] as $row)
-        {
+            echo "<table>";
             echo "<tr>";
-            foreach ($row as $field)
+            foreach ($this->dane['fields'] as $field)
             {
-                echo "<td>$field</td>";
+                echo "<th>$field</th>";
             }
-            echo "</tr>\n";
+            echo "</tr>";
+            foreach ($this->dane['rows'] as $row)
+            {
+                echo "<tr>";
+                foreach ($row as $field)
+                {
+                    echo "<td>$field</td>";
+                }
+                echo "</tr>\n";
+            }
+            echo "</table>";
+            for($i=1; $i<=$this->dane['stron'];$i++)
+            {
+                echo "<a class='p-link' href='index.php".gen_link_var("p","$i")."'> $i </a>";
+            }
         }
-        echo "</table>";
-        echo "r: ".$this->dane['num_rows'];
+        else
+        {
+            echo "<h1>".$this->dane['msg']."</h1>";
+        }
         ?>
 
     </div>

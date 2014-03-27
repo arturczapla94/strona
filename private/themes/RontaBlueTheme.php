@@ -52,7 +52,7 @@ class RontaBlueTheme {
             <?php
                 if(!empty($_SESSION['user']))
                 {
-                    echo 'Witaj <b>'.$_SESSION['user']['name'].'</b>! <a href="index.php?str=login_ctrl&logout=1" style="font-size:x-small">(wyloguj)</a>';
+                    echo 'Witaj <b>'.$_SESSION['user']['name'].'['.$_SESSION['user']['group_name'].']</b>! <a href="index.php?str=login_ctrl&logout=1" style="font-size:x-small">(wyloguj)</a>';
                 }
             ?>
         </div>    

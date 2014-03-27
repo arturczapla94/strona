@@ -1,12 +1,59 @@
 <?php
+/***************************************\
+ * 
+ * CREATE TABLE IF NOT EXISTS `str_groups` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(64) COLLATE utf8_polish_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=6 ;
 
+INSERT INTO `str_groups` (`id`, `name`) VALUES
+(1, 'Super user'),
+(2, 'Administrator'),
+(3, 'Moderator'),
+(4, 'Użytkownik'),
+(5, 'Nowy');
+
+CREATE TABLE IF NOT EXISTS `str_users` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(128) COLLATE utf8_polish_ci NOT NULL,
+  `password` varchar(255) COLLATE utf8_polish_ci DEFAULT NULL,
+  `email` varchar(128) COLLATE utf8_polish_ci DEFAULT NULL,
+  `group` mediumint(9) NOT NULL,
+  `reg_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `last_access` timestamp NULL DEFAULT NULL,
+  `last_ip` varchar(48) COLLATE utf8_polish_ci DEFAULT NULL,
+  `other_ip` varchar(48) COLLATE utf8_polish_ci DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=2 ;
+
+INSERT INTO `str_users` (`id`, `name`, `password`, `email`, `group`, `reg_date`, `last_access`, `last_ip`, `other_ip`) VALUES
+(1, 'root', '1234', NULL, 1, '2014-03-26 23:26:43', '2014-03-26 23:26:43', NULL, NULL);
+ * 
+ * 
+ */
 function uwierzytelnianie($mysqli, $login, $password)
 {
     $wynik = array('errno' => '', 'error' => '' );
-    $res = $mysqli->query("SELECT * from `"
-                .$mysqli->escape_string(\Config\Config::$dbprefix)
-                ."users` WHERE `name` = '"
-                .$mysqli->escape_string($login)."' ");
+    $t1 = "`".$mysqli->escape_string(\Config\Config::$dbprefix) ."users`";
+    $t2 = "`".$mysqli->escape_string(\Config\Config::$dbprefix) ."groups`";
+    $query = "SELECT $t1.`id`,"
+        ."$t1.`name`, "
+        ."$t1.`password`,"
+        ."$t1.`email`, "
+        ."$t1.`group`," 
+        ."$t1.`reg_date`," 
+        ."$t1.`last_access`,"
+        ."$t1.`last_ip`," 
+        ."$t1.`other_ip`," 
+        ."$t2.`name`AS `group_name`"
+        ."from $t1 "
+        ."LEFT OUTER JOIN $t2 "
+        ."ON $t1.`group` = $t2.`id` "
+        ."WHERE $t1.`name` = '".$mysqli->escape_string($login)."'";
+    
+    echo "<br>\n\n".$query."<br>\n\n";
+    $res = $mysqli->query($query);
         if(!empty($res) && $res->num_rows > 0)
         {
             $row = $res->fetch_assoc();
@@ -25,6 +72,27 @@ function uwierzytelnianie($mysqli, $login, $password)
                 {
                     $_SESSION['user']=$row;
                     //echo 'zalogowano '. $row['name'];
+                    $query = 'UPDATE `'.$mysqli->escape_string(\Config\Config::$dbprefix).'users` SET last_access = NOW()';
+                    if(empty($_SESSION['user']['reg_date']) OR $_SESSION['user']['reg_date'] == 0)
+                    {
+                        $now = time();
+                        $query .= ', reg_date = '.$now;
+                        $_SESSION['user']['reg_date'] = $now;
+                    }
+                    if(empty($_SESSION['user']['last_ip']))
+                    {
+                        $query .= ', last_ip = \''.$_SERVER['REMOTE_ADDR']."'";
+                    }
+                    elseif ( strcasecmp( $_SESSION['user']['last_ip'],$_SERVER['REMOTE_ADDR'])!= 0 )
+                    {
+                        $query .= ', last_ip = \''.$_SERVER['REMOTE_ADDR']."'";
+                        $query .= ', other_ip = \''.$_SESSION['user']['last_ip']."'";
+                    }
+                    $query .= ' WHERE `id`='.$_SESSION['user']['id'].';';
+                    echo "<br>\n\n".$query."<br>\n\n";
+                    $res = $mysqli->query($query);
+                    if(!$res)
+                        echo "błąd";
                     return true;
                     //TO DO: hashowanie hasła
                 }
@@ -120,6 +188,11 @@ elseif (isset($_GET['logout']) && $_GET['logout'] == '1')
     $parametry['msg']= " <h3> wylogowano <b>". $uname."!</b></h3>";
     //TODO msg wylogowano;
 }
+else
+{
+    $parametry['res'] = "nodata";
+    $parametry['msg'] = "Nie wysłano żadnych danych";
+}
 
 
 // WIDOK
@@ -140,13 +213,13 @@ switch ($parametry['res'] )
     case "notloged" :
         $title = "Nie udało się zalogować";
         $contents = $parametry['msg']."<br>\n"; 
-        $contents .= 'Spróbuj ponownie <a href="'.gen_link_var("str","login").'">kliknij tutaj</a>\n'; 
+        $contents .= 'Spróbuj ponownie <a href="'.gen_link_var("str","login").'">kliknij tutaj</a>'; 
 
     break;
     case "error" :
         $title = "Błąd";
         $contents = $parametry['msg']."<br>\n"; 
-        $contents .= 'Spróbuj ponownie <a href="'.gen_link_var("str","login").'">kliknij tutaj</a>\n'; 
+        $contents .= 'Spróbuj ponownie <a href="'.gen_link_var("str","login").'">kliknij tutaj</a>'; 
     break;
     case "logouted" :
         $title = "Wylogowano";
@@ -157,7 +230,11 @@ switch ($parametry['res'] )
     default :
         $title = "Błąd";
         $contents = "<h3> błąd wewnętrzny</h3>"."<br>\n"; 
-        $contents .= 'Spróbuj ponownie <a href="'.gen_link_var("str","login").'">kliknij tutaj</a>\n'; 
+        if(!empty( $parametry['msg'])) 
+        {
+            $contents .=  $parametry['msg'];
+        }
+        $contents .= 'Spróbuj ponownie <a href="'.gen_link_var("str","login").'">kliknij tutaj</a>'; 
     break;
         
 }

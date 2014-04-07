@@ -197,7 +197,7 @@ else
 
 // WIDOK
 
-$szablon = \inc\System::$system->getWidok();
+$szablon = System::$system->getWidok();
 
 $title = "";
 $contents = "";
@@ -208,28 +208,28 @@ switch ($parametry['res'] )
         $title = "Zalogowano";
         $contents = $parametry['msg']."<br>\n"; 
         $contents .= "Za chwile zostaniesz przekierowany <br>\n"; 
-        $contents .= '<br> lub przejdź na <a href="'.gen_link_var("str","").'">stronę główną</a> odrazu'; 
-        $headers='<META HTTP-EQUIV="Refresh" CONTENT="3;URL='.gen_link_var("str","").'">';
+        $contents .= '<br> lub przejdź na <a href="'.System::$system->site->gen_link(Array('str' => '')).'">stronę główną</a> odrazu'; 
+        $headers='<META HTTP-EQUIV="Refresh" CONTENT="3;URL='.System::$system->site->gen_link(Array('str' => '')).'">';
     break;
     case "notloged" :
         $title = "Nie udało się zalogować";
         $contents = $parametry['msg']."<br>\n"; 
-        $contents .= 'Spróbuj ponownie <a href="'.gen_link_var("str","login").'">kliknij tutaj</a>'; 
-        $contents .= '<br> lub przejdź na <a href="'.gen_link_var("str","").'">stronę główną</a>'; 
+        $contents .= 'Spróbuj ponownie <a href="'.System::$system->site->gen_link(Array("str"=>"login")).'">kliknij tutaj</a>'; 
+        $contents .= '<br> lub przejdź na <a href="'.System::$system->site->gen_link(Array("str" => "")).'">stronę główną</a>'; 
 
     break;
     case "error" :
         $title = "Błąd";
         $contents = $parametry['msg']."<br>\n"; 
-        $contents .= 'Spróbuj ponownie <a href="'.gen_link_var("str","login").'">kliknij tutaj</a>'; 
-        $contents .= '<br> lub przejdź na <a href="'.gen_link_var("str","").'">stronę główną</a>'; 
+        $contents .= 'Spróbuj ponownie <a href="'.System::$system->site->gen_link(Array("str"=>"login")).'">kliknij tutaj</a>'; 
+        $contents .= '<br> lub przejdź na <a href="'.System::$system->site->gen_link(Array("str"=>"")).'">stronę główną</a>'; 
     break;
     case "logouted" :
         $title = "Wylogowano";
         $contents = $parametry['msg']."<br>\n"; 
         $contents .= "Za chwile zostaniesz przekierowany <br>\n"; 
-        $contents .= '<br> lub przejdź na <a href="'.gen_link_var("str","").'">stronę główną</a> odrazu'; 
-        $headers='<META HTTP-EQUIV="Refresh" CONTENT="3;URL='.gen_link_var("str","").'">';
+        $contents .= '<br> lub przejdź na <a href="'.System::$system->site->gen_link(Array("str"=>"")).'">stronę główną</a> odrazu'; 
+        $headers='<META HTTP-EQUIV="Refresh" CONTENT="3;URL='.System::$system->site->gen_link(Array("str"=>"")).'">';
     break;
     default :
         $title = "Błąd";
@@ -238,8 +238,8 @@ switch ($parametry['res'] )
         {
             $contents .=  $parametry['msg'];
         }
-        $contents .= 'Spróbuj ponownie <a href="'.gen_link_var("str","login").'">kliknij tutaj</a>'; 
-        $contents .= '<br> lub przejdź na <a href="'.gen_link_var("str","").'">stronę główną</a>'; 
+        $contents .= 'Spróbuj ponownie <a href="'.System::$system->site->gen_link(Array("str" => "login")).'">kliknij tutaj</a>'; 
+        $contents .= '<br> lub przejdź na <a href="'.System::$system->site->gen_link(Array("str" => "")).'">stronę główną</a>'; 
     break;
         
 }

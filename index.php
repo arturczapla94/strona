@@ -15,6 +15,21 @@ else
     ini_set('display_errors',0);
     error_reporting(0);
 }
+
+spl_autoload_register(function ($className) {
+            $ds = DIRECTORY_SEPARATOR;
+            // replace namespace separator with directory separator (prolly not required)
+            $prefix = 'sys\\';
+            if (strpos($className, $prefix) === 0)
+            {
+                $className = str_replace('\\', $ds, $className);
+                // get full name of file containing the required class
+                $file = PRIV_DIR.$ds."{$className}.php";
+                // get file if it is readable
+                if (is_readable($file)) require_once $file;
+            }
+        });
+
 require_once('private/config.php');
 require_once('private/inc.php');
 
@@ -27,11 +42,14 @@ define('PUB_RES_DIR',PUB_DIR.DS.'res');// public_html/public/res
 define('PRIV_RES_DIR',PRIV_DIR.DS.'res');// public_html/private/res
 define('PRIV_THEMES_DIR',PRIV_DIR.DS.'themes');// public_html/private/themes
 define('APPS_DIR',PRIV_DIR.DS.'apps');// public_html/private
+define('SYS_DIR',PRIV_DIR.DS.'sys');// public_html/private/sys
 //const BASEDIR = __DIR__;
 //const DS = __DIR__;
 //const PRIV_DIR = BASEDIR.DS.'private';
 
-$system = new \inc\System();
+require_once(SYS_DIR.DS.'System.php');
+
+$system = new \System();
 
 include(PRIV_THEMES_DIR.DS.'RontaBlueTheme.php');
 
@@ -83,21 +101,21 @@ else {
                                 }
                                 else
                                 {
-                                    \inc\System::error(108);
+                                    System::error(108);
                                 }
                                 //TODO:
                                 // wywowływanie akcji
                             }
                             else
                             {
-                                 \inc\System::error(105);
+                                 System::error(105);
                             }
 
                             break;
                         }
                         else
                         {
-                            \inc\System::error(104);
+                            System::error(104);
                             break;
                         }
                     }
@@ -105,20 +123,20 @@ else {
                 }
                 if(!$znaleziono)
                 {
-                    \inc\System::error(107);
+                    System::error(107);
                 }
                 
                 
             }
             else
             {
-                \inc\System::error(106);
+                System::error(106);
                 
             }
         }
         else
         { //NIE ROZPOZNANO IDENTYFIKATORA
-            \inc\System::error(103);
+            System::error(103);
         }
     }           
     else if(preg_match('/^[0-9a-zA-Z_-]+$/D', $_GET['str']) )
@@ -131,12 +149,12 @@ else {
         }
         else
         {
-            \inc\System::error(101);
+            System::error(101);
         }
     }
     else
     {
-        \inc\System::error(102);
+        System::error(102);
     }
 }	
 

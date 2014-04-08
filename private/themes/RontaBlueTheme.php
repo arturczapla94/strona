@@ -18,7 +18,7 @@ class RontaBlueTheme {
     public function display($view)
     {
         $this->inview = $view;
-            $this->show();
+        $this->show();
     }
     
     protected function writeHTMLHeaders()

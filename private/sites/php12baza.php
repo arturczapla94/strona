@@ -136,9 +136,11 @@ class CView extends inc\ViewBasic {
     }
 }
 
-$widok = new CView($parametry);
-$klasa = CUR_THEME;
-$szablon = new $klasa($widok);
+System::$system->getWidok()->display(new CView($parametry));
+
+//$widok = new CView($parametry);
+//$klasa = CUR_THEME;
+//$szablon = new $klasa($widok);
 
 
 

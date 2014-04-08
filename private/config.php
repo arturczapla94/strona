@@ -21,7 +21,7 @@ class Config {
             array("PHP09 Serwer, autoryzacja","php09serwer",1),
             array("PHP10 Cookies","php10serwer2",1),
             array("PHP11 Obrazki","php11obrazki",1),
-
+            array("PHP12 Baza danych","php12baza",1),
 
             array("Projektowanie:","",2),
             array("JS 01 tabelka css","js01skrypty",1),

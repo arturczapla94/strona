@@ -4,6 +4,8 @@
 ////        L  O  G  I  K  A
 ////
 //////////////////////////////////////
+use sys\Database;
+
 $parametry = array();
 
 $dozwolone = array(1, 2, 3, 4, 5);

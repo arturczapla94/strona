@@ -1,4 +1,6 @@
 <?php
+use sys\authentication\User;
+
 class RontaBlueTheme {
     protected $inview = null;
     const PUBLIC_THEME_DIR = 'public/themes/RontaBlue';
@@ -50,9 +52,9 @@ class RontaBlueTheme {
            <img class="logo" src="public/images/czaplaphp03.png" alt="logo" /><h1><?php echo Config\Config::SITE_TITLE ?></h1></a>
         <div id="header-menu2" style="position:absolute;right:0;bottom:0;margin:6px 16px;">
             <?php
-                if(!empty($_SESSION['user']))
+                if(User::curUsr()!=null && User::curUsr()->isLogged())
                 {
-                    echo 'Witaj <b>'.$_SESSION['user']['name'].'['.$_SESSION['user']['group_name'].']</b>! <a href="index.php?str=login_ctrl&logout=1" style="font-size:x-small">(wyloguj)</a>';
+                    echo 'Witaj <b>'.User::curUsr()->displayname.'('.User::curUsr()->name.')['.User::curUsr()->groupname.']</b>! <a href="index.php?str=login_ctrl&logout=1" style="font-size:x-small">(wyloguj)</a>';
                 }
             ?>
         </div>    
@@ -81,15 +83,16 @@ class RontaBlueTheme {
     }
     function writeBottom() {
         echo '<footer id="footer" class="site-width">'
-        . '<hr><p class="poweredby"> Powered by czaplOS</p>'
-        . '</footer></div>'
+        . '<hr><p class="poweredby"> Powered by czaplOS</p>';
+
+        echo '</footer></div>'
                 . '';
     }
     
     
     function wypiszMenu() {
         echo '<a href="index.php'.gen_link_var("str","").'">Strona główna</a><br/>';
-        if(empty($_SESSION['user']))
+        if(User::curUsr()==null || !User::curUsr()->isLogged())
            echo '<a href="index.php'.gen_link_var("str","login").'">Zaloguj</a><br/>';
         echo '<a href="index.php'.gen_link_var("str","galeria").'">galeria</a><br/>';
 

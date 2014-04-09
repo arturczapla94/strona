@@ -1,7 +1,9 @@
 <?php
 /***************************************\
  * 
- * CREATE TABLE IF NOT EXISTS `str_groups` (
+ DROP TABLE str_groups;
+ DROP TABLE str_users;
+ CREATE TABLE IF NOT EXISTS `str_groups` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(64) COLLATE utf8_polish_ci NOT NULL,
   PRIMARY KEY (`id`)
@@ -17,6 +19,7 @@ INSERT INTO `str_groups` (`id`, `name`) VALUES
 CREATE TABLE IF NOT EXISTS `str_users` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(128) COLLATE utf8_polish_ci NOT NULL,
+  `displayname` varchar(255) COLLATE utf8_polish_ci NOT NULL,
   `password` varchar(255) COLLATE utf8_polish_ci DEFAULT NULL,
   `email` varchar(128) COLLATE utf8_polish_ci DEFAULT NULL,
   `group` mediumint(9) NOT NULL,
@@ -29,9 +32,51 @@ CREATE TABLE IF NOT EXISTS `str_users` (
 
 INSERT INTO `str_users` (`id`, `name`, `password`, `email`, `group`, `reg_date`, `last_access`, `last_ip`, `other_ip`) VALUES
 (1, 'root', '1234', NULL, 1, '2014-03-26 23:26:43', '2014-03-26 23:26:43', NULL, NULL);
- * 
+  
  * 
  */
+
+use sys\authentication\User;
+
+function logowanie($mysqli, $row)
+{
+    $user = createFromAssoc($row);
+    User::setCurrentUser($user);
+    
+    $now = time();
+    $user->login_time = $now;
+
+    $query = 'UPDATE `'.$mysqli->escape_string(\Config\Config::$dbprefix)
+            .'users` SET last_access = '.$now;
+    if(empty($user->register_date) OR $user->register_date == 0)
+    {
+        $query .= ', reg_date = '.$now;
+        $user->register_date = $now;
+    }
+    if(empty($user->last_ip))
+    {
+        $query .= ', last_ip = \''.$_SERVER['REMOTE_ADDR']."'";
+    }
+    elseif ( strcasecmp( $user->last_ip, $_SERVER['REMOTE_ADDR'])!= 0 )
+    {
+        $query .= ', last_ip = \''.$_SERVER['REMOTE_ADDR']."'";
+        $query .= ', other_ip = \''.$user->last_ip."'";
+    }
+    $query .= ' WHERE `id`='.$user->getId().';';
+
+    $user->setLogged();
+    
+    $res = $mysqli->query($query);
+    if(!$res)
+    {
+        return false;
+    }
+    else
+    {
+        return true;
+    }
+}
+
 function uwierzytelnianie($mysqli, $login, $password)
 {
     $wynik = array('errno' => '', 'error' => '' );
@@ -39,6 +84,7 @@ function uwierzytelnianie($mysqli, $login, $password)
     $t2 = "`".$mysqli->escape_string(\Config\Config::$dbprefix) ."groups`";
     $query = "SELECT $t1.`id`,"
         ."$t1.`name`, "
+        ."$t1.`displayname`, "
         ."$t1.`password`,"
         ."$t1.`email`, "
         ."$t1.`group`," 
@@ -52,7 +98,7 @@ function uwierzytelnianie($mysqli, $login, $password)
         ."ON $t1.`group` = $t2.`id` "
         ."WHERE $t1.`name` = '".$mysqli->escape_string($login)."'";
     
-    echo "<br>\n\n".$query."<br>\n\n";
+    //DEL echo "<br>\n\n".$query."<br>\n\n";
     $res = $mysqli->query($query);
         if(!empty($res) && $res->num_rows > 0)
         {
@@ -70,31 +116,9 @@ function uwierzytelnianie($mysqli, $login, $password)
             { //Jeżeli 1 pole w haśle, plain text
                 if($userpassword[0]==$password)
                 {
-                    $_SESSION['user']=$row;
-                    //echo 'zalogowano '. $row['name'];
-                    $query = 'UPDATE `'.$mysqli->escape_string(\Config\Config::$dbprefix).'users` SET last_access = NOW()';
-                    if(empty($_SESSION['user']['reg_date']) OR $_SESSION['user']['reg_date'] == 0)
-                    {
-                        $now = time();
-                        $query .= ', reg_date = '.$now;
-                        $_SESSION['user']['reg_date'] = $now;
-                    }
-                    if(empty($_SESSION['user']['last_ip']))
-                    {
-                        $query .= ', last_ip = \''.$_SERVER['REMOTE_ADDR']."'";
-                    }
-                    elseif ( strcasecmp( $_SESSION['user']['last_ip'],$_SERVER['REMOTE_ADDR'])!= 0 )
-                    {
-                        $query .= ', last_ip = \''.$_SERVER['REMOTE_ADDR']."'";
-                        $query .= ', other_ip = \''.$_SESSION['user']['last_ip']."'";
-                    }
-                    $query .= ' WHERE `id`='.$_SESSION['user']['id'].';';
-                    echo "<br>\n\n".$query."<br>\n\n";
-                    $res = $mysqli->query($query);
-                    if(!$res)
-                        echo "błąd";
-                    return true;
+                    logowanie($mysqli, $row);
                     //TO DO: hashowanie hasła
+                    return true;
                 }
                 else
                 {
@@ -115,7 +139,7 @@ function uwierzytelnianie($mysqli, $login, $password)
                 $wynik['probe'] = $probe;
                 if(strcasecmp($probe, $hash) === 0 )
                 {
-                    $_SESSION['user']=$row;
+                    logowanie($mysqli, $row);
                     return true;
                 }
                 else
@@ -140,6 +164,21 @@ function uwierzytelnianie($mysqli, $login, $password)
             return $wynik;
         }
     
+}
+
+/** @return User */
+function createFromAssoc($assocTable)
+{
+    $user = new User($assocTable['id'], $assocTable['name'], $assocTable['password']);
+    $user ->displayname   = ( strlen($assocTable['displayname'])>0 ? $assocTable['displayname'] : $assocTable['name'] );
+    $user -> email        = $assocTable['email'];
+    $user -> group        = $assocTable['group'];
+    $user -> groupname    = $assocTable['group_name'];
+    $user -> register_date= $assocTable['reg_date'];
+    $user -> last_access  = $assocTable['last_access'];
+    $user -> last_ip      = $assocTable['last_ip'];
+    $user -> other_ip     = $assocTable['other_ip'];
+    return $user;
 }
 
 $parametry = array();

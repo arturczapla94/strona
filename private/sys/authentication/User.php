@@ -4,18 +4,36 @@ namespace sys\authentication;
 
 class User
 {
-    public $name;
-    public $group;
-    public $email;
-    public $register_date;
-    public $last_access;
-    public $last_ip;
-    public $other_ip;
+    /** @var string */
+    public $name="";
+    /** @var string */
+    public $displayname="";
+    /** @var integer */
+    public $group=0;
+    /** @var string */
+    public $groupname="";
+    /** @var string */
+    public $email="";
+    /** @var timestamp */
+    public $register_date=0;
+    /** @var timestamp */
+    public $last_access=0;
+    /** @var timestamp */
+    public $login_time=0;
+    /** @var string */
+    public $last_ip="";
+    /** @var string */
+    public $other_ip="";
     
     
-    private $id;
-    private $logged;
+    /** @var int */
+    private $id=0;
+    /** @var boolean */
+    private $logged=false;
+    /** @var string */
+    private $password_hash="";
     
+    /** @return int id z bazy danych */
     public function getId()
     {
         return $this->id;
@@ -24,12 +42,15 @@ class User
     /*
      * @param $id id of user
      */
-    public function __construct($id, $name)
+    public function __construct($id, $name, $password_hash=null)
     {
         $this->id = $id;
         $this->name = $name;
+        $this->password_hash = $password_hash;
     }
     
+
+    /** @return boolean true jeśli jest zalogowany, w przeciwnym wypadku false */
     public function isLogged()
     {
         return $this->logged;
@@ -41,6 +62,32 @@ class User
     public function setUnlogged()
     {
         $this->logged = false;
+    }
+    
+    public static function setCurrentUser($user)
+    {
+        \System::$system->setSessionData("current_user", $user);
+    }
+    
+    /** @return User użytkownik zalogowany w tej sesji (może być już wylogowany) */
+    public static function curUsr()
+    {
+        return \System::$system->getSessionData("current_user");
+    }
+    
+    /** @return string nazwa algorytmu hashującego*/
+    public function getHashAlgo()
+    {
+        $userpassword = explode("$^$",$this->password_hash);
+        if( count($userpassword)>2 && strlen($userpassword[1])>0 )
+        {
+            return $userpassword[1];
+        }
+        else
+        {
+            return null;
+        }
+     
     }
     
     

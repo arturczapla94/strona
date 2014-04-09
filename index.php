@@ -1,6 +1,5 @@
 <?php
 namespace index;
-session_start();
 
 date_default_timezone_set("Europe/Warsaw");
 $debug=false;
@@ -17,18 +16,18 @@ else
 }
 
 spl_autoload_register(function ($className) {
-            $ds = DIRECTORY_SEPARATOR;
-            // replace namespace separator with directory separator (prolly not required)
-            $prefix = 'sys\\';
-            if (strpos($className, $prefix) === 0)
-            {
-                $className = str_replace('\\', $ds, $className);
-                // get full name of file containing the required class
-                $file = PRIV_DIR.$ds."{$className}.php";
-                // get file if it is readable
-                if (is_readable($file)) require_once $file;
-            }
-        });
+        $ds = DIRECTORY_SEPARATOR;
+        // replace namespace separator with directory separator (prolly not required)
+        $prefix = 'sys\\';
+        if (strpos($className, $prefix) === 0)
+        {
+            $className = str_replace('\\', $ds, $className);
+            // get full name of file containing the required class
+            $file = PRIV_DIR.$ds."{$className}.php";
+            // get file if it is readable
+            if (is_readable($file)) require_once $file;
+        }
+    });
 
 require_once('private/config.php');
 require_once('private/inc.php');
@@ -46,6 +45,9 @@ define('SYS_DIR',PRIV_DIR.DS.'sys');// public_html/private/sys
 //const BASEDIR = __DIR__;
 //const DS = __DIR__;
 //const PRIV_DIR = BASEDIR.DS.'private';
+
+
+session_start();
 
 require_once(SYS_DIR.DS.'System.php');
 

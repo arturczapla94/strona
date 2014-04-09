@@ -1,10 +1,16 @@
 <?php
 class System
 {
+    /** @var System*/
     static $system;
+    /** @var RontaBlueTheme */
     protected $szablon = null;
+    /** @var Site */
     public $site = null;
     
+    private $sesja = array();
+    
+    /** @var Array */
     public static $globalParameters = array('str','debug','action');
     
     public function __construct() {
@@ -18,7 +24,48 @@ class System
         $this->site = new Site();
     }
     
+    public function setSessionData($key, $data)
+    {
+        $this->sesja = (is_array($_SESSION['systemdata']) ? $_SESSION['systemdata'] : array() );
+        
+        if($key!=null)
+        {
+            
+            if($data!=null)
+            {
+                $this->sesja[$key] = $data;  
+            }
+            else
+            {
+                unset($this->sesja[$key]);
+            }
+            $_SESSION['systemdata'] = $this->sesja;
+            
+        }
+        else
+        {
+            $_SESSION['systemdata'] = $this->sesja;
+        }
+    }
+    /** @return String wartość
+     */
+    public function getSessionData($key)
+    {
+        //$this->sesja = (is_array($_SESSION['systemdata']) ? $_SESSION['systemdata'] : array() );
+        $this->sesja = (is_array($_SESSION['systemdata']) ? $_SESSION['systemdata'] : array() );
+        if(array_key_exists($key , $this->sesja ))
+        {
+            return $this->sesja[$key];
+        }
+        else
+        {
+            return null;
+        }
+    }
     
+    /** 
+     * @return RontaBleTheme aktualny szablon
+     */
     public function getWidok()
     {
         if($this->szablon==null)

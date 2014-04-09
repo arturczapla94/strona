@@ -21,7 +21,11 @@ class CView extends inc\ViewBasic {
         $this->dane = $widok;
         $this->customHeaders = '' //'<link rel="stylesheet" href="public/res/zhome/home.css" type="text/css" />'
             //. '<script type="text/javascript" src="public/res/zhome/home.js"> </script>'
-                . '';
+. <<<EOT
+<style>
+   
+</style>
+EOT;
         
         $this->description = "Serwer";
         $this->title = "Serwer";
@@ -58,9 +62,7 @@ class CView extends inc\ViewBasic {
     }
 }
 
-$widok = new CView($parametry);
-$klasa = CUR_THEME;
-$szablon = new $klasa($widok);
+System::$system->getWidok()->display(new CView($parametry));
 
 
 

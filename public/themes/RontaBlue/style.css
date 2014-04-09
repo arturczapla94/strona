@@ -148,3 +148,20 @@ button.tekstowy {
 button.tekstowy:hover {
     color: #1CE0D9;
 }
+
+
+table {
+    border-spacing: 0;
+}
+
+table tr th{
+    background: #2096e1;
+    color: white;
+    padding: 4px 2px 2px 2px;
+}
+table tr:nth-child(2n) td{
+    background: #d7edfc;
+}
+table tr:nth-child(2n+1) td{
+    background: #FCFEFF;
+}

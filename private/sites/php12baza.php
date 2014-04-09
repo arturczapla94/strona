@@ -79,7 +79,21 @@ class CView extends inc\ViewBasic {
         $this->dane = $widok;
         $this->customHeaders = '' //'<link rel="stylesheet" href="public/res/zhome/home.css" type="text/css" />'
             //. '<script type="text/javascript" src="public/res/zhome/home.js"> </script>'
-                . '';
+. <<<EOT
+<style>
+    div.pages-links
+    {
+        margin: 16px 8px 4px 8px;
+    }
+    .pages-links .p-link
+    {
+        margin: 0 7px 0 0;         
+    }
+    table tr td, table tr td {
+        text-align: center;
+    }
+</style>
+EOT;
         
         $this->description = "Baza samochodów";
         $this->title = "Baza samochodów";
@@ -118,11 +132,14 @@ class CView extends inc\ViewBasic {
                 }
                 echo "</tr>\n";
             }
-            echo "</table>";
+            echo "</table>\n\n";
+            
+            echo '<div class="pages-links">'."\n";
             for($i=1; $i<=$this->dane['stron'];$i++)
             {
                 echo "<a class='p-link' href='index.php".gen_link_var("p","$i")."'> $i </a>";
             }
+            echo "</div>\n\n";
         }
         else
         {

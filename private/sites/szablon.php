@@ -42,20 +42,7 @@ EOT;
     </header>
     <div class="block-contents">
         
-        <div class="news-in2">
-            <div class="news-tags">
-
-            </div> 
-            <section class="news-content">
-               <?php
-               
-               echo 'twój nr ip: '.$_SERVER['REMOTE_ADDR'].'<br>';
-               echo 'nazwa serwera: '.$_SERVER['SERVER_NAME'].'<br>';
-               echo 'skrypt: '.$_SERVER['PHP_SELF'].'<br>';
-               
-               ?>
-            </section>
-        </div>
+        
     </div>
 </article>
 <?php

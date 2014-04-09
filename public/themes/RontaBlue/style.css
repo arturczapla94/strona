@@ -159,9 +159,16 @@ table tr th{
     color: white;
     padding: 4px 2px 2px 2px;
 }
+table tr:nth-child(2n) th{
+    background: #4DACE9;
+}
+table tr:nth-child(2n+1) th{
+    background: #2096e1;
+}
+
 table tr:nth-child(2n) td{
-    background: #d7edfc;
+    background: #EDF9FF;
 }
 table tr:nth-child(2n+1) td{
-    background: #FCFEFF;
+    background: #d7edfc;
 }

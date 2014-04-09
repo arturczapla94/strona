@@ -51,15 +51,21 @@ class System
      */
     public function getSessionData($key)
     {
-        //$this->sesja = (is_array($_SESSION['systemdata']) ? $_SESSION['systemdata'] : array() );
-        $this->sesja = (is_array($_SESSION['systemdata']) ? $_SESSION['systemdata'] : array() );
-        if(array_key_exists($key , $this->sesja ))
+        if(isset($_SESSION['systemdata']) && is_array($_SESSION['systemdata']))
         {
-            return $this->sesja[$key];
+            $this->sesja = $_SESSION['systemdata'];
+            if(array_key_exists($key , $this->sesja ))
+            {
+                return $this->sesja[$key];
+            }
+            else
+            {
+                return null;
+            }
         }
         else
         {
-            return null;
+            $_SESSION['systemdata'] = array();
         }
     }
     

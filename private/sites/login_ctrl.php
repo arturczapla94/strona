@@ -44,14 +44,15 @@ function logowanie($mysqli, $row)
     User::setCurrentUser($user);
     
     $now = time();
-    $user->login_time = $now;
+    $datetime = date("Y-m-d H:i:s" ,time());
+    $user->login_time = $datetime;
 
     $query = 'UPDATE `'.$mysqli->escape_string(\Config\Config::$dbprefix)
-            .'users` SET last_access = '.$now;
-    if(empty($user->register_date) OR $user->register_date == 0)
+            .'users` SET last_access = \''.$datetime."'";
+    if(empty($user->register_date) OR strtotime($user->register_date)===false OR strtotime($user->register_date)<=0 )
     {
-        $query .= ', reg_date = '.$now;
-        $user->register_date = $now;
+        $query .= ', reg_date = '."'".$datetime."'";
+        $user->register_date = $datetime;
     }
     if(empty($user->last_ip))
     {
@@ -65,7 +66,7 @@ function logowanie($mysqli, $row)
     $query .= ' WHERE `id`='.$user->getId().';';
 
     $user->setLogged();
-    
+    echo $query;
     $res = $mysqli->query($query);
     if(!$res)
     {

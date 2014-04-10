@@ -16,3 +16,5 @@
 204;nie udało się zalogować;nie obsługiwany zapis hasla w bazie.
 205;nie udało się zalogować;hash obliczony nie jest zgodny z tym w bazie.
 
+301;Użytkownik nie istnieje lub nie masz uprawnień;Użytkownik nie istnieje w bazie.
+302;Użytkownik nie istnieje lub nie masz uprawnień;Brak uprawnień do jakiejkolwiek informacji

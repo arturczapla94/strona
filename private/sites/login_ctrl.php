@@ -37,10 +37,10 @@ INSERT INTO `str_users` (`id`, `name`, `password`, `email`, `group`, `reg_date`,
  */
 
 use sys\authentication\User;
-
+use sys\authentication\UserLib;
 function logowanie($mysqli, $row)
 {
-    $user = createFromAssoc($row);
+    $user = UserLib::createFromAssoc($row);
     User::setCurrentUser($user);
     
     $now = time();
@@ -167,20 +167,7 @@ function uwierzytelnianie($mysqli, $login, $password)
     
 }
 
-/** @return User */
-function createFromAssoc($assocTable)
-{
-    $user = new User($assocTable['id'], $assocTable['name'], $assocTable['password']);
-    $user ->displayname   = ( strlen($assocTable['displayname'])>0 ? $assocTable['displayname'] : $assocTable['name'] );
-    $user -> email        = $assocTable['email'];
-    $user -> group        = $assocTable['group'];
-    $user -> groupname    = $assocTable['group_name'];
-    $user -> register_date= $assocTable['reg_date'];
-    $user -> last_access  = $assocTable['last_access'];
-    $user -> last_ip      = $assocTable['last_ip'];
-    $user -> other_ip     = $assocTable['other_ip'];
-    return $user;
-}
+
 
 $parametry = array();
 

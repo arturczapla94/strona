@@ -94,8 +94,13 @@ class User
     public function hasPerm($node)
     {
         if($this->group==1)
+        {
             return true;
-        
+        }
+        else
+        {
+            return true;
+        }
         
     }
     

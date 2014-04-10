@@ -5,14 +5,114 @@
 ////
 //////////////////////////////////////
 use sys\authentication\User;
+use sys\authentication\UserLib;
+
 
 $parametry = array();
 System::$globalParameters[]='u';
 if(isset($_GET['u']) && strlen($_GET['u']) > 0)
 { //jeżeli podano użytkownika
     
-    
-    
+    if(User::curUsr()!=null && User::curUsr()->isLogged())
+    {
+        $user = UserLib::getUser($_GET['u']);
+        if($user!=null)
+        { //jeżeli użytkownik istnieje
+            if(User::curUsr()->hasPerm("user.seeothers.id"))
+            {
+                $parametry['user']['id']=array("ID: ",$user->getId());
+            }
+
+            if(User::curUsr()->hasPerm("user.seeothers.name"))
+            {
+                $parametry['user']['name']=array("Nazwa użytkownika: ",$user->name);
+                if(User::curUsr()->hasPerm("user.editothers.name"))
+                {
+                    $parametry['user']['name'][2]="text";
+                }
+            }
+
+            if(User::curUsr()->hasPerm("user.seeothers.displayname"))
+            {
+                $parametry['user']['displayname']=array("Nazwa wyświetlana: ",$user->displayname);
+                if(User::curUsr()->hasPerm("user.editothers.displayname"))
+                {
+                    $parametry['user']['displayname'][2]="text";
+                }
+            }
+
+            if(User::curUsr()->hasPerm("user.seeothers.group"))
+            {
+                $parametry['user']['group']=array("ID grupy: ",$user->group);
+                $parametry['user']['groupname']=array("Nazwa grupy: ",$user->groupname);
+                if(User::curUsr()->hasPerm("user.editothers.group"))
+                {
+                    $parametry['user']['groupname'][2]="select";
+                    $parametry['user']['groupname'][3]= UserLib::getGroups();
+                }
+            }
+
+            if(User::curUsr()->hasPerm("user.seeothers.email"))
+            {
+                $parametry['user']['email']=array("E-mail: ",$user->email);
+                if(User::curUsr()->hasPerm("user.editothers.email"))
+                {
+                    $parametry['user']['email'][2]="text";
+                }
+            }
+
+            if(User::curUsr()->hasPerm("user.seeothers.register_date"))
+            {
+                $parametry['user']['register_date']=array("Data rejestracji: ",$user->register_date);
+            }
+
+            if(User::curUsr()->hasPerm("user.seeothers.last_access"))
+            {
+                $parametry['user']['last_access']=array("Ostatni dostęp: ",$user->last_access);
+            }
+
+            if(User::curUsr()->hasPerm("user.seeothers.last_ip"))
+            {
+                $parametry['user']['last_ip']=array("Ostatnie IP: ",$user->last_ip);
+            }
+
+            if(User::curUsr()->hasPerm("user.seeothers.other_ip"))
+            {
+                $parametry['user']['other_ip']=array("Przedostatnie IP: ",$user->other_ip);
+            }
+
+            if(User::curUsr()->hasPerm("user.seeothers.hash_alg"))
+            {
+                $parametry['user']['hash_alg']=array("funckja skrótu do hasła: ",
+                     ($user->getHashAlgo()==null ? "brak" : $user->getHashAlgo() ));
+            }
+
+            if(count($parametry['user'])>0)
+            {
+                $parametry['res'] = "ok";
+            }
+            else
+            {
+                $parametry['res'] = "error";
+                $parametry['errno'] = "302";
+                $parametry['msg']= "Użytkownik nie istnieje lub nie masz uprawnień!";
+            }
+
+        }
+        else
+        {
+            $parametry['res'] = "error";
+            $parametry['errno'] = "301";
+            $parametry['msg']= "Użytkownik nie istnieje lub nie masz uprawnień!";
+        }
+    }
+    else
+    {
+        $parametry['res'] = "error";
+        $parametry['errno'] = "302";
+        $parametry['msg']= "Użytkownik nie istnieje lub nie masz uprawnień!";
+    }
+      
 }
 else
 { // jeżeli nie podano użytkownika
@@ -48,16 +148,16 @@ class CView extends inc\ViewBasic {
    
 </style>
 EOT;
-        if(strcasecmp($dane['res'], "ok") == 0)
+       /* if(strcasecmp($dane['res'], "ok") == 0)
         {
             $this->description = $dane['user']->displayname;
             $this->title = $dane['user']->displayname;
         }
         else
-        {
-            $this->description = "Błąd";
-            $this->title = "Błąd";
-        }
+        {*/
+            $this->description = "Profil";
+            $this->title = "Profil";
+       /* }*/
     }
     
     
@@ -70,7 +170,17 @@ EOT;
         
     </header>
     <div class="block-contents">
-        <?php if(strcasecmp($this->dane['res'],"ok") == 0 ) { ?>
+        <form name="profile-edit" action="<?php 
+    echo System::$system->site->gen_link(array('str'=>$_GET['str'],'action'=>'edit','u'=>$_GET['u']));
+                
+                ?>" method="post" >
+            <fieldset style="border: none;">
+  <?php if(strcasecmp($this->dane['res'],"ok") == 0 )
+        { 
+            if(is_object($this->dane['user']))
+            {
+            
+    ?>
         <table>
             <tbody>
                 <tr>
@@ -116,21 +226,70 @@ EOT;
                     <th>Przedostatnie IP: </th> <td><?php echo $this->dane['user']->other_ip; ?> </td>
                 </tr>
                 <tr>
-                    <th>funckja skrótu do hasła</th> <td><?php echo ($this->dane['user']->getHashAlgo()==null ? "brak" : $this->dane['user']->getHashAlgo() ); ?> </td>
+                    <th>funckja skrótu do hasła:</th> <td><?php echo ($this->dane['user']->getHashAlgo()==null ? "brak" : $this->dane['user']->getHashAlgo() ); ?> </td>
                 </tr>
                 
             </tbody>
             
         </table>
         <?php
-            
+            }
+            elseif(is_array($this->dane['user']))
+            {
+                echo "<table><tbody>\n";
+                foreach($this->dane['user'] as $property => $value)
+                {
+                    echo "<tr>\n";
+                    echo "<th>{$value[0]}</th><td>";
+                    
+                    if(isset($value[2]))
+                    {
+                        switch ($value[2])
+                        {
+                            case 'text' :
+                                echo '<input type="text" name="'.$property.'" value="'.$value[1].'" />';
+                                break;
+                            case 'select' :
+                                echo '<select name="'.$property.'">';
+                                foreach ($value[3] as $id => $name)
+                                {
+                                    echo '<option value="'.$id.'"';
+                                    if(strcasecmp($value[1], $name)===0)
+                                    {
+                                        echo ' selected="selected"';
+                                    }
+                                    echo ">".$name."</option>\n";
+                                }
+                                echo '</select>';
+                                break;
+                            default :
+                                echo $value[1];
+                        }
+                    }
+                    else
+                    {
+                        echo $value[1];
+                    }
+                    
+                    echo "</td>\n";
+                    echo "<tr>\n";
+                }
+                echo "</tbody></table>\n";
+                
+            }
+            else
+            {
+                echo "<h2>Błąd wewnętrzny </h2>";
+            }
         }
         else
         {
-            echo "<h2>".$this->dane['msg']."</h2>";
+            echo "<h2>".$this->dane['errno'].". ".$this->dane['msg']."</h2>";
         }
         ?>
-        
+                 <button type="submit" name="submit" >Wyślij</button>
+        </fieldset>
+        </form>
     </div>
 </article>
 <?php

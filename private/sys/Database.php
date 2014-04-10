@@ -10,13 +10,14 @@ namespace sys;
  */
 class Database {
 
+    /** @var mysqli */
     static private $driver;
     static private $res = "";
-    static private $msg;
+    static private $msg = "";
     
     public function __construct()
     {
-        Database::$driver = new mysqli(\Config\Config::$dbhost,
+        Database::$driver = new \mysqli(\Config\Config::$dbhost,
                 \Config\Config::$dbuser,
                 \Config\Config::$dbpass,
                 \Config\Config::$dbname);
@@ -49,12 +50,17 @@ class Database {
     
     public function query($query)
     {
-        Database::$driver->query($query);
+        return Database::$driver->query($query);
     }
     
     public function table($name)
     {
         return "`". urlencode(\Config\Config::$dbprefix) . $name . "`";
+    }
+    
+    public function escape_string($string)
+    {
+        return self::$driver->escape_string($string);
     }
     
     public function close()

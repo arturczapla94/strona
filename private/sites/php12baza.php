@@ -4,12 +4,12 @@
 ////        L  O  G  I  K  A
 ////
 //////////////////////////////////////
-use sys\Database;
+use sys\authentication\User;
 
 $parametry = array();
 
-$dozwolone = array(1, 2, 3, 4, 5);
-if(!empty($_SESSION['user']) && in_array($_SESSION['user']['group'], $dozwolone) )
+
+if(User::curUsr()!=null && User::curUsr()->isLogged() && User::curUsr()->hasPerm('strphp12.see'))
 {
     $mysqli = new mysqli(\Config\Config::$dbhost, \Config\Config::$dbuser, \Config\Config::$dbpass, \Config\Config::$dbname);
     if ($mysqli->connect_errno)

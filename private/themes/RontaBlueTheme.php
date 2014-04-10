@@ -54,7 +54,7 @@ class RontaBlueTheme {
             <?php
                 if(User::curUsr()!=null && User::curUsr()->isLogged())
                 {
-                    echo 'Witaj <b><a href="'.  gen_link_var('str', 'profil').'">'.User::curUsr()->displayname.'('.User::curUsr()->name.')</a>['.User::curUsr()->groupname.']</b>! <a href="index.php?str=login_ctrl&logout=1" style="font-size:x-small">(wyloguj)</a>';
+                    echo 'Witaj <b><a href="'. System::$system->site->gen_link(array('str'=>'profil', 'u'=>null)).'">'.User::curUsr()->displayname.'('.User::curUsr()->name.')</a>['.User::curUsr()->groupname.']</b>! <a href="index.php?str=login_ctrl&logout=1" style="font-size:x-small">(wyloguj)</a>';
                 }
             ?>
         </div>    

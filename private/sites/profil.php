@@ -91,7 +91,7 @@ if(isset($_GET['u']) && strlen($_GET['u']) > 0)
                 }
             }
             
-            
+            $parametry['doedycji']=0;
             if(User::curUsr()->hasPerm("user.seeothers.id"))
             {
                 $parametry['user']['id']=array("ID: ",$user->getId());
@@ -103,6 +103,7 @@ if(isset($_GET['u']) && strlen($_GET['u']) > 0)
                 if(User::curUsr()->hasPerm("user.editothers.name"))
                 {
                     $parametry['user']['name'][2]="text";
+                    $parametry['doedycji']++;
                 }
             }
 
@@ -112,6 +113,7 @@ if(isset($_GET['u']) && strlen($_GET['u']) > 0)
                 if(User::curUsr()->hasPerm("user.editothers.displayname"))
                 {
                     $parametry['user']['displayname'][2]="text";
+                    $parametry['doedycji']++;
                 }
             }
 
@@ -123,6 +125,7 @@ if(isset($_GET['u']) && strlen($_GET['u']) > 0)
                 {
                     $parametry['user']['groupname'][2]="select";
                     $parametry['user']['groupname'][3]= UserLib::getGroups();
+                    $parametry['doedycji']++;
                 }
             }
 
@@ -132,6 +135,7 @@ if(isset($_GET['u']) && strlen($_GET['u']) > 0)
                 if(User::curUsr()->hasPerm("user.editothers.email"))
                 {
                     $parametry['user']['email'][2]="text";
+                    $parametry['doedycji']++;
                 }
             }
 
@@ -362,13 +366,20 @@ EOT;
             {
                 echo "<h2>Błąd wewnętrzny </h2>";
             }
+            
+            echo "";
         }
         else
         {
             echo "<h2>".$this->dane['errno'].". ".$this->dane['msg']."</h2>";
         }
+        
+        if($this->dane['doedycji']>0)
+        {
+            echo '<button type="submit" name="submit" value="sent" >Wyślij</button>';
+        }
         ?>
-                 <button type="submit" name="submit" value="sent" >Wyślij</button>
+                 
         </fieldset>
         </form>
     </div>

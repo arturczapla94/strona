@@ -152,6 +152,30 @@ abstract class UserLib {
         return $res;
     }
     
+    public static function getGroupsNodes($groupId)
+    {
+        $nodes=array();
+        
+        $db = new Database();
+        $t1 = $db->table('groups_permissions');
+        $query = "SELECT `node` FROM {$t1} WHERE `group`={$groupId}";
+ 
+        $res = $db->query($query);
+        $db->close();
+        if(!empty($res) && $res->num_rows > 0)
+        {
+            while($row = $res->fetch_row())
+            {
+                $nodes[] = $row[0];
+            }
+            return $nodes;
+        }
+        else
+        {
+            return null;
+        }
+    }
+    
     /** @return array */
     public static function getGroups()
     {

@@ -99,7 +99,15 @@ class User
         }
         else
         {
-            return true;
+            $nodes = UserLib::getGroupsNodes($this->group);
+            if(is_array($nodes))
+            {
+                return in_array($node, $nodes);
+            }
+            else
+            {
+                return false;
+            }
         }
         
     }

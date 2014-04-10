@@ -1,0 +1,23 @@
+user.seeothers.id            - może wiedzieć id innych użytkowników.
+user.seeothers.name          - może wiedzieć login innych użytkowników.
+user.seeothers.displayname   - może wiedzieć nazwę wyświetlaną innych użytkowników.
+user.seeothers.group         - może wiedzieć grupę innych użytkowników.
+user.seeothers.email         - może wiedzieć email innych użytkowników.
+user.seeothers.register_date - może wiedzieć datę rejestracji innych użytkowników.
+user.seeothers.last_access   - może wiedzieć ostatni dostęp innych użytkowników.
+user.seeothers.last_ip       - może wiedzieć ostatnie ip innych użytkowników.
+user.seeothers.other_ip      - może wiedzieć przedostatnie ip innych użytkowników.
+user.seeothers.hash_algo     - może wiedzieć funkcje skrótu innych użytkowników.
+
+user.editothers.name        - 
+user.editothers.displayname - 
+user.editothers.group       - 
+user.editothers.email       - 
+
+strphp12.see  -
+
+/*****
+user.editself.name        - 
+user.editself.displayname - 
+user.editself.group       - 
+user.editself.email       - 

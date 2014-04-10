@@ -67,4 +67,9 @@ class Database {
     {
         Database::$driver->close();
     }
+    
+    public function mysqli()
+    {
+        return self::$driver;
+    }
 }

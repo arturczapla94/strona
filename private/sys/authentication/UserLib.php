@@ -79,6 +79,26 @@ abstract class UserLib {
         return self::createFromAssoc($t);
     }
     
+    /** @param User $user użytkownik to zaktualizowania w bazie */
+    public static function updateUserInBase($user)
+    {
+        $db = new Database();
+        $t1 = $db->table('users');
+        $query = 'UPDATE '.$t1.' SET `name` = \''.$user->name."'"
+                . ', `displayname` = \''.$user->displayname."'"
+                . ', `group` = \''.$user->group."'"
+                . ', `email` = \''.$user->email."'";
+    
+        $query .= ' WHERE `id`='.$user->getId().';';
+        $res = $db->query($query);
+        $db->close();
+        
+        $groups = self::getGroups();
+        $user->groupname = $groups[$user->group];
+        
+        return $res;        
+    }
+    
     /** @return array */
     public static function getGroups()
     {

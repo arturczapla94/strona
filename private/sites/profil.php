@@ -14,10 +14,84 @@ if(isset($_GET['u']) && strlen($_GET['u']) > 0)
 { //jeżeli podano użytkownika
     
     if(User::curUsr()!=null && User::curUsr()->isLogged())
-    {
+    { // jeżeli jest zalogowany
         $user = UserLib::getUser($_GET['u']);
         if($user!=null)
         { //jeżeli użytkownik istnieje
+            
+            if(isset($_POST['submit']) && $_POST['submit']='sent')
+            {
+                $parametry['msg2']="";
+                $zmian=0;
+                $noperm = 0;
+                if(strcmp($user->name, $_POST['name'])!=0)
+                {
+                    if(User::curUsr()->hasPerm(user.editothers.name))
+                    {
+                        $user->name = $_POST['name'];
+                        $_GET['u'] = $_POST['name'];
+                        $zmian++;
+                    }
+                    else
+                    {
+                        $noperm++;
+                    }
+                }
+                if(strcmp($user->displayname, $_POST['displayname'])!=0)
+                {
+                    if(User::curUsr()->hasPerm(user.editothers.displayname))
+                    {
+                        $user->displayname = $_POST['displayname'];
+                        $zmian++;
+                    }
+                    else
+                    {
+                        $noperm++;
+                    }
+                }
+                if($user->group != $_POST['groupname'])
+                {
+                    if(User::curUsr()->hasPerm(user.editothers.group))
+                    {
+                        $user->group = $_POST['groupname'];
+                        $zmian++;
+                    }
+                    else
+                    {
+                        $noperm++;
+                    }
+                }
+                if(strcmp($user->email, $_POST['email'])!=0)
+                {
+                    if(User::curUsr()->hasPerm(user.editothers.email))
+                    {
+                        $user->email = $_POST['email'];
+                        $zmian++;
+                    }
+                    else
+                    {
+                        $noperm++;
+                    }
+                }
+                if($zmian>0)
+                {
+                    if(UserLib::updateUserInBase($user))
+                    {
+                        $parametry['msg2'].="Zmodyfikowano $zmian pól! ";
+                    }
+                    else
+                    {
+                        $parametry['msg2'].="Nie oczekiwany błąd. ";
+                    }
+                    
+                }
+                if($noperm>0)
+                {
+                    $parametry['msg2'].="Brak uprawnień do $noperm pól! ";
+                }
+            }
+            
+            
             if(User::curUsr()->hasPerm("user.seeothers.id"))
             {
                 $parametry['user']['id']=array("ID: ",$user->getId());
@@ -170,6 +244,13 @@ EOT;
         
     </header>
     <div class="block-contents">
+        <?php
+            if (isset($this->dane['msg2']) && strlen($this->dane['msg2'])>0)
+            {
+                echo "<h3>".$this->dane['msg2']."</h3>";
+            }
+        ?>
+        
         <form name="profile-edit" action="<?php 
     echo System::$system->site->gen_link(array('str'=>$_GET['str'],'action'=>'edit','u'=>$_GET['u']));
                 
@@ -287,7 +368,7 @@ EOT;
             echo "<h2>".$this->dane['errno'].". ".$this->dane['msg']."</h2>";
         }
         ?>
-                 <button type="submit" name="submit" >Wyślij</button>
+                 <button type="submit" name="submit" value="sent" >Wyślij</button>
         </fieldset>
         </form>
     </div>

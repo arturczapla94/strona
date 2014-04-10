@@ -8,9 +8,6 @@
 use sys\authentication\UserLib;
 $parametry = array();
 
-System::$globalParameters[]='action';
-
-
 $parametry['title'] = 'lista użytkowników';
 
 $parametry['users'] = UserLib::getAllUsersSimple();

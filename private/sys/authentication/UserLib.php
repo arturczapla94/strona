@@ -132,6 +132,26 @@ abstract class UserLib {
         return $res;        
     }
     
+    public static function createUser($name, $password, $hash='sha256', $email=null, $displayname=null)
+    {
+        $db = new Database();
+        $t1 = $db->table('users');
+        
+        $phash = hash($hash, \Config\Config::$salt.$password);
+        $query = 'INSERT INTO '.$t1.' (`name`, `displayname`, `password`, `email`, `group`, `reg_date`, `last_ip`) VALUES (' 
+                . "'".$db->escape_string($name)."', "
+                . ($displayname==null ? null : "'".$db->escape_string($displayname)."'") . ", "
+                . "'".\Config\Config::$salt."$^$".$db->escape_string($hash)."$^$".$phash ."', "
+                . ($email==null ? null : "'".$db->escape_string($email)."'").", "
+                . \Config\Config::DEFAULT_GROUP. ", "
+                . "'".date("Y-m-d H:i:s" ,time())."', "
+                . "'".$_SERVER['REMOTE_ADDR']."')";
+    
+        $res = $db->query($query);
+        $db->close();
+        return $res;
+    }
+    
     /** @return array */
     public static function getGroups()
     {

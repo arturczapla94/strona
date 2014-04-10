@@ -5,12 +5,15 @@ class Config {
     public static $startPage = "home";
     const DEFAULT_ACTION = "index";
     
+    const DEFAULT_GROUP = 5;
+    
     const SITE_TITLE = "PHP Czapla";
     const SITE_logo = "czaplaphp03.png";
     
     public static $menu = array(
             /*array("Co to jest PHP?","podstrona",true),*/
             array("lista użytkowników","users",1),
+            array("rejestracja","register",1),
             array("Serwisy:","",2),
             array("PHP01 Zmienne","php01zmienne",1),
             array("PHP02 Funkcje","php02funkcje",1),

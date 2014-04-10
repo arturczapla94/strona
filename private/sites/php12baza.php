@@ -6,10 +6,7 @@
 //////////////////////////////////////
 use sys\authentication\User;
 
-$parametry = array();
-
-
-if(User::curUsr()!=null && User::curUsr()->isLogged() && User::curUsr()->hasPerm('strphp12.see'))
+function wyswietl($parametry)
 {
     $mysqli = new mysqli(\Config\Config::$dbhost, \Config\Config::$dbuser, \Config\Config::$dbpass, \Config\Config::$dbname);
     if ($mysqli->connect_errno)
@@ -26,7 +23,7 @@ if(User::curUsr()!=null && User::curUsr()->isLogged() && User::curUsr()->hasPerm
         if(!empty($_GET['p']) && is_numeric($_GET['p']))
             $strona = $_GET['p'];
         $od=($strona-1)*$ile;
-        
+
         $query = "SELECT COUNT(*) FROM $t1;";
         $res = $mysqli->query($query);
         if($res === false)
@@ -40,7 +37,7 @@ if(User::curUsr()!=null && User::curUsr()->isLogged() && User::curUsr()->hasPerm
             $parametry['num_rows']= $row[0];
             $parametry['stron'] = ceil($row[0]/$ile);
         }
-        
+
         $query = "SELECT * FROM $t1 LIMIT $od,$ile;";
         $res = $mysqli->query($query);
         if($res === false)
@@ -59,6 +56,49 @@ if(User::curUsr()!=null && User::curUsr()->isLogged() && User::curUsr()->hasPerm
                 $parametry['rows'][]= $row;
             }
         }
+    }
+}
+
+$parametry = array();
+
+
+if(User::curUsr()!=null && User::curUsr()->isLogged() )
+{
+    $action = (empty($_GET['action']) ? "see" : $_GET['action']);
+    
+    if($action=="add")
+    {
+        if(User::curUsr()->hasPerm('strphp12.add'))
+        {
+            
+        }
+        else
+        {
+            $parametry['res'] = "error";
+            $parametry['msg']= "Brak autoryzacji!";
+        }
+    }
+    elseif($action=="addform")
+    {
+        if(User::curUsr()->hasPerm('strphp12.add'))
+        {
+            $parametry['res']="addform";
+        }
+        else
+        {
+            $parametry['res'] = "error";
+            $parametry['msg']= "Brak autoryzacji!";
+        }
+        
+    }
+    elseif($action=="see" && User::curUsr()->hasPerm('strphp12.see'))
+    {
+        wyswietl($parametry);
+    }
+    else
+    {
+        $parametry['res'] = "error";
+        $parametry['msg']= "Brak autoryzacji!";
     }
 } 
  else
@@ -140,6 +180,27 @@ EOT;
                 echo "<a class='p-link' href='index.php".gen_link_var("p","$i")."'> $i </a>";
             }
             echo "</div>\n\n";
+        }
+        elseif(strcasecmp($this->dane['res'],"addform"))
+        {
+            ?>
+        <form action="<?php echo System::$system->site->gen_link(array('str'=>'php12baza','action'=>'add')); ?>" method="post" name="php12addform" id="php12addform">
+            <fieldset>
+                <label for="marka">Marka:</label><input type="text" name="marka" id="marka" /><br />
+                <label for="model">Model:</label><input type="text" name="model" id="model" /><br />
+                <label for="wersja">Wersja:</label><input type="text" name="wersja" id="wersja" /><br />
+                <label for="pojemnosc">Pojemność:</label><input type="number" name="pojemnosc" id="pojemnosc" /><br />
+                <label for="moc">Moc:</label><input type="number" name="moc" id="moc" /><br />
+                <label for="nadwozie">Nadwozie:</label><input type="text" name="nadwozie" id="nadwozie" /><br />
+                <label for="drzwi">Drzwi:</label><input type="number" name="drzwi" id="drzwi" /><br />
+                <label for="silnik">Silnik:</label><input type="text" name="silnik" id="silnik" /><br />
+                <label for="cena">Cena:</label><input type="number" name="marka" id="cena" /><br />
+                <button type="submit" name="submit" value="sent" >Wyślij</button>
+            </fieldset>
+            
+        </form>
+            
+            <?php
         }
         else
         {

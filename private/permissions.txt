@@ -14,7 +14,10 @@ user.editothers.displayname -
 user.editothers.group       - 
 user.editothers.email       - 
 
-strphp12.see  -
+strphp12.see    -
+strphp12.edit   -
+strphp12.remove -
+strphp12.add    -
 
 /*****
 user.editself.name        - 

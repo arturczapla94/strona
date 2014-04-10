@@ -125,7 +125,6 @@ function logowanie($mysqli, $row)
     $query .= ' WHERE `id`='.$user->getId().';';
 
     $user->setLogged();
-    echo $query;
     $res = $mysqli->query($query);
     if(!$res)
     {
@@ -158,7 +157,6 @@ function uwierzytelnianie($mysqli, $login, $password)
         ."ON $t1.`group` = $t2.`id` "
         ."WHERE $t1.`name` = '".$mysqli->escape_string($login)."'";
     
-    //DEL echo "<br>\n\n".$query."<br>\n\n";
     $res = $mysqli->query($query);
         if(!empty($res) && $res->num_rows > 0)
         {

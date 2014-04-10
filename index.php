@@ -103,21 +103,21 @@ else {
                                 }
                                 else
                                 {
-                                    System::error(108);
+                                    \System::error(108);
                                 }
                                 //TODO:
                                 // wywowływanie akcji
                             }
                             else
                             {
-                                 System::error(105);
+                                 \System::error(105);
                             }
 
                             break;
                         }
                         else
                         {
-                            System::error(104);
+                            \System::error(104);
                             break;
                         }
                     }
@@ -125,20 +125,20 @@ else {
                 }
                 if(!$znaleziono)
                 {
-                    System::error(107);
+                    \System::error(107);
                 }
                 
                 
             }
             else
             {
-                System::error(106);
+                \System::error(106);
                 
             }
         }
         else
         { //NIE ROZPOZNANO IDENTYFIKATORA
-            System::error(103);
+            \System::error(103);
         }
     }           
     else if(preg_match('/^[0-9a-zA-Z_-]+$/D', $_GET['str']) )
@@ -151,12 +151,12 @@ else {
         }
         else
         {
-            System::error(101);
+            \System::error(101);
         }
     }
     else
     {
-        System::error(102);
+        \System::error(102);
     }
 }	
 

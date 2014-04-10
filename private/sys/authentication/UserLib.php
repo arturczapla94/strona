@@ -79,6 +79,39 @@ abstract class UserLib {
         return self::createFromAssoc($t);
     }
     
+    public static function getAllUsersSimple()
+    {
+        $users=array();
+        
+        $db = new Database();
+        $t1 = $db->table('users');
+        $t2 = $db->table('groups');
+        $query = "SELECT $t1.`id`,"
+            ."$t1.`name`, "
+            ."$t1.`displayname`, "
+            ."$t1.`group`," 
+            ."$t2.`name`AS `groupname`"
+            ."from $t1 "
+            ."LEFT OUTER JOIN $t2 "
+            ."ON $t1.`group` = $t2.`id` ";
+ 
+        $res = $db->query($query);
+        $db->close();
+        if(!empty($res) && $res->num_rows > 0)
+        {
+            while($row = $res->fetch_assoc())
+            {
+                $users[$row['id']] = $row;
+            }
+            return $users;
+        }
+        else
+        {
+            return null;
+        }
+    }
+    
+    
     /** @param User $user użytkownik to zaktualizowania w bazie */
     public static function updateUserInBase($user)
     {
@@ -116,4 +149,6 @@ abstract class UserLib {
         }
         return $groups;
     }
+    
+    
 }

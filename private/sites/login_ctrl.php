@@ -3,11 +3,13 @@
  * 
  DROP TABLE str_groups;
  DROP TABLE str_users;
+
  CREATE TABLE IF NOT EXISTS `str_groups` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(64) COLLATE utf8_polish_ci NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=6 ;
+
 
 INSERT INTO `str_groups` (`id`, `name`) VALUES
 (1, 'Super user'),
@@ -16,6 +18,59 @@ INSERT INTO `str_groups` (`id`, `name`) VALUES
 (4, 'Użytkownik'),
 (5, 'Nowy');
 
+-- --------------------------------------------------------
+
+
+CREATE TABLE IF NOT EXISTS `str_groups_inheritance` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `group` int(10) unsigned NOT NULL,
+  `parent` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+
+CREATE TABLE IF NOT EXISTS `str_groups_permissions` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `group` int(10) unsigned NOT NULL,
+  `node` varchar(120) COLLATE utf8_polish_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=28 ;
+
+
+INSERT INTO `str_groups_permissions` (`id`, `group`, `node`) VALUES
+(1, 2, 'user.seeothers.id'),
+(2, 2, 'user.seeothers.name'),
+(3, 2, 'user.seeothers.displayname'),
+(4, 2, 'user.seeothers.group'),
+(5, 2, 'user.seeothers.email'),
+(6, 2, 'user.seeothers.register_date'),
+(7, 2, 'user.seeothers.last_access'),
+(8, 2, 'user.seeothers.last_ip'),
+(9, 2, 'user.seeothers.other_ip'),
+(10, 2, 'user.seeothers.hash_algo'),
+(11, 2, 'user.editothers.name'),
+(12, 2, 'user.editothers.displayname'),
+(13, 2, 'user.editothers.group  '),
+(14, 2, 'user.editothers.email'),
+(15, 3, 'user.seeothers.id'),
+(16, 3, 'user.seeothers.name'),
+(17, 3, 'user.seeothers.displayname'),
+(18, 3, 'user.seeothers.group'),
+(19, 3, 'user.seeothers.email'),
+(20, 3, 'user.seeothers.register_date'),
+(21, 3, 'user.seeothers.last_access'),
+(22, 3, 'user.seeothers.last_ip'),
+(23, 3, 'user.seeothers.other_ip'),
+(24, 3, 'user.seeothers.hash_algo'),
+(25, 2, 'strphp12.see'),
+(26, 3, 'strphp12.see'),
+(27, 4, 'strphp12.see');
+
+-- --------------------------------------------------------
+
+
 CREATE TABLE IF NOT EXISTS `str_users` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(128) COLLATE utf8_polish_ci NOT NULL,
@@ -23,16 +78,20 @@ CREATE TABLE IF NOT EXISTS `str_users` (
   `password` varchar(255) COLLATE utf8_polish_ci DEFAULT NULL,
   `email` varchar(128) COLLATE utf8_polish_ci DEFAULT NULL,
   `group` mediumint(9) NOT NULL,
-  `reg_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `reg_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `last_access` timestamp NULL DEFAULT NULL,
   `last_ip` varchar(48) COLLATE utf8_polish_ci DEFAULT NULL,
   `other_ip` varchar(48) COLLATE utf8_polish_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci AUTO_INCREMENT=6 ;
 
-INSERT INTO `str_users` (`id`, `name`, `password`, `email`, `group`, `reg_date`, `last_access`, `last_ip`, `other_ip`) VALUES
-(1, 'root', '1234', NULL, 1, '2014-03-26 23:26:43', '2014-03-26 23:26:43', NULL, NULL);
-  
+INSERT INTO `str_users` (`id`, `name`, `displayname`, `password`, `email`, `group`, `reg_date`, `last_access`, `last_ip`, `other_ip`) VALUES
+(1, 'root', '', '1234', NULL, 1, '2014-04-09 22:28:43', '2014-04-10 04:27:42', '::1', '192.168.1.105'),
+(2, 'Administrator', 'Administrator', '123$^$SHA256$^$416d1ce9ef58f8c99ec24ec7c898a4e0622ff963048a961dfc195637d016d67c', '', 2, '2014-04-10 00:11:10', '2014-04-10 00:11:28', '::1', NULL),
+(3, 'user', 'user', 'BV1WSYUB[-pF-a,#|$^$sha256$^$9b26c5276d47c78dffba364abc44e0b7b9b61b3cd9f63bebeb99151864f5f91d', 'user', 4, '2014-04-10 03:59:10', '2014-04-10 04:28:00', '::1', NULL),
+(4, 'Moderator', 'mod', 'BV1WSYUB[-pF-a,#|$^$md5$^$05b5d97b6f873d268b8a30f54f25e446', 'mod', 3, '2014-04-10 04:15:09', '2014-04-10 04:16:09', '::1', NULL),
+(5, 'nowy', 'nowy', 'BV1WSYUB[-pF-a,#|$^$sha256$^$f016a0506f9e766050599ca12687320d619d56c1cc7e12558c5953ebee321e5b', 'nowy', 5, '2014-04-10 04:27:37', NULL, '::1', NULL);
+ 
  * 
  */
 

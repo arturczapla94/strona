@@ -57,6 +57,7 @@ function wyswietl($parametry)
             }
         }
     }
+    return $parametry;
 }
 
 $parametry = array();
@@ -93,7 +94,7 @@ if(User::curUsr()!=null && User::curUsr()->isLogged() )
     }
     elseif($action=="see" && User::curUsr()->hasPerm('strphp12.see'))
     {
-        wyswietl($parametry);
+        $parametry=wyswietl($parametry);
     }
     else
     {
@@ -181,7 +182,7 @@ EOT;
             }
             echo "</div>\n\n";
         }
-        elseif(strcasecmp($this->dane['res'],"addform"))
+        elseif(strcasecmp($this->dane['res'],"addform")===0)
         {
             ?>
         <form action="<?php echo System::$system->site->gen_link(array('str'=>'php12baza','action'=>'add')); ?>" method="post" name="php12addform" id="php12addform">
